@@ -385,8 +385,7 @@ for(let i = 0; i < I; i++) {
 for(let v = 0; v < V; v++){
   for(let i = 0; i < I; i++){
     for(let t = 0; t < T; t++){
-      for(let t1 = t; t1 < t + nn[i]; t1++){
-
+      for(let t1 = t; t1 <= (t + nn[i]); t1++){
         if(t1 < T){
           NPV[i][v][t][1] += E[i][v][t] * ((CF[i] / 10**6) * (1 + VFC[i] * IMP[i][t1]) * (1 + GR[esc - 1][i]) ** (t1 + 1) + (CT / 10**6) * (TRM / 10**6) * Math.min(1, (t1 + 1) / tt) * (WTT[i] * EMI[t1][i][esc - 1] + TTW[i])) * (1 / (1 + roi[esc - 1]) ** ((t1 + 1) - (t + 1)));
         } else {
@@ -419,9 +418,6 @@ for(let v = 0; v < V; v++){
     }
   }
 }
-
-
-console.log("NPV", NPV)
 
 // EAA<- array(rep(0,I*V*T*C), dim=c(I,V,T,C))
 // for(v in 1:V){
@@ -487,8 +483,8 @@ for(let v = 0; v < V; v++){
   for(let t = 0; t < T; t++){
     TEMPX[v][t] = 0;
     for(let i = 0; i < I; i++){
-      if(t >= ti[i][v]){
-        if(t <= tf[i][v]){
+      if(t >= (ti[i][v] - 1)){
+        if(t <= (tf[i][v] - 1)){
           if(i === 0){
             if(opt === 1){
               // Do nothing
@@ -527,8 +523,8 @@ for(let i = 0; i < I; i++){
   for(let v = 0; v < V; v++){
     PROB[i][v] = [];
     for(let t = 0; t < T; t++){
-      if(t >= ti[i][v]){
-        if(t <= tf[i][v]){
+      if(t >= (ti[i][v] - 1)){
+        if(t <= (tf[i][v] - 1)){
           if(i === 0){
             if(opt === 1){
               PROB[i][v][t] = 0;
@@ -547,7 +543,6 @@ for(let i = 0; i < I; i++){
     }
   }
 }
-
 
 // N<- array(rep(0,I*V*T), dim=c(I,V,T))
 // G<- array(rep(0,I*V*T), dim=c(I,V,T))
@@ -611,7 +606,8 @@ for(let v = 0; v < V; v++){
         }
 
         for(let i2 = 0; i2 < I; i2++){
-          G[i][v][t] = G[i][v][t] + PROB[i][v][t] * (RG[esc][v] * N[i2][v][t - 1] + D[i2][v][t]);
+          
+          G[i][v][t] = G[i][v][t] + PROB[i][v][t] * (RG[esc - 1][v] * N[i2][v][t - 1] + D[i2][v][t]); 
         }
 
         N[i][v][t] = N[i][v][t - 1] + G[i][v][t] - D[i][v][t];
@@ -625,7 +621,8 @@ for(let v = 0; v < V; v++){
         }
 
         for(let i2 = 0; i2 < I; i2++){
-          G[i][v][t] = G[i][v][t] + PROB[i][v][t] * (RG[esc][v] * INV[i2][v] + D[i2][v][t]);
+          
+          G[i][v][t] = G[i][v][t] + PROB[i][v][t] * (RG[esc - 1][v] * INV[i2][v] + D[i2][v][t]);
         }
 
         N[i][v][t] = INV[i][v] + G[i][v][t] - D[i][v][t];
@@ -633,7 +630,6 @@ for(let v = 0; v < V; v++){
     }
   }
 }
-
 
 // WTTX<- array(rep(0,I*V*T), dim=c(I,V,T))
 // TTWX<- array(rep(0,I*V*T), dim=c(I,V,T))
@@ -652,7 +648,7 @@ let QFUEL: number[][][] = new Array(I).fill(0).map(() => new Array(V).fill(0).ma
 for(let t = 0; t < T; t++){
   for(let v = 0; v < V; v++){
     for(let i = 0; i < I; i++){
-      WTTX[i][v][t] = N[i][v][t] * (WTT[i] * EMI[t][i][esc]) * E[i][v][t] / 10 ** 6;
+      WTTX[i][v][t] = N[i][v][t] * (WTT[i] * EMI[t][i][esc - 1]) * E[i][v][t] / 10 ** 6;
       QFUEL[i][v][t] = N[i][v][t] * E[i][v][t] / 10 ** 6;
       TTWX[i][v][t] = TTW[i] * QFUEL[i][v][t];
     }
@@ -674,7 +670,7 @@ for(let t = 0; t < T; t++){
   for(let v = 0; v < V; v++){
     for(let i = 0; i < I; i++){
       TEMPB1[t] = TEMPB1[t] + (WTTX[i][v][t] + TTWX[i][v][t]);
-      TEMPB0[t] = TEMPB0[t] + N[i][v][t] * (WTT[0] * EMI[t][0][esc] + TTW[0]) * E[0][v][0];
+      TEMPB0[t] = TEMPB0[t] + N[i][v][t] * (WTT[0] * EMI[t][0][esc - 1] + TTW[0]) * E[0][v][0];
     }
   }
 }
@@ -738,34 +734,46 @@ for(let v = 0; v < V; v++){
   for(let i = 0; i < I; i++){
     for(let t = 0; t < T; t++){
 
-      VFCX[i][v][t] = N[i][v][t] * E[i][v][t] * ((CF[i] / 10**6) * (VFC[i] * IMP[i][t]) * (1 + GR[esc][i])**(t + 1)) * (1 / (1 + INF[esc])**(t + 1));
-      TCX[i][v][t] = N[i][v][t] * E[i][v][t] * ((CT / 10**6) * (TRM / 10**6) * Math.min(1, (t + 1) / tt) * (WTT[i] * EMI[t][i][esc] + TTW[i])) * (1 / (1 + INF[esc])**(t + 1));
-      VACX[i][v][t] = G[i][v][t] * A[i][v] * PASS[t][i][v] * ((1 + DEV[esc])**(t + 1)) * (VAC[i]) * (1 / (1 + INF[esc])**(t + 1));
-
+      VFCX[i][v][t] = N[i][v][t] * E[i][v][t] * ((CF[i] / 10**6) * (VFC[i] * IMP[i][t]) * (1 + GR[esc - 1][i])**(t + 1)) * (1 / (1 + INF[esc - 1])**(t + 1));
+      TCX[i][v][t] = N[i][v][t] * E[i][v][t] * ((CT / 10**6) * (TRM / 10**6) * Math.min(1, (t + 1) / tt) * (WTT[i] * EMI[t][i][esc - 1] + TTW[i])) * (1 / (1 + INF[esc - 1])**(t + 1));
+      VACX[i][v][t] = G[i][v][t] * A[i][v] * PASS[t][i][v] * ((1 + DEV[esc - 1])**(t + 1)) * (VAC[i]) * (1 / (1 + INF[esc - 1])**(t + 1));
     }
   }
 }
 
-// ######### Grafica 1 (Hoja 1) #######
-// SAVED1
-// SAVED2
-// CO2SAVED
+// // ######### Grafica 1 (Hoja 1) #######
+// // SAVED1
+// console.log("SAVED1", SAVED1);
+// // SAVED2
+// console.log("SAVED2", SAVED2);
+// // CO2SAVED
+// console.log("CO2SAVED", CO2SAVED);
 
-// ######### Grafica 2 (Hoja 1) #######
-// WTTX
+// // ######### Grafica 2 (Hoja 1) #######
+// // WTTX
+// console.log("WTTX", WTTX);
 // TTWX
+//console.log("TTWX", TTWX);
 
 // ######### Grafica 3,4,5,6 (Hoja 2)####### 
-// N
-// G
-// D
-// OLD
+// // N
+// console.log("N", N);
+// // G
+// console.log("G", G);
+// // D
+// console.log("D", D);
+// // OLD
+// console.log("OLD", OLD);
 
 
-// ######### Grafica 7 (Hoja 3) #######
-// TCX
-// VFCX
-// VACX
+// // ######### Grafica 7 (Hoja 3) #######
+// // TCX
+// console.log("TCX", TCX);
+// // VFCX
+// console.log("VFCX", VFCX);
+// // VACX
+console.log("VACX", VACX);
 
-// ######### Grafica 8,9,10,11 (Hoja 3)#######
-// QFUEL
+// // ######### Grafica 8,9,10,11 (Hoja 3)#######
+// // QFUEL
+// console.log("QFUEL", QFUEL);
