@@ -92,9 +92,13 @@ input, .input-group-text {
   color: var(--persian-green);
 }
 
-#sidebar-panel{
-  overflow-y: auto;
+body {
+  overflow: hidden;
 }
+
+/* #sidebar-panel{
+  overflow-y: auto;
+} */
 
 #main-panel{
   overflow: auto;

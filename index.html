@@ -39,7 +39,7 @@
     </div>
   </div>
 
-
+  <!-- Navbar -->
   <div class="row bg-light">
     <div id="logo" class="col-3 d-flex flex-row align-items-center justify-content-center my-1 border-end">
       <img src="./assets/images/girozeroLogo.jpg" alt="Girozero Logo" />
@@ -100,146 +100,150 @@
 
   <div id="app" class="container-fluid row m-0 p-0">
 
-
     <!-- sidebar -->
-    <div id="sidebar-panel" class="col-3 p-0">
-      <table class="table table-bordered table table-hover align-middle my-4">
-        <thead class="collapsed bg-transparent" data-bs-toggle="collapse" data-bs-target="#home-tech-collapse"
-          aria-expanded="false">
-          <tr>
-            <th colspan="2" class="text-center table-header">Parámetros Financieros</th>
-          </tr>
-        </thead>
-        <tbody class="lh-1 collapse bg-transparent show" id="home-tech-collapse">
+    <div id="sidebar-panel" class="col-3 p-0 overflow-scroll height-100-vh">
 
-          <!-- Finance -->
-          <tr>
-            <td scope="row">
-              <label for="input-TRM">
-                <small class="form-text text-muted">Tasa de cambio dólar</small>
-              </label>
-            </td>
-            <td class="home">
-              <input type="number" class="form-control sub" id="input-TRM" name="input-TRM" step="1" required>
-            </td>
-          </tr>
+      <div>
+        <table class="table table-bordered table table-hover align-middle my-4">
+          <thead class="collapsed bg-transparent" data-bs-toggle="collapse" data-bs-target="#home-tech-collapse"
+            aria-expanded="false">
+            <tr>
+              <th colspan="2" class="text-center table-header">Parámetros Financieros</th>
+            </tr>
+          </thead>
+          <tbody class="lh-1 collapse bg-transparent show" id="home-tech-collapse">
+  
+            <!-- Finance -->
+            <tr>
+              <td scope="row">
+                <label for="input-TRM">
+                  <small class="form-text text-muted">Tasa de cambio dólar</small>
+                </label>
+              </td>
+              <td class="home">
+                <input type="number" class="form-control sub" id="input-TRM" name="input-TRM" step="1" required>
+              </td>
+            </tr>
+  
+            <tr>
+              <td scope="row">
+                <label for="input-CT">
+                  <small class="form-text text-muted">Tax carbon USD/ton</small>
+                </label>
+              </td>
+              <td class="home">
+                <input type="number" class="form-control sub" id="input-CT" name="input-CT" step="1" required>
+              </td>
+            </tr>
+  
+            <tr>
+              <td scope="row">
+                <label for="input-tt">
+                  <small class="form-text text-muted">Periodo de instalacion del tax carbon</small>
+                </label>
+              </td>
+              <td class="home">
+                <input type="number" class="form-control sub" id="input-tt" name="input-tt" step="1" required>
+              </td>
+            </tr>
+  
+            <tr>
+              <td scope="row">
+                <label for="input-rate">
+                  <small class="form-text text-muted">Tasa del préstamo</small>
+                </label>
+              </td>
+              <td class="home">
+                <input type="number" class="form-control sub" id="input-rate" name="input-rate" step="1" required>
+              </td>
+            </tr>
+  
+            <tr>
+              <td scope="row">
+                <label for="input-per">
+                  <small class="form-text text-muted">Años del préstamo</small>
+                </label>
+              </td>
+              <td class="home">
+                <input type="number" class="form-control sub" id="input-per" name="input-per" step="1" required>
+              </td>
+            </tr>
+  
+            <tr class="nested-table-header bg-transparent" data-bs-toggle="collapse" data-bs-target="#current-effect-collapse" aria-expanded="true">
+              <td colspan="2" class="text-center">
+                <small class="form-text text-muted">Flujos del préstamo</small>
+              </td>
+            </tr>
+  
+            <tr class="lh-1 bg-transparent current-effect collapse show" id="current-effect-collapse" style="">
+              <td colspan="2">
+                <table class="table table-bordered table-hover align-middle mb-0 bg-light">
+                  <tbody id="current-effect-collapse" class="lh-1 bg-transparent collapse show" style="">
+                
+                    <tr class="current-effect-row d-none">
+                      <td colspan="2">
+                        <div class="alert alert-danger mb-0 text-center" role="alert">
+                          La suma de los Porcentajes de los flujos del préstamos es <spam class="current-effect-spam">100</spam>%<br>
+                          Debe ser igual a 100%
+                        </div>
+                      </td>
+                    </tr>
+  
+                    <tr>
+                      <td colspan="2">
+                        <div class="d-flex justify-content-between">
+                          <label for="input-per_with_current" class="form-label">
+                            <small class="form-text text-muted">Porcentaje de pago inicial</small>
+                          </label>
+                          <small id="per_with_current-value" class="form-text text-muted">0.5</small>
+                        </div>
+                        <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.5"
+                          id="input-per_with_current">
+                
+                      </td>
+                    </tr>
+  
+                    <tr>
+                      <td colspan="2">
+                        <div class="d-flex justify-content-between">
+                          <label for="input-per_with_current" class="form-label">
+                            <small class="form-text text-muted">Porcentaje de pago diferido a cuotas</small>
+                          </label>
+                          <small id="per_with_current-value" class="form-text text-muted">0.5</small>
+                        </div>
+                        <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.5"
+                          id="input-per_with_current">
+                
+                      </td>
+                    </tr>
+  
+                    <tr>
+                      <td colspan="2">
+                        <div class="d-flex justify-content-between">
+                          <label for="input-per_with_current" class="form-label">
+                            <small class="form-text text-muted">Porcentaje de pago final</small>
+                          </label>
+                          <small id="per_with_current-value" class="form-text text-muted">0.5</small>
+                        </div>
+                        <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.5"
+                          id="input-per_with_current">
+                
+                      </td>
+                    </tr>
+                    
+                    
+                  </tbody>
+                
+                </table>
+              </td>
+            </tr>
+  
+            
+          </tbody>
+        </table>
 
-          <tr>
-            <td scope="row">
-              <label for="input-CT">
-                <small class="form-text text-muted">Tax carbon USD/ton</small>
-              </label>
-            </td>
-            <td class="home">
-              <input type="number" class="form-control sub" id="input-CT" name="input-CT" step="1" required>
-            </td>
-          </tr>
-
-          <tr>
-            <td scope="row">
-              <label for="input-tt">
-                <small class="form-text text-muted">Periodo de instalacion del tax carbon</small>
-              </label>
-            </td>
-            <td class="home">
-              <input type="number" class="form-control sub" id="input-tt" name="input-tt" step="1" required>
-            </td>
-          </tr>
-
-          <tr>
-            <td scope="row">
-              <label for="input-rate">
-                <small class="form-text text-muted">Tasa del préstamo</small>
-              </label>
-            </td>
-            <td class="home">
-              <input type="number" class="form-control sub" id="input-rate" name="input-rate" step="1" required>
-            </td>
-          </tr>
-
-          <tr>
-            <td scope="row">
-              <label for="input-per">
-                <small class="form-text text-muted">Años del préstamo</small>
-              </label>
-            </td>
-            <td class="home">
-              <input type="number" class="form-control sub" id="input-per" name="input-per" step="1" required>
-            </td>
-          </tr>
-
-          <tr class="nested-table-header bg-transparent" data-bs-toggle="collapse" data-bs-target="#current-effect-collapse" aria-expanded="true">
-            <td colspan="2" class="text-center">
-              <small class="form-text text-muted">Flujos del préstamo</small>
-            </td>
-          </tr>
-
-          <tr class="lh-1 bg-transparent current-effect collapse show" id="current-effect-collapse" style="">
-            <td colspan="2">
-              <table class="table table-bordered table-hover align-middle mb-0 bg-light">
-                <tbody id="current-effect-collapse" class="lh-1 bg-transparent collapse show" style="">
-              
-                  <tr class="current-effect-row d-none">
-                    <td colspan="2">
-                      <div class="alert alert-danger mb-0 text-center" role="alert">
-                        La suma de los Porcentajes de los flujos del préstamos es <spam class="current-effect-spam">100</spam>%<br>
-                        Debe ser igual a 100%
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td colspan="2">
-                      <div class="d-flex justify-content-between">
-                        <label for="input-per_with_current" class="form-label">
-                          <small class="form-text text-muted">Porcentaje de pago inicial</small>
-                        </label>
-                        <small id="per_with_current-value" class="form-text text-muted">0.5</small>
-                      </div>
-                      <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.5"
-                        id="input-per_with_current">
-              
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td colspan="2">
-                      <div class="d-flex justify-content-between">
-                        <label for="input-per_with_current" class="form-label">
-                          <small class="form-text text-muted">Porcentaje de pago diferido a cuotas</small>
-                        </label>
-                        <small id="per_with_current-value" class="form-text text-muted">0.5</small>
-                      </div>
-                      <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.5"
-                        id="input-per_with_current">
-              
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td colspan="2">
-                      <div class="d-flex justify-content-between">
-                        <label for="input-per_with_current" class="form-label">
-                          <small class="form-text text-muted">Porcentaje de pago final</small>
-                        </label>
-                        <small id="per_with_current-value" class="form-text text-muted">0.5</small>
-                      </div>
-                      <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.5"
-                        id="input-per_with_current">
-              
-                    </td>
-                  </tr>
-                  
-                  
-                </tbody>
-              
-              </table>
-            </td>
-          </tr>
-
-          
-        </tbody>
-      </table>
+      </div>
+      
 
       <!-- Policies -->
 
