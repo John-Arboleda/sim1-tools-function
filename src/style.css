@@ -61,6 +61,7 @@ body {
 }
 
 #sidebar-panel .nav-pills .active,
+.table-header:hover,
 .btn-outline-persian-green:hover {
   border-color: var(--bs-white) !important;
   color: var(--bs-white) !important;
@@ -109,6 +110,10 @@ body {
 }
 
 .nav-link {
+  cursor: pointer;
+}
+
+.cursor-pointer {
   cursor: pointer;
 }
 

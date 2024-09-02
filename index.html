@@ -40,8 +40,8 @@
   </div>
 
   <!-- Navbar -->
-  <div class="row bg-light">
-    <div id="logo" class="col-3 d-flex flex-row align-items-center justify-content-center my-1 border-end">
+  <div class="row bg-light mx-0">
+    <div id="logo" class="col-3 d-flex flex-row align-items-center justify-content-center my-1">
       <img src="./assets/images/girozeroLogo.jpg" alt="Girozero Logo" />
       <div class="ps-2 mt-1">
         <h5 class="mb-0">Simulador 1</h5>
@@ -101,11 +101,11 @@
   <div id="app" class="container-fluid row m-0 p-0">
 
     <!-- sidebar -->
-    <div id="sidebar-panel" class="col-3 p-0 overflow-scroll height-100-vh">
+    <div id="sidebar-panel" class="col-3 p-0 overflow-scroll height-100-vh px-2 pb-5">
 
       <div>
         <table class="table table-bordered table table-hover align-middle my-4">
-          <thead class="collapsed bg-transparent" data-bs-toggle="collapse" data-bs-target="#home-tech-collapse"
+          <thead class="collapsed bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#home-tech-collapse"
             aria-expanded="false">
             <tr>
               <th colspan="2" class="text-center table-header">Parámetros Financieros</th>
@@ -139,7 +139,7 @@
             <tr>
               <td scope="row">
                 <label for="input-tt">
-                  <small class="form-text text-muted">Periodo de instalacion del tax carbon</small>
+                  <small class="form-text text-muted">Periodo de instalación del tax carbon</small>
                 </label>
               </td>
               <td class="home">
@@ -169,16 +169,16 @@
               </td>
             </tr>
   
-            <tr class="nested-table-header bg-transparent" data-bs-toggle="collapse" data-bs-target="#current-effect-collapse" aria-expanded="true">
+            <tr class="nested-table-header bg-transparent">
               <td colspan="2" class="text-center">
                 <small class="form-text text-muted">Flujos del préstamo</small>
               </td>
             </tr>
   
-            <tr class="lh-1 bg-transparent current-effect collapse show" id="current-effect-collapse" style="">
+            <tr class="lh-1 bg-transparent">
               <td colspan="2">
                 <table class="table table-bordered table-hover align-middle mb-0 bg-light">
-                  <tbody id="current-effect-collapse" class="lh-1 bg-transparent collapse show" style="">
+                  <tbody class="lh-1 bg-transparent">
                 
                     <tr class="current-effect-row d-none">
                       <td colspan="2">
@@ -248,7 +248,7 @@
       <!-- Policies -->
 
       <table class="table table-bordered table table-hover align-middle my-4">
-        <thead class="collapsed bg-transparent" data-bs-toggle="collapse" data-bs-target="#policy-collapse"
+        <thead class="collapsed bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#policy-collapse"
           aria-expanded="false">
           <tr>
             <th colspan="2" class="text-center table-header">Implementación de Políticas</th>
@@ -270,7 +270,7 @@
 
           <tr class="nested-table-header bg-transparent" data-bs-toggle="collapse" data-bs-target="#lambda-collapse" aria-expanded="true">
             <td colspan="2" class="text-center">
-              <small class="form-text text-muted">Ratio implementacion politicas de consolidacion</small>
+              <small class="form-text text-muted">Ratio implementación politicas de consolidación</small>
             </td>
           </tr>
 
@@ -459,7 +459,7 @@
       <!-- Tech -->
 
       <table class="table table-bordered table table-hover align-middle my-4">
-        <thead class="collapsed bg-transparent" data-bs-toggle="collapse" data-bs-target="#tech-collapse"
+        <thead class="collapsed bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#tech-collapse"
           aria-expanded="false">
           <tr>
             <th colspan="2" class="text-center table-header">Tecnologías</th>
@@ -469,7 +469,7 @@
           
           <!-- Diesel -->
 
-          <tr class="nested-table-header bg-transparent" data-bs-toggle="collapse" data-bs-target="#diesel-new-collapse" aria-expanded="true">
+          <tr class="nested-table-header bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#diesel-new-collapse" aria-expanded="true">
             <td colspan="2" class="text-center">
               <small class="form-text text-muted">Camiones Diesel Nuevos</small>
             </td>
@@ -614,7 +614,7 @@
 
           <!-- Gas Natural -->
 
-          <tr class="nested-table-header bg-transparent" data-bs-toggle="collapse" data-bs-target="#gas-new-collapse" aria-expanded="true">
+          <tr class="nested-table-header bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#gas-new-collapse" aria-expanded="true">
             <td colspan="2" class="text-center">
               <small class="form-text text-muted">Camiones a Gas Natural Nuevos</small>
             </td>
@@ -759,7 +759,7 @@
 
           <!-- Eléctrico -->
 
-          <tr class="nested-table-header bg-transparent" data-bs-toggle="collapse" data-bs-target="#electric-collapse" aria-expanded="true">
+          <tr class="nested-table-header bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#electric-collapse" aria-expanded="true">
             <td colspan="2" class="text-center">
               <small class="form-text text-muted">Camiones Eléctricos (BEV)</small>
             </td>
@@ -904,7 +904,7 @@
 
           <!-- Hidrógeno -->
 
-          <tr class="nested-table-header bg-transparent" data-bs-toggle="collapse" data-bs-target="#hidrogen-collapse" aria-expanded="true">
+          <tr class="nested-table-header bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#hidrogen-collapse" aria-expanded="true">
             <td colspan="2" class="text-center">
               <small class="form-text text-muted">Camiones a Hidrógeno (FCEV)</small>
             </td>
@@ -1056,7 +1056,28 @@
     <!-- main -->
     <div id="main-panel" class="col height-100-vh">
 
-
+      <ul id="renovation-fleet-navbar" class="nav nav-pills flex-column flex-sm-row justify-content-center bg-persian-green-light mb-3">
+        <li class="nav-item">
+          <select id="timeline_select_tech" class="form-select flex-sm-fill text-sm-center m-2" aria-label="technology select">
+            <option value="DGEH" selected>Todas las fuentes de energía</option>
+            <option value="D">Diesel Nuevos</option>
+            <option value="G">Gas Natural</option>
+            <option value="E">Eléctrico</option>
+            <option value="H">Hidrógeno</option>
+            <option value="H">Diesel Actual</option>
+          </select>
+        </li>
+        <li class="nav-item mx-4">
+          <select id="timeline_select_size" class="form-select flex-sm-fill text-sm-center m-2" aria-label="vehicle type select">
+            <option value="hml" selected>Todos los vehículos</option>
+            <option value="h">C2</option>
+            <option value="m">C3S3</option>
+          </select>
+        </li>
+        <li class="nav-item">
+          <button id="timeline_percent_button" class="btn btn-persian-green flex-sm-fill text-sm-center m-2">Porcentajes</button>
+        </li>
+      </ul>
 
       <div id="page1-panel" class="panel m-md-4 p-4 border border-persian-green rounded-3">
         <div>
@@ -1067,49 +1088,18 @@
           <div class="container px-0">
 
             <div class="row gy-4 mb-4">
-              <div class="col-lg-6">
-                <div class="p-3 border border-persian-green-light d-flex flex-column">
-                  <div class="text-center fw-semibold"><span><small>Número de vehículos por tamaño</small></span></div>
-                  <div id="veh_pie_chart" class="mb-4 p-3"></div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="p-3 border border-persian-green-light d-flex flex-column">
-                  <div class="text-center fw-semibold"><span><small>Número de vehículos por combustible</small></span>
-                  </div>
-                  <div id="energy_pie_chart" class="mb-4 p-3"></div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="p-3 border border-persian-green-light d-flex flex-column">
-                  <div class="text-center fw-semibold"><span><small>Toneladas promedio esperadas</small></span></div>
-                  <div id="capacity_chart" class="mb-4 p-3"></div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="p-3 border border-persian-green-light d-flex flex-column">
-                  <div class="text-center fw-semibold"><span><small>Máximo kilometraje anual</small></span></div>
-                  <div id="km_bar_chart" class="mb-4 p-3"></div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="p-3 border border-persian-green-light d-flex flex-column">
-                  <div class="text-center fw-semibold"><span><small>Límite superior e inferior de la política de compra
-                        de vehículos</small></span></div>
-                  <div id="limit_chart" class="mb-4 p-3"></div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="p-3 border border-persian-green-light d-flex flex-column">
-                  <div class="text-center fw-semibold"><span><small>Costo de mantenimiento estimado por kilómetro
-                        recorrido</small></span></div>
-                  <div id="mant_column_chart" class="mb-4 p-3"></div>
-                </div>
-              </div>
+              
               <div class="col-12">
                 <div class="p-3 border border-persian-green-light d-flex flex-column">
                   <div class="text-center fw-semibold"><span><small>Inventario de flota por edad</small></span></div>
-                  <div id="age_inv_column_chart" class="mb-4 p-3"></div>
+                  <div id="saved-co2" class="mb-4 p-3"></div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="p-3 border border-persian-green-light d-flex flex-column">
+                  <div class="text-center fw-semibold"><span><small>Inventario de flota por edad</small></span></div>
+                  <div id="WTTX" class="mb-4 p-3"></div>
                 </div>
               </div>
             </div>
