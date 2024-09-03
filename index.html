@@ -1082,36 +1082,19 @@
       <div id="page1-panel" class="panel m-md-4 p-4 border border-persian-green rounded-3">
         <div>
           <div class="mb-4">
-            <h3 class="text-tropical fw-bold">Resumen</h3>
+            <h3 class="text-tropical fw-bold">Página 1</h3>
           </div>
 
-          <div class="container px-0">
-
-            <div class="row gy-4 mb-4">
-              
-              <div class="col-12">
-                <div class="p-3 border border-persian-green-light d-flex flex-column">
-                  <div class="text-center fw-semibold"><span><small>Inventario de flota por edad</small></span></div>
-                  <div id="saved-co2" class="mb-4 p-3"></div>
-                </div>
-              </div>
-
-              <div class="col-12">
-                <div class="p-3 border border-persian-green-light d-flex flex-column">
-                  <div class="text-center fw-semibold"><span><small>Inventario de flota por edad</small></span></div>
-                  <div id="WTTX" class="mb-4 p-3"></div>
-                </div>
-              </div>
+          <div class="mb-4">
+            <h5 class="text-persian-green fw-bold">Gráfica 1</h5>
+            <div class="alert alert-light text-justify" role="alert">
+              <p class="mb-0">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit corrupti ipsa eveniet fugiat obcaecati itaque alias iste! Deleniti qui reiciendis quo numquam magni ipsa consequatur adipisci. Provident doloremque sunt similique?
+              </p>
             </div>
-
-          </div>
-          <div id="show-error" class="d-none">
-
-          </div>
-          <div class="col-12 mt-1 mt-3">
-            <button id="submit-button" class="btn btn-outline-persian-green p-3 w-100">
-              <h4>Submit</h4>
-            </button>
+            <div class="row justify-content-md-center mx-1">
+              <div id="saved-co2" class="chart-content col-lg-12 mb-4"></div>
+            </div>
           </div>
 
         </div>
@@ -1119,30 +1102,26 @@
 
       <div id="page2-panel" class="panel m-md-4 p-4 mb-4 border border-persian-green rounded-3 d-none">
         <div>
-          <ul id="renovation-fleet-navbar"
-            class="nav nav-pills flex-column flex-sm-row justify-content-center bg-persian-green-light mb-3">
+          <ul id="renovation-fleet-navbar" class="nav nav-pills flex-column flex-sm-row justify-content-center bg-persian-green-light mb-3">
             <li class="nav-item">
-              <select id="timeline_select_tech" class="form-select flex-sm-fill text-sm-center m-2"
-                aria-label="technology select">
+              <select id="timeline_select_tech" class="form-select flex-sm-fill text-sm-center m-2" aria-label="technology select">
                 <option value="DGEH" selected>Todas las fuentes de energía</option>
-                <option value="D">Diesel</option>
-                <option value="G">Gas</option>
+                <option value="D">Diesel Nuevos</option>
+                <option value="G">Gas Natural</option>
                 <option value="E">Eléctrico</option>
                 <option value="H">Hidrógeno</option>
+                <option value="H">Diesel Actual</option>
               </select>
             </li>
             <li class="nav-item mx-4">
-              <select id="timeline_select_size" class="form-select flex-sm-fill text-sm-center m-2"
-                aria-label="vehicle type select">
+              <select id="timeline_select_size" class="form-select flex-sm-fill text-sm-center m-2" aria-label="vehicle type select">
                 <option value="hml" selected>Todos los vehículos</option>
-                <option value="h">Vehículos Pesados</option>
-                <option value="m">Vehículos Medianos</option>
-                <option value="l">Vehículos Livianos</option>
+                <option value="h">C2</option>
+                <option value="m">C3S3</option>
               </select>
             </li>
             <li class="nav-item">
-              <button id="timeline_percent_button"
-                class="btn btn-persian-green flex-sm-fill text-sm-center m-2">Porcentajes</button>
+              <button id="timeline_percent_button" class="btn btn-persian-green flex-sm-fill text-sm-center m-2">Porcentajes</button>
             </li>
           </ul>
           <div class="container px-0">

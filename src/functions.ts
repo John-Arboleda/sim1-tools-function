@@ -725,28 +725,66 @@ function transformData( dataObj = defaultValues ){
     }
   }
 
+  // Ahorros y Emisiones
   // // ######### Grafica 1 (Hoja 1) #######
+  // gráfico de líneas misma gráfica
+
+  // Ahorro por prácticas operativas y administrativas (operacional)
   // // SAVED1
+
+  // Ahorro por componente de renovación tecnologica (renovación)
   // // SAVED2
+
+  // Ahorro anual de emisiones (total)
   // // CO2SAVED
 
+
+  // Emisiones
   // // ######### Grafica 2 (Hoja 1) #######
+  // Gráfico de área
+
+  // Well to tank
   // // WTTX
+
+  // Tank to wheel
   // TTWX
 
-  // ######### Grafica 3,4,5,6 (Hoja 2)####### 
-  // // N
+  // Flota
+  // ######### Grafica 3,4,5,6 (Hoja 2)#######
+
+  // Gráfica doble comprados y desintegrados
+  // Renovados
   // // G
+  // Desintegrados
   // // D
+
+  // Gráfico de barras
+  // Flota actual
+  // // N
+
+  // Gráfico de barras
+  // Flota vieja en el sistema
   // // OLD
 
+  // Costos
+
   // // ######### Grafica 7 (Hoja 3) #######
+  
+
+  // Ingresos por carbon tax
   // // TCX
+
+  // Subsidio o penalización de combustible
   // // VFCX
+
+  // Subsidio o penalización de los activos
   // // VACX
 
+  // energía
   // // ######### Grafica 8,9,10,11 (Hoja 3)#######
+  // Cantidad de energía necesaria para cada tipo
   // // QFUEL
+  // Sumar diesel para viejos y nuevos
 
   const resultObj = {
     SAVED1: SAVED1,
