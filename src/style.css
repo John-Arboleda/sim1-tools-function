@@ -62,6 +62,7 @@ body {
 
 #sidebar-panel .nav-pills .active,
 .table-header:hover,
+.nested-table-header:hover,
 .btn-outline-persian-green:hover {
   border-color: var(--bs-white) !important;
   color: var(--bs-white) !important;

@@ -103,147 +103,189 @@
     <!-- sidebar -->
     <div id="sidebar-panel" class="col-3 p-0 overflow-scroll height-100-vh px-2 pb-5">
 
-      <div>
-        <table class="table table-bordered table table-hover align-middle my-4">
-          <thead class="collapsed bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#home-tech-collapse"
-            aria-expanded="false">
-            <tr>
-              <th colspan="2" class="text-center table-header">Parámetros Financieros</th>
-            </tr>
-          </thead>
-          <tbody class="lh-1 collapse bg-transparent show" id="home-tech-collapse">
-  
-            <!-- Finance -->
-            <tr>
-              <td scope="row">
-                <label for="input-TRM">
-                  <small class="form-text text-muted">Tasa de cambio dólar</small>
-                </label>
-              </td>
-              <td class="home">
-                <input type="number" class="form-control sub" id="input-TRM" name="input-TRM" step="1" required>
-              </td>
-            </tr>
-  
-            <tr>
-              <td scope="row">
-                <label for="input-CT">
-                  <small class="form-text text-muted">Tax carbon USD/ton</small>
-                </label>
-              </td>
-              <td class="home">
-                <input type="number" class="form-control sub" id="input-CT" name="input-CT" step="1" required>
-              </td>
-            </tr>
-  
-            <tr>
-              <td scope="row">
-                <label for="input-tt">
-                  <small class="form-text text-muted">Periodo de instalación del tax carbon</small>
-                </label>
-              </td>
-              <td class="home">
-                <input type="number" class="form-control sub" id="input-tt" name="input-tt" step="1" required>
-              </td>
-            </tr>
-  
-            <tr>
-              <td scope="row">
-                <label for="input-rate">
-                  <small class="form-text text-muted">Tasa del préstamo</small>
-                </label>
-              </td>
-              <td class="home">
-                <input type="number" class="form-control sub" id="input-rate" name="input-rate" step="1" required>
-              </td>
-            </tr>
-  
-            <tr>
-              <td scope="row">
-                <label for="input-per">
-                  <small class="form-text text-muted">Años del préstamo</small>
-                </label>
-              </td>
-              <td class="home">
-                <input type="number" class="form-control sub" id="input-per" name="input-per" step="1" required>
-              </td>
-            </tr>
-  
-            <tr class="nested-table-header bg-transparent">
-              <td colspan="2" class="text-center">
-                <small class="form-text text-muted">Flujos del préstamo</small>
-              </td>
-            </tr>
-  
-            <tr class="lh-1 bg-transparent">
-              <td colspan="2">
-                <table class="table table-bordered table-hover align-middle mb-0 bg-light">
-                  <tbody class="lh-1 bg-transparent">
-                
-                    <tr class="current-effect-row d-none">
-                      <td colspan="2">
-                        <div class="alert alert-danger mb-0 text-center" role="alert">
-                          La suma de los Porcentajes de los flujos del préstamos es <spam class="current-effect-spam">100</spam>%<br>
-                          Debe ser igual a 100%
-                        </div>
-                      </td>
-                    </tr>
-  
-                    <tr>
-                      <td colspan="2">
-                        <div class="d-flex justify-content-between">
-                          <label for="input-per_with_current" class="form-label">
-                            <small class="form-text text-muted">Porcentaje de pago inicial</small>
-                          </label>
-                          <small id="per_with_current-value" class="form-text text-muted">0.5</small>
-                        </div>
-                        <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.5"
-                          id="input-per_with_current">
-                
-                      </td>
-                    </tr>
-  
-                    <tr>
-                      <td colspan="2">
-                        <div class="d-flex justify-content-between">
-                          <label for="input-per_with_current" class="form-label">
-                            <small class="form-text text-muted">Porcentaje de pago diferido a cuotas</small>
-                          </label>
-                          <small id="per_with_current-value" class="form-text text-muted">0.5</small>
-                        </div>
-                        <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.5"
-                          id="input-per_with_current">
-                
-                      </td>
-                    </tr>
-  
-                    <tr>
-                      <td colspan="2">
-                        <div class="d-flex justify-content-between">
-                          <label for="input-per_with_current" class="form-label">
-                            <small class="form-text text-muted">Porcentaje de pago final</small>
-                          </label>
-                          <small id="per_with_current-value" class="form-text text-muted">0.5</small>
-                        </div>
-                        <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.5"
-                          id="input-per_with_current">
-                
-                      </td>
-                    </tr>
-                    
-                    
-                  </tbody>
-                
-                </table>
-              </td>
-            </tr>
-  
-            
-          </tbody>
-        </table>
-
-      </div>
+      <!-- Finanzas -->
       
+      <table class="table table-bordered table table-hover align-middle my-4">
+        <thead class="collapsed bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#finance-collapse"
+          aria-expanded="false">
+          <tr>
+            <th colspan="2" class="text-center table-header">Parámetros Financieros</th>
+          </tr>
+        </thead>
+        <tbody class="lh-1 collapse bg-transparent" id="finance-collapse">
+
+          <!-- Finance -->
+          <tr>
+            <td scope="row">
+              <label for="input-TRM">
+                <small class="form-text text-muted">Tasa de cambio dólar</small>
+              </label>
+            </td>
+            <td class="home">
+              <input type="number" class="form-control sub" id="input-TRM" name="input-TRM" step="1" required>
+            </td>
+          </tr>
+
+          <tr>
+            <td scope="row">
+              <label for="input-CT">
+                <small class="form-text text-muted">Tax carbon USD/ton</small>
+              </label>
+            </td>
+            <td class="home">
+              <input type="number" class="form-control sub" id="input-CT" name="input-CT" step="1" required>
+            </td>
+          </tr>
+
+          <tr>
+            <td scope="row">
+              <label for="input-tt">
+                <small class="form-text text-muted">Periodo de instalación del tax carbon</small>
+              </label>
+            </td>
+            <td class="home">
+              <input type="number" class="form-control sub" id="input-tt" name="input-tt" step="1" required>
+            </td>
+          </tr>
+
+          <tr>
+            <td scope="row">
+              <label for="input-rate">
+                <small class="form-text text-muted">Tasa del préstamo</small>
+              </label>
+            </td>
+            <td class="home">
+              <input type="number" class="form-control sub" id="input-rate" name="input-rate" step="1" required>
+            </td>
+          </tr>
+
+          <tr>
+            <td scope="row">
+              <label for="input-per">
+                <small class="form-text text-muted">Años del préstamo</small>
+              </label>
+            </td>
+            <td class="home">
+              <input type="number" class="form-control sub" id="input-per" name="input-per" step="1" required>
+            </td>
+          </tr>
+
+          <tr class="nested-table-header bg-transparent">
+            <td colspan="2" class="text-center">
+              <small class="form-text text-muted"><b>Flujos del préstamo</b></small>
+            </td>
+          </tr>
+
+          <tr class="lh-1 bg-transparent">
+            <td colspan="2">
+              <table class="table table-bordered table-hover align-middle mb-0 bg-light">
+                <tbody class="lh-1 bg-transparent">
+              
+                  <tr class="current-effect-row d-none">
+                    <td colspan="2">
+                      <div class="alert alert-danger mb-0 text-center" role="alert">
+                        La suma de los Porcentajes de los flujos del préstamos es <spam class="current-effect-spam">100</spam>%<br>
+                        Debe ser igual a 100%
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="2">
+                      <div class="d-flex justify-content-between">
+                        <label for="input-per_with_current" class="form-label">
+                          <small class="form-text text-muted">Porcentaje de pago inicial</small>
+                        </label>
+                        <small id="per_with_current-value" class="form-text text-muted">0.5</small>
+                      </div>
+                      <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.5"
+                        id="input-per_with_current">
+              
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="2">
+                      <div class="d-flex justify-content-between">
+                        <label for="input-per_with_current" class="form-label">
+                          <small class="form-text text-muted">Porcentaje de pago diferido a cuotas</small>
+                        </label>
+                        <small id="per_with_current-value" class="form-text text-muted">0.5</small>
+                      </div>
+                      <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.5"
+                        id="input-per_with_current">
+              
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="2">
+                      <div class="d-flex justify-content-between">
+                        <label for="input-per_with_current" class="form-label">
+                          <small class="form-text text-muted">Porcentaje de pago final</small>
+                        </label>
+                        <small id="per_with_current-value" class="form-text text-muted">0.5</small>
+                      </div>
+                      <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.5"
+                        id="input-per_with_current">
+              
+                    </td>
+                  </tr>
+                  
+                  
+                </tbody>
+              
+              </table>
+            </td>
+          </tr>
+
+          <tr class="nested-table-header bg-transparent">
+            <td colspan="2" class="text-center">
+              <small class="form-text text-muted"><b>Tasa de Renovación</b></small>
+            </td>
+          </tr>
+
+          <tr class="lh-1 bg-transparent">
+            <td colspan="2">
+              <table class="table table-bordered table-hover align-middle mb-0 bg-light">
+                <tbody class="lh-1 bg-transparent">
+
+                  <tr>
+                    <td colspan="2">
+                      <div class="d-flex justify-content-between">
+                        <label for="input-per_with_current" class="form-label">
+                          <small class="form-text text-muted">Flota C2</small>
+                        </label>
+                        <small id="per_with_current-value" class="form-text text-muted">0.1</small>
+                      </div>
+                      <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.1"
+                        id="input-per_with_current">
+              
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="2">
+                      <div class="d-flex justify-content-between">
+                        <label for="input-per_with_current" class="form-label">
+                          <small class="form-text text-muted">Flota C3S3</small>
+                        </label>
+                        <small id="per_with_current-value" class="form-text text-muted">0.1</small>
+                      </div>
+                      <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.1"
+                        id="input-per_with_current">
+              
+                    </td>
+                  </tr>
+                
+                </tbody>
+              </table>
+            </td>
+          </tr>
+
+          
+        </tbody>
+      </table>
 
       <!-- Policies -->
 
@@ -251,33 +293,39 @@
         <thead class="collapsed bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#policy-collapse"
           aria-expanded="false">
           <tr>
-            <th colspan="2" class="text-center table-header">Implementación de Políticas</th>
+            <th colspan="2" class="text-center table-header">Prácticas Operativas</th>
           </tr>
         </thead>
 
         <tbody class="lh-1 collapse bg-transparent" id="policy-collapse">
 
           <tr>
-            <td scope="row">
-              <label for="input-eta">
-                <small class="form-text text-muted">Ratio de implementación viajes vacíos</small>
-              </label>
-            </td>
-            <td class="home">
-              <input type="number" class="form-control sub" id="input-eta" name="input-eta" step="1" required>
+            <td colspan="2">
+              <div class="d-flex justify-content-between">
+                <label for="input-per_with_current" class="form-label">
+                  <small class="form-text text-muted">Minimización de viajes vacíos</small>
+                </label>
+                <small id="per_with_current-value" class="form-text text-muted">0.5</small>
+              </div>
+              <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.5"
+                id="input-per_with_current">
+              <div class="scen_legend d-flex justify-content-between">
+                <small class="text-muted">Actual</small>
+                <small class="text-muted">Max reducción</small>
+              </div>
             </td>
           </tr>
 
-          <tr class="nested-table-header bg-transparent" data-bs-toggle="collapse" data-bs-target="#lambda-collapse" aria-expanded="true">
+          <tr class="nested-table-header bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#lambda-collapse" aria-expanded="true">
             <td colspan="2" class="text-center">
-              <small class="form-text text-muted">Ratio implementación politicas de consolidación</small>
+              <small class="form-text text-muted"><b>Políticas de Consolidación de Carga</b></small>
             </td>
           </tr>
 
-          <tr class="lh-1 bg-transparent current-effect collapse show" id="lambda-collapse" style="">
+          <tr class="lh-1 bg-transparent collapse" id="lambda-collapse">
             <td colspan="2">
               <table class="table table-bordered table-hover align-middle mb-0 bg-light">
-                <tbody id="current-effect-collapse" class="lh-1 bg-transparent collapse show" style="">
+                <tbody class="lh-1 bg-transparent">
               
                   <tr class="lambda-row d-none">
                     <td colspan="2">
@@ -292,15 +340,15 @@
                     <td colspan="2">
                       <div class="d-flex justify-content-between">
                         <label for="input-per_with_current" class="form-label">
-                          <small class="form-text text-muted">Minimización de viajes vacíos</small>
+                          <small class="form-text text-muted">Business as Usual</small>
                         </label>
                         <small id="per_with_current-value" class="form-text text-muted">0.5</small>
                       </div>
                       <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.5"
                         id="input-per_with_current">
                       <div class="scen_legend d-flex justify-content-between">
-                        <small class="text-muted">Actual</small>
-                        <small class="text-muted">Max reducción</small>
+                        <small class="text-muted">Min</small>
+                        <small class="text-muted">Max</small>
                       </div>
                     </td>
                   </tr>
@@ -326,7 +374,7 @@
                     <td colspan="2">
                       <div class="d-flex justify-content-between">
                         <label for="input-per_with_current" class="form-label">
-                          <small class="form-text text-muted">Consolidación de carga C3S3 = 34 Ton</small>
+                          <small class="form-text text-muted">Consolidación de carga C3S3 (34 Ton)</small>
                         </label>
                         <small id="per_with_current-value" class="form-text text-muted">0.5</small>
                       </div>
@@ -343,7 +391,7 @@
                     <td colspan="2">
                       <div class="d-flex justify-content-between">
                         <label for="input-per_with_current" class="form-label">
-                          <small class="form-text text-muted">Vehículos combinados de carga = 54 Ton</small>
+                          <small class="form-text text-muted">Vehículos combinados de carga (54 Ton)</small>
                         </label>
                         <small id="per_with_current-value" class="form-text text-muted">0.5</small>
                       </div>
@@ -363,38 +411,16 @@
             </td>
           </tr>
 
-          <tr>
-            <td scope="row">
-              <label for="input-st">
-                <small class="form-text text-muted">Periodo inicio de implementación de los ratios</small>
-              </label>
-            </td>
-            <td class="home">
-              <input type="number" class="form-control sub" id="input-st" name="input-st" step="1" required>
-            </td>
-          </tr>
-
-          <tr>
-            <td scope="row">
-              <label for="input-top">
-                <small class="form-text text-muted">Periodo máximo de implementación de los ratios</small>
-              </label>
-            </td>
-            <td class="home">
-              <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" required>
-            </td>
-          </tr>
-
-          <tr class="nested-table-header bg-transparent" data-bs-toggle="collapse" data-bs-target="#gamma-collapse" aria-expanded="true">
+          <tr class="nested-table-header bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#gamma-collapse" aria-expanded="true">
             <td colspan="2" class="text-center">
-              <small class="form-text text-muted">Ahorros por mejoras</small>
+              <small class="form-text text-muted"><b>Eficiencias en Condiciones de Conducción</b></small>
             </td>
           </tr>
 
-          <tr class="lh-1 bg-transparent current-effect collapse show" id="gamma-collapse" style="">
+          <tr class="lh-1 bg-transparent collapse" id="gamma-collapse">
             <td colspan="2">
               <table class="table table-bordered table-hover align-middle mb-0 bg-light">
-                <tbody id="gamma-collapse" class="lh-1 bg-transparent collapse show" style="">
+                <tbody class="lh-1 bg-transparent">
 
                   <tr>
                     <td colspan="2">
@@ -447,6 +473,28 @@
                     </td>
                   </tr>
 
+                  <tr>
+                    <td scope="row">
+                      <label for="input-st">
+                        <small class="form-text text-muted">Periodo inicio de implementación de los ratios</small>
+                      </label>
+                    </td>
+                    <td class="home">
+                      <input type="number" class="form-control sub" id="input-st" name="input-st" step="1" required>
+                    </td>
+                  </tr>
+        
+                  <tr>
+                    <td scope="row">
+                      <label for="input-top">
+                        <small class="form-text text-muted">Periodo máximo de implementación de los ratios</small>
+                      </label>
+                    </td>
+                    <td class="home">
+                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" required>
+                    </td>
+                  </tr>
+
                 </tbody>
               
               </table>
@@ -459,78 +507,31 @@
       <!-- Tech -->
 
       <table class="table table-bordered table table-hover align-middle my-4">
-        <thead class="collapsed bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#tech-collapse"
+        <thead class="collapsed bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#assets-collapse"
           aria-expanded="false">
           <tr>
-            <th colspan="2" class="text-center table-header">Tecnologías</th>
+            <th colspan="2" class="text-center table-header">Tecnología de los Activos</th>
           </tr>
         </thead>
-        <tbody class="lh-1 collapse bg-transparent show" id="tech-collapse">
+        <tbody class="lh-1 collapse bg-transparent" id="assets-collapse">
           
           <!-- Diesel -->
 
-          <tr class="nested-table-header bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#diesel-new-collapse" aria-expanded="true">
+          <tr class="nested-table-header bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#diesel-tech-collapse" aria-expanded="true">
             <td colspan="2" class="text-center">
-              <small class="form-text text-muted">Camiones Diesel Nuevos</small>
+              <small class="form-text text-muted"><b>Camiones Diesel Nuevos</b></small>
             </td>
           </tr>
 
-          <tr class="lh-1 bg-transparent current-effect collapse" id="diesel-new-collapse" style="">
+          <tr class="lh-1 bg-transparent collapse" id="diesel-tech-collapse">
             <td colspan="2">
               <table class="table table-bordered table-hover align-middle mb-0 bg-light">
-                <tbody id="diesel-new-collapse" class="lh-1 bg-transparent collapse" style="">
+                <tbody class="lh-1 bg-transparent">
 
                   <tr>
-                    <td scope="row" colspan="3">
+                    <td scope="row" colspan="3" class="text-center">
                       <label for="input-top">
-                        <small class="form-text text-muted">Impuesto al Diesel</small>
-                      </label>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td scope="row" colspan="2">
-                      <label for="input-top">
-                        <small class="form-text text-muted">Año de inicio</small>
-                      </label>
-                    </td>
-                    <td class="home">
-                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td scope="row" colspan="2">
-                      <label for="input-top">
-                        <small class="form-text text-muted">Año de finalización</small>
-                      </label>
-                    </td>
-                    <td class="home">
-                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td colspan="3">
-                      <div class="d-flex justify-content-between">
-                        <label for="input-per_with_current" class="form-label">
-                          <small class="form-text text-muted">Porcentaje de impuesto al energético</small>
-                        </label>
-                        <small id="per_with_current-value" class="form-text text-muted">0.1</small>
-                      </div>
-                      <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.1"
-                        id="input-per_with_current">
-                      <div class="scen_legend d-flex justify-content-between">
-                        <small class="text-muted">Actual</small>
-                        <small class="text-muted">Doble</small>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td scope="row" colspan="3">
-                      <label for="input-top">
-                        <small class="form-text text-muted">Año de disponibilidad de tecnología en el mercado</small>
+                        <small class="form-text text-muted">Disponibilidad de tecnología en el mercado</small>
                       </label>
                     </td>
                   </tr>
@@ -543,7 +544,7 @@
                     </td>
                     <td class="home">
                       <label for="input-top">
-                        <small class="form-text text-muted">Inicio</small>
+                        <small class="form-text text-muted">Año Inicio</small>
                       </label>
                     </td>
                     <td class="home">
@@ -554,7 +555,7 @@
                   <tr>
                     <td class="home">
                       <label for="input-top">
-                        <small class="form-text text-muted">Fin</small>
+                        <small class="form-text text-muted">Año Fin</small>
                       </label>
                     </td>
                     <td class="home">
@@ -570,7 +571,7 @@
                     </td>
                     <td class="home">
                       <label for="input-top">
-                        <small class="form-text text-muted">Inicio</small>
+                        <small class="form-text text-muted">Año Inicio</small>
                       </label>
                     </td>
                     <td class="home">
@@ -581,7 +582,7 @@
                   <tr>
                     <td class="home">
                       <label for="input-top">
-                        <small class="form-text text-muted">Fin</small>
+                        <small class="form-text text-muted">Año Fin</small>
                       </label>
                     </td>
                     <td class="home">
@@ -614,68 +615,21 @@
 
           <!-- Gas Natural -->
 
-          <tr class="nested-table-header bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#gas-new-collapse" aria-expanded="true">
+          <tr class="nested-table-header bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#gas-tech-collapse" aria-expanded="true">
             <td colspan="2" class="text-center">
-              <small class="form-text text-muted">Camiones a Gas Natural Nuevos</small>
+              <small class="form-text text-muted"><b>Camiones a Gas Natural Nuevos</b></small>
             </td>
           </tr>
 
-          <tr class="lh-1 bg-transparent current-effect collapse" id="gas-new-collapse" style="">
+          <tr class="lh-1 bg-transparent collapse" id="gas-tech-collapse">
             <td colspan="2">
               <table class="table table-bordered table-hover align-middle mb-0 bg-light">
-                <tbody id="gas-new-collapse" class="lh-1 bg-transparent collapse" style="">
+                <tbody class="lh-1 bg-transparent">
 
                   <tr>
-                    <td scope="row" colspan="3">
+                    <td scope="row" colspan="3" class="text-center">
                       <label for="input-top">
-                        <small class="form-text text-muted">Impuesto al GNV</small>
-                      </label>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td scope="row" colspan="2">
-                      <label for="input-top">
-                        <small class="form-text text-muted">Año de inicio</small>
-                      </label>
-                    </td>
-                    <td class="home">
-                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td scope="row" colspan="2">
-                      <label for="input-top">
-                        <small class="form-text text-muted">Año de finalización</small>
-                      </label>
-                    </td>
-                    <td class="home">
-                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td colspan="3">
-                      <div class="d-flex justify-content-between">
-                        <label for="input-per_with_current" class="form-label">
-                          <small class="form-text text-muted">Porcentaje de impuesto al energético GNV</small>
-                        </label>
-                        <small id="per_with_current-value" class="form-text text-muted">0.1</small>
-                      </div>
-                      <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.1"
-                        id="input-per_with_current">
-                      <div class="scen_legend d-flex justify-content-between">
-                        <small class="text-muted">Actual</small>
-                        <small class="text-muted">Doble</small>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td scope="row" colspan="3">
-                      <label for="input-top">
-                        <small class="form-text text-muted">Año de disponibilidad de tecnología en el mercado</small>
+                        <small class="form-text text-muted">Disponibilidad de tecnología en el mercado</small>
                       </label>
                     </td>
                   </tr>
@@ -688,7 +642,7 @@
                     </td>
                     <td class="home">
                       <label for="input-top">
-                        <small class="form-text text-muted">Inicio</small>
+                        <small class="form-text text-muted">Año Inicio</small>
                       </label>
                     </td>
                     <td class="home">
@@ -699,7 +653,7 @@
                   <tr>
                     <td class="home">
                       <label for="input-top">
-                        <small class="form-text text-muted">Fin</small>
+                        <small class="form-text text-muted">Año Fin</small>
                       </label>
                     </td>
                     <td class="home">
@@ -715,7 +669,7 @@
                     </td>
                     <td class="home">
                       <label for="input-top">
-                        <small class="form-text text-muted">Inicio</small>
+                        <small class="form-text text-muted">Año Inicio</small>
                       </label>
                     </td>
                     <td class="home">
@@ -726,7 +680,7 @@
                   <tr>
                     <td class="home">
                       <label for="input-top">
-                        <small class="form-text text-muted">Fin</small>
+                        <small class="form-text text-muted">Año Fin</small>
                       </label>
                     </td>
                     <td class="home">
@@ -759,68 +713,21 @@
 
           <!-- Eléctrico -->
 
-          <tr class="nested-table-header bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#electric-collapse" aria-expanded="true">
+          <tr class="nested-table-header bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#electric-tech-collapse" aria-expanded="true">
             <td colspan="2" class="text-center">
-              <small class="form-text text-muted">Camiones Eléctricos (BEV)</small>
+              <small class="form-text text-muted"><b>Camiones Eléctricos (BEV)</b></small>
             </td>
           </tr>
 
-          <tr class="lh-1 bg-transparent current-effect collapse" id="electric-collapse" style="">
+          <tr class="lh-1 bg-transparent collapse" id="electric-tech-collapse">
             <td colspan="2">
               <table class="table table-bordered table-hover align-middle mb-0 bg-light">
-                <tbody id="electric-collapse" class="lh-1 bg-transparent collapse" style="">
+                <tbody class="lh-1 bg-transparent">
 
                   <tr>
-                    <td scope="row" colspan="3">
+                    <td scope="row" colspan="3" class="text-center">
                       <label for="input-top">
-                        <small class="form-text text-muted">Subsidio a la Electricidad</small>
-                      </label>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td scope="row" colspan="2">
-                      <label for="input-top">
-                        <small class="form-text text-muted">Año de inicio</small>
-                      </label>
-                    </td>
-                    <td class="home">
-                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td scope="row" colspan="2">
-                      <label for="input-top">
-                        <small class="form-text text-muted">Año de finalización</small>
-                      </label>
-                    </td>
-                    <td class="home">
-                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td colspan="3">
-                      <div class="d-flex justify-content-between">
-                        <label for="input-per_with_current" class="form-label">
-                          <small class="form-text text-muted">Porcentaje de subsidio al energético Eléctrico</small>
-                        </label>
-                        <small id="per_with_current-value" class="form-text text-muted">0.1</small>
-                      </div>
-                      <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.1"
-                        id="input-per_with_current">
-                      <div class="scen_legend d-flex justify-content-between">
-                        <small class="text-muted">Actual</small>
-                        <small class="text-muted">Doble</small>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td scope="row" colspan="3">
-                      <label for="input-top">
-                        <small class="form-text text-muted">Año de disponibilidad de tecnología en el mercado</small>
+                        <small class="form-text text-muted">Disponibilidad de tecnología en el mercado</small>
                       </label>
                     </td>
                   </tr>
@@ -833,7 +740,7 @@
                     </td>
                     <td class="home">
                       <label for="input-top">
-                        <small class="form-text text-muted">Inicio</small>
+                        <small class="form-text text-muted">Año Inicio</small>
                       </label>
                     </td>
                     <td class="home">
@@ -844,7 +751,7 @@
                   <tr>
                     <td class="home">
                       <label for="input-top">
-                        <small class="form-text text-muted">Fin</small>
+                        <small class="form-text text-muted">Año Fin</small>
                       </label>
                     </td>
                     <td class="home">
@@ -860,7 +767,7 @@
                     </td>
                     <td class="home">
                       <label for="input-top">
-                        <small class="form-text text-muted">Inicio</small>
+                        <small class="form-text text-muted">Año Inicio</small>
                       </label>
                     </td>
                     <td class="home">
@@ -871,7 +778,7 @@
                   <tr>
                     <td class="home">
                       <label for="input-top">
-                        <small class="form-text text-muted">Fin</small>
+                        <small class="form-text text-muted">Año Fin</small>
                       </label>
                     </td>
                     <td class="home">
@@ -885,9 +792,296 @@
                         <label for="input-per_with_current" class="form-label">
                           <small class="form-text text-muted">Subsidio al camión</small>
                         </label>
-                        <small id="per_with_current-value" class="form-text text-muted">0.3</small>
+                        <small id="per_with_current-value" class="form-text text-muted">0.35</small>
                       </div>
-                      <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.3"
+                      <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.35"
+                        id="input-per_with_current">
+                      <div class="scen_legend d-flex justify-content-between">
+                        <small class="text-muted">Actual</small>
+                        <small class="text-muted">Gratis</small>
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              
+              </table>
+            </td>
+          </tr>
+
+          <!-- Hidrógeno -->
+
+          <tr class="nested-table-header bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#hidrogen-tech-collapse" aria-expanded="true">
+            <td colspan="2" class="text-center">
+              <small class="form-text text-muted"><b>Camiones a Hidrógeno (FCEV)</b></small>
+            </td>
+          </tr>
+
+          <tr class="lh-1 bg-transparent collapse" id="hidrogen-tech-collapse">
+            <td colspan="2">
+              <table class="table table-bordered table-hover align-middle mb-0 bg-light">
+                <tbody class="lh-1 bg-transparent">
+
+                  <tr>
+                    <td scope="row" colspan="3" class="text-center">
+                      <label for="input-top">
+                        <small class="form-text text-muted">Disponibilidad de tecnología en el mercado</small>
+                      </label>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td scope="row" rowspan="2">
+                      <label for="input-top">
+                        <small class="form-text text-muted">C2</small>
+                      </label>
+                    </td>
+                    <td class="home">
+                      <label for="input-top">
+                        <small class="form-text text-muted">Año Inicio</small>
+                      </label>
+                    </td>
+                    <td class="home">
+                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="home">
+                      <label for="input-top">
+                        <small class="form-text text-muted">Año Fin</small>
+                      </label>
+                    </td>
+                    <td class="home">
+                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td scope="row" rowspan="2">
+                      <label for="input-top">
+                        <small class="form-text text-muted">C3S3</small>
+                      </label>
+                    </td>
+                    <td class="home">
+                      <label for="input-top">
+                        <small class="form-text text-muted">Año Inicio</small>
+                      </label>
+                    </td>
+                    <td class="home">
+                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="home">
+                      <label for="input-top">
+                        <small class="form-text text-muted">Año Fin</small>
+                      </label>
+                    </td>
+                    <td class="home">
+                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="3">
+                      <div class="d-flex justify-content-between">
+                        <label for="input-per_with_current" class="form-label">
+                          <small class="form-text text-muted">Subsidio al camión</small>
+                        </label>
+                        <small id="per_with_current-value" class="form-text text-muted">0.35</small>
+                      </div>
+                      <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.35"
+                        id="input-per_with_current">
+                      <div class="scen_legend d-flex justify-content-between">
+                        <small class="text-muted">Actual</small>
+                        <small class="text-muted">Gratis</small>
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              
+              </table>
+            </td>
+          </tr>
+
+
+        </tbody>
+      </table>
+
+      <!-- Fuel -->
+
+      <table class="table table-bordered table table-hover align-middle my-4">
+        <thead class="collapsed bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#fuel-collapse"
+          aria-expanded="false">
+          <tr>
+            <th colspan="2" class="text-center table-header">Impuestos y Subsidios a la Energía</th>
+          </tr>
+        </thead>
+        <tbody class="lh-1 collapse bg-transparent" id="fuel-collapse">
+          
+          <!-- Diesel -->
+
+          <tr class="nested-table-header bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#diesel-fuel-collapse" aria-expanded="true">
+            <td colspan="2" class="text-center">
+              <small class="form-text text-muted"><b>Diesel</b></small>
+            </td>
+          </tr>
+
+          <tr class="lh-1 bg-transparent current-effect collapse" id="diesel-fuel-collapse">
+            <td colspan="2">
+              <table class="table table-bordered table-hover align-middle mb-0 bg-light">
+                <tbody class="lh-1 bg-transparent">
+
+                  <tr>
+                    <td scope="row" colspan="2">
+                      <label for="input-top">
+                        <small class="form-text text-muted">Año de inicio</br>impuesto al Diesel</small>
+                      </label>
+                    </td>
+                    <td class="home">
+                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td scope="row" colspan="2">
+                      <label for="input-top">
+                        <small class="form-text text-muted">Año de finalización</br>impuesto al Diesel</small>
+                      </label>
+                    </td>
+                    <td class="home">
+                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="3">
+                      <div class="d-flex justify-content-between">
+                        <label for="input-per_with_current" class="form-label">
+                          <small class="form-text text-muted">Porcentaje de impuesto al Diesel</small>
+                        </label>
+                        <small id="per_with_current-value" class="form-text text-muted">0.1</small>
+                      </div>
+                      <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.1"
+                        id="input-per_with_current">
+                      <div class="scen_legend d-flex justify-content-between">
+                        <small class="text-muted">Actual</small>
+                        <small class="text-muted">Doble</small>
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              
+              </table>
+            </td>
+          </tr>
+
+          <!-- Gas Natural -->
+
+          <tr class="nested-table-header bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#gas-fuel-collapse" aria-expanded="true">
+            <td colspan="2" class="text-center">
+              <small class="form-text text-muted"><b>Gas Natural Vehicular</b></small>
+            </td>
+          </tr>
+
+          <tr class="lh-1 bg-transparent collapse" id="gas-fuel-collapse">
+            <td colspan="2">
+              <table class="table table-bordered table-hover align-middle mb-0 bg-light">
+                <tbody class="lh-1 bg-transparent">
+
+                  <tr>
+                    <td scope="row" colspan="2">
+                      <label for="input-top">
+                        <small class="form-text text-muted">Año de inicio</br>impuesto al Gas Natural</small>
+                      </label>
+                    </td>
+                    <td class="home">
+                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td scope="row" colspan="2">
+                      <label for="input-top">
+                        <small class="form-text text-muted">Año de finalización</br>impuesto al Gas Natural</small>
+                      </label>
+                    </td>
+                    <td class="home">
+                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="3">
+                      <div class="d-flex justify-content-between">
+                        <label for="input-per_with_current" class="form-label">
+                          <small class="form-text text-muted">Porcentaje de impuesto al Gas Natural</small>
+                        </label>
+                        <small id="per_with_current-value" class="form-text text-muted">0.1</small>
+                      </div>
+                      <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.1"
+                        id="input-per_with_current">
+                      <div class="scen_legend d-flex justify-content-between">
+                        <small class="text-muted">Actual</small>
+                        <small class="text-muted">Doble</small>
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              
+              </table>
+            </td>
+          </tr>
+
+          <!-- Eléctrico -->
+
+          <tr class="nested-table-header bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#electric-fuel-collapse" aria-expanded="true">
+            <td colspan="2" class="text-center">
+              <small class="form-text text-muted"><b>Carga Eléctrica</b></small>
+            </td>
+          </tr>
+
+          <tr class="lh-1 bg-transparent current-effect collapse" id="electric-fuel-collapse">
+            <td colspan="2">
+              <table class="table table-bordered table-hover align-middle mb-0 bg-light">
+                <tbody class="lh-1 bg-transparent">
+
+                  <tr>
+                    <td scope="row" colspan="2">
+                      <label for="input-top">
+                        <small class="form-text text-muted">Año de inicio <br>Subsidio Carga Eléctrica</small>
+                      </label>
+                    </td>
+                    <td class="home">
+                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td scope="row" colspan="2">
+                      <label for="input-top">
+                        <small class="form-text text-muted">Año de finalización <br>Subsidio Carga Eléctrica</small>
+                      </label>
+                    </td>
+                    <td class="home">
+                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="3">
+                      <div class="d-flex justify-content-between">
+                        <label for="input-per_with_current" class="form-label">
+                          <small class="form-text text-muted">Porcentaje de subsidio a la Carga Eléctrica</small>
+                        </label>
+                        <small id="per_with_current-value" class="form-text text-muted">0.1</small>
+                      </div>
+                      <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.1"
                         id="input-per_with_current">
                       <div class="scen_legend d-flex justify-content-between">
                         <small class="text-muted">Actual</small>
@@ -904,29 +1098,21 @@
 
           <!-- Hidrógeno -->
 
-          <tr class="nested-table-header bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#hidrogen-collapse" aria-expanded="true">
+          <tr class="nested-table-header bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#hidrogen-fuel-collapse" aria-expanded="true">
             <td colspan="2" class="text-center">
-              <small class="form-text text-muted">Camiones a Hidrógeno (FCEV)</small>
+              <small class="form-text text-muted"><b>Hidrógeno</b></small>
             </td>
           </tr>
 
-          <tr class="lh-1 bg-transparent current-effect collapse" id="hidrogen-collapse" style="">
+          <tr class="lh-1 bg-transparent current-effect collapse" id="hidrogen-fuel-collapse">
             <td colspan="2">
               <table class="table table-bordered table-hover align-middle mb-0 bg-light">
-                <tbody id="hidrogen-collapse" class="lh-1 bg-transparent collapse" style="">
-
-                  <tr>
-                    <td scope="row" colspan="3">
-                      <label for="input-top">
-                        <small class="form-text text-muted">Subsidio al Hidrógeno</small>
-                      </label>
-                    </td>
-                  </tr>
+                <tbody class="lh-1 bg-transparent">
 
                   <tr>
                     <td scope="row" colspan="2">
                       <label for="input-top">
-                        <small class="form-text text-muted">Año de inicio</small>
+                        <small class="form-text text-muted">Año de inicio <br>Subsidio al Hidrógeno</small>
                       </label>
                     </td>
                     <td class="home">
@@ -937,7 +1123,7 @@
                   <tr>
                     <td scope="row" colspan="2">
                       <label for="input-top">
-                        <small class="form-text text-muted">Año de finalización</small>
+                        <small class="form-text text-muted">Año de finalización <br>Subsidio al Hidrógeno</small>
                       </label>
                     </td>
                     <td class="home">
@@ -949,90 +1135,11 @@
                     <td colspan="3">
                       <div class="d-flex justify-content-between">
                         <label for="input-per_with_current" class="form-label">
-                          <small class="form-text text-muted">Porcentaje de subsidio al energético Hidrógeno</small>
+                          <small class="form-text text-muted">Porcentaje de subsidio al Hidrógeno</small>
                         </label>
                         <small id="per_with_current-value" class="form-text text-muted">0.1</small>
                       </div>
                       <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.1"
-                        id="input-per_with_current">
-                      <div class="scen_legend d-flex justify-content-between">
-                        <small class="text-muted">Actual</small>
-                        <small class="text-muted">Doble</small>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td scope="row" colspan="3">
-                      <label for="input-top">
-                        <small class="form-text text-muted">Año de disponibilidad de tecnología en el mercado</small>
-                      </label>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td scope="row" rowspan="2">
-                      <label for="input-top">
-                        <small class="form-text text-muted">C2</small>
-                      </label>
-                    </td>
-                    <td class="home">
-                      <label for="input-top">
-                        <small class="form-text text-muted">Inicio</small>
-                      </label>
-                    </td>
-                    <td class="home">
-                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td class="home">
-                      <label for="input-top">
-                        <small class="form-text text-muted">Fin</small>
-                      </label>
-                    </td>
-                    <td class="home">
-                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td scope="row" rowspan="2">
-                      <label for="input-top">
-                        <small class="form-text text-muted">C3S3</small>
-                      </label>
-                    </td>
-                    <td class="home">
-                      <label for="input-top">
-                        <small class="form-text text-muted">Inicio</small>
-                      </label>
-                    </td>
-                    <td class="home">
-                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td class="home">
-                      <label for="input-top">
-                        <small class="form-text text-muted">Fin</small>
-                      </label>
-                    </td>
-                    <td class="home">
-                      <input type="number" class="form-control sub" id="input-top" name="input-top" step="1" min="2025" max="2050" value="2035" required>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td colspan="3">
-                      <div class="d-flex justify-content-between">
-                        <label for="input-per_with_current" class="form-label">
-                          <small class="form-text text-muted">Subsidio al camión</small>
-                        </label>
-                        <small id="per_with_current-value" class="form-text text-muted">0.3</small>
-                      </div>
-                      <input type="range" class="form-range per_with_current" min="0" max="1" step="0.01" value="0.3"
                         id="input-per_with_current">
                       <div class="scen_legend d-flex justify-content-between">
                         <small class="text-muted">Actual</small>
