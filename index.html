@@ -40,7 +40,7 @@
   </div>
 
   <!-- Navbar -->
-  <div class="row bg-light mx-0">
+  <div id="main-navbar" class="row bg-light mx-0">
     <div id="logo" class="col-3 d-flex flex-row align-items-center justify-content-center my-1">
       <img src="./assets/images/girozeroLogo.jpg" alt="Girozero Logo" />
       <div class="ps-2 mt-1">
@@ -50,29 +50,29 @@
     <div class="col mt-2 d-flex justify-content-center">
       <ul class="nav nav-pills flex-row mb-auto">
 
-        <li id="page1-nav-button" class="sidebar-item nav-item my-1">
-          <a class="nav-link link-secondary d-flex">
-            <div class="bi me-2 sidebar-icon text-center"><i class="fa fa-list" aria-hidden="true"></i></div>
-            <div>Página 1</div>
+        <li id="emissions-nav-button" class="navbar-item nav-item mb-1 me-1">
+          <a class="nav-link link-secondary d-flex active">
+            <div class="bi me-2 sidebar-icon text-center"><i class="fa fa-leaf" aria-hidden="true"></i></div>
+            <div>Emisiones</div>
           </a>
         </li>
 
-        <li id="page2-nav-button" class="sidebar-item nav-item my-1">
+        <li id="fleet-nav-button" class="navbar-item nav-item mb-1 me-1">
           <a class="nav-link link-secondary d-flex">
-            <div class="bi me-2 sidebar-icon text-center"><i class="fa fa-list" aria-hidden="true"></i></div>
-            <div>Página 2</div>
+            <div class="bi me-2 sidebar-icon text-center"><i class="fa fa-truck" aria-hidden="true"></i></div>
+            <div>Flota</div>
           </a>
         </li>
 
-        <li id="page3-nav-button" class="sidebar-item nav-item my-1">
+        <li id="costs-nav-button" class="navbar-item nav-item mb-1 me-1">
           <a class="nav-link link-secondary d-flex">
-            <div class="bi me-2 sidebar-icon text-center"><i class="fa fa-list" aria-hidden="true"></i></div>
-            <div>Página 3</div>
+            <div class="bi me-2 sidebar-icon text-center"><i class="fa fa-usd" aria-hidden="true"></i></div>
+            <div>Costos</div>
           </a>
         </li>
 
 
-        <li id="scenario-nav-button" class="my-1" data-bs-toggle="collapse" data-bs-target="#scenario-collapse"
+        <li id="scenario-nav-button" class="mb-1" data-bs-toggle="collapse" data-bs-target="#scenario-collapse"
           aria-expanded="true">
           <a class="nav-link link-secondary d-flex">
             <div class="bi me-2 sidebar-icon text-center"><i class="fa fa-archive" aria-hidden="true"></i></div>
@@ -81,12 +81,12 @@
         </li>
         <li>
           <div class="collapse" id="scenario-collapse">
-            <ul class="nav nav-pills flex-column mb-auto small">
+            <ul class="nav nav-pills flex-row mb-auto small">
 
               <li class="nav-item ms-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <a class="nav-link link-secondary">Guardar Actual</a>
               </li>
-              <li id="load-scenario-nav-button" class="sidebar-item nav-item ms-2">
+              <li id="load-scenario-nav-button" class="navbar-item nav-item ms-2">
                 <a class="nav-link link-secondary">Administrar</a>
               </li>
             </ul>
@@ -1163,53 +1163,9 @@
     <!-- main -->
     <div id="main-panel" class="col height-100-vh">
 
-      <ul id="renovation-fleet-navbar" class="nav nav-pills flex-column flex-sm-row justify-content-center bg-persian-green-light mb-3">
-        <li class="nav-item">
-          <select id="timeline_select_tech" class="form-select flex-sm-fill text-sm-center m-2" aria-label="technology select">
-            <option value="DGEH" selected>Todas las fuentes de energía</option>
-            <option value="D">Diesel Nuevos</option>
-            <option value="G">Gas Natural</option>
-            <option value="E">Eléctrico</option>
-            <option value="H">Hidrógeno</option>
-            <option value="H">Diesel Actual</option>
-          </select>
-        </li>
-        <li class="nav-item mx-4">
-          <select id="timeline_select_size" class="form-select flex-sm-fill text-sm-center m-2" aria-label="vehicle type select">
-            <option value="hml" selected>Todos los vehículos</option>
-            <option value="h">C2</option>
-            <option value="m">C3S3</option>
-          </select>
-        </li>
-        <li class="nav-item">
-          <button id="timeline_percent_button" class="btn btn-persian-green flex-sm-fill text-sm-center m-2">Porcentajes</button>
-        </li>
-      </ul>
-
-      <div id="page1-panel" class="panel m-md-4 p-4 border border-persian-green rounded-3">
+      <div id="emissions-panel" class="panel m-md-4 p-4 mb-4 border border-persian-green rounded-3">
         <div>
-          <div class="mb-4">
-            <h3 class="text-tropical fw-bold">Página 1</h3>
-          </div>
-
-          <div class="mb-4">
-            <h5 class="text-persian-green fw-bold">Gráfica 1</h5>
-            <div class="alert alert-light text-justify" role="alert">
-              <p class="mb-0">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit corrupti ipsa eveniet fugiat obcaecati itaque alias iste! Deleniti qui reiciendis quo numquam magni ipsa consequatur adipisci. Provident doloremque sunt similique?
-              </p>
-            </div>
-            <div class="row justify-content-md-center mx-1">
-              <div id="saved-co2" class="chart-content col-lg-12 mb-4"></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div id="page2-panel" class="panel m-md-4 p-4 mb-4 border border-persian-green rounded-3 d-none">
-        <div>
-          <ul id="renovation-fleet-navbar" class="nav nav-pills flex-column flex-sm-row justify-content-center bg-persian-green-light mb-3">
+          <ul id="emissions-result-navbar" class="nav nav-pills flex-column flex-sm-row justify-content-center bg-persian-green-light mb-3">
             <li class="nav-item">
               <select id="timeline_select_tech" class="form-select flex-sm-fill text-sm-center m-2" aria-label="technology select">
                 <option value="DGEH" selected>Todas las fuentes de energía</option>
@@ -1270,9 +1226,72 @@
         </div>
       </div>
 
-      <div id="page3-panel" class="panel m-md-4 p-4 mb-4 border border-persian-green rounded-3 d-none">
+      <div id="fleet-panel" class="panel m-md-4 p-4 mb-4 border border-persian-green rounded-3 d-none">
         <div>
-          <ul id="indicators-analysis-navbar"
+          <ul id="fleet-result-navbar" class="nav nav-pills flex-column flex-sm-row justify-content-center bg-persian-green-light mb-3">
+            <li class="nav-item">
+              <select id="timeline_select_tech" class="form-select flex-sm-fill text-sm-center m-2" aria-label="technology select">
+                <option value="DGEH" selected>Todas las fuentes de energía</option>
+                <option value="D">Diesel Nuevos</option>
+                <option value="G">Gas Natural</option>
+                <option value="E">Eléctrico</option>
+                <option value="H">Hidrógeno</option>
+                <option value="H">Diesel Actual</option>
+              </select>
+            </li>
+            <li class="nav-item mx-4">
+              <select id="timeline_select_size" class="form-select flex-sm-fill text-sm-center m-2" aria-label="vehicle type select">
+                <option value="hml" selected>Todos los vehículos</option>
+                <option value="h">C2</option>
+                <option value="m">C3S3</option>
+              </select>
+            </li>
+            <li class="nav-item">
+              <button id="timeline_percent_button" class="btn btn-persian-green flex-sm-fill text-sm-center m-2">Porcentajes</button>
+            </li>
+          </ul>
+          <div class="container px-0">
+            <div class="mb-4">
+              <h5 class="text-persian-green fw-bold">Plan de renovacion de la flota por tecnologia y periodo (2023-2050)
+              </h5>
+              <div class="alert alert-light text-justify" role="alert">
+                <p class="mb-0">Estos gráficos muestras el plan de renovación de la flota cargada por el usuario,
+                  detallando el número y
+                  tipo de vehículos que serán renovados o adquiridos, diferenciados por tecnología (Diesel, Eléctrico,
+                  Gas, Hidrógeno) y clasificados por su peso (livianos, medianos, pesados). La información se
+                  presenta en periodos de tiempo que van del 2023 al 2050.
+                </p>
+              </div>
+              <div class="row justify-content-md-center mx-1">
+                <div id="buy_column_chart" class="buy-chart-content col-lg-12 p-0"></div>
+              </div>
+              <div class="row justify-content-md-center mx-1">
+                <div id="sell_column_chart" class="sell-chart-content col-lg-12 p-0"></div>
+              </div>
+            </div>
+            <div class="mb-2">
+              <h5 class="text-persian-green fw-bold">Evolución de la Configuración de la Flota por Tecnología
+                (2023-2050)</h5>
+              <div class="alert alert-light text-justify" role="alert">
+                <p class="mb-0">Este gráfico presenta la transición de la flota de vehículos desde 2023 hasta 2050,
+                  diferenciando las
+                  tecnologías por colores: azul para Diesel, rojo para Eléctrico, naranja para Gas y verde para
+                  Hidrógeno. 'All' representa la suma de vehículos livianos, medianos y pesados en la flota. Este
+                  gráfico proporciona una visión clara de cómo se prevé que evolucionará la composición tecnológica
+                  de la flota en el horizonte temporal establecido, permitiendo comprender rápidamente las tendencias.
+                </p>
+              </div>
+              <div class="row justify-content-md-center mx-1">
+                <div id="line_chart" class="chart-content col-lg-12"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="costs-panel" class="panel m-md-4 p-4 mb-4 border border-persian-green rounded-3 d-none">
+        <div>
+          <ul id="costs-result-navbar"
             class="nav nav-pills flex-column flex-sm-row justify-content-center bg-persian-green-light mb-3">
             <li class="nav-item">
               <select id="column_select_tech" class="form-select flex-sm-fill text-sm-center m-2"
