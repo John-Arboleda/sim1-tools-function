@@ -1,15 +1,23 @@
+import { dataSavedCO2 } from "./chart-functions";
+import { defaultValues } from "../data";
+import { transformData } from "../functions";
+
 
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
-  var data = google.visualization.arrayToDataTable([
-    ['Year', 'Sales', 'Expenses'],
-    ['2004',  1000,      400],
-    ['2005',  1170,      460],
-    ['2006',  660,       1120],
-    ['2007',  1030,      540]
-  ]);
+
+  const dataObj = transformData(defaultValues);
+
+  const arrSavedCO2: number[][] = dataSavedCO2(dataObj);
+
+  let dataArr: (string|number)[][] = [
+    ['Periodo', 'Operacional', 'Renovación', 'Total'],
+    ...arrSavedCO2
+  ]
+
+  var dataTable = google.visualization.arrayToDataTable(dataArr);
 
   var options = {
     title: 'Company Performance',
@@ -19,7 +27,7 @@ function drawChart() {
 
   var chart = new google.visualization.LineChart(document.getElementById('saved-co2'));
 
-  chart.draw(data, options);
+  chart.draw(dataTable, options);
 }
 
 export { drawChart };

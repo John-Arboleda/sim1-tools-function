@@ -1167,61 +1167,56 @@
         <div>
           <ul id="emissions-result-navbar" class="nav nav-pills flex-column flex-sm-row justify-content-center bg-persian-green-light mb-3">
             <li class="nav-item">
-              <select id="timeline_select_tech" class="form-select flex-sm-fill text-sm-center m-2" aria-label="technology select">
-                <option value="DGEH" selected>Todas las fuentes de energía</option>
-                <option value="D">Diesel Nuevos</option>
-                <option value="G">Gas Natural</option>
-                <option value="E">Eléctrico</option>
-                <option value="H">Hidrógeno</option>
-                <option value="H">Diesel Actual</option>
+              <select id="emissions_select_tech" class="form-select flex-sm-fill text-sm-center m-2" aria-label="technology select">
+                <option value="01234" selected>Todas las fuentes de energía</option>
+                <option value="0">Diesel Nuevos</option>
+                <option value="1">Gas Natural</option>
+                <option value="2">Eléctrico</option>
+                <option value="3">Hidrógeno</option>
+                <option value="4">Diesel Actual</option>
               </select>
             </li>
             <li class="nav-item mx-4">
-              <select id="timeline_select_size" class="form-select flex-sm-fill text-sm-center m-2" aria-label="vehicle type select">
-                <option value="hml" selected>Todos los vehículos</option>
-                <option value="h">C2</option>
-                <option value="m">C3S3</option>
+              <select id="emissions_select_size" class="form-select flex-sm-fill text-sm-center m-2" aria-label="vehicle type select">
+                <option value="01" selected>Todos los vehículos</option>
+                <option value="0">C2</option>
+                <option value="1">C3S3</option>
               </select>
             </li>
             <li class="nav-item">
-              <button id="timeline_percent_button" class="btn btn-persian-green flex-sm-fill text-sm-center m-2">Porcentajes</button>
+              <button id="emissions_percent_button" class="btn btn-persian-green flex-sm-fill text-sm-center m-2">Porcentajes</button>
             </li>
           </ul>
           <div class="container px-0">
+
             <div class="mb-4">
-              <h5 class="text-persian-green fw-bold">Plan de renovacion de la flota por tecnologia y periodo (2023-2050)
-              </h5>
-              <div class="alert alert-light text-justify" role="alert">
-                <p class="mb-0">Estos gráficos muestras el plan de renovación de la flota cargada por el usuario,
-                  detallando el número y
-                  tipo de vehículos que serán renovados o adquiridos, diferenciados por tecnología (Diesel, Eléctrico,
-                  Gas, Hidrógeno) y clasificados por su peso (livianos, medianos, pesados). La información se
-                  presenta en periodos de tiempo que van del 2023 al 2050.
-                </p>
-              </div>
-              <div class="row justify-content-md-center mx-1">
-                <div id="buy_column_chart" class="buy-chart-content col-lg-12 p-0"></div>
-              </div>
-              <div class="row justify-content-md-center mx-1">
-                <div id="sell_column_chart" class="sell-chart-content col-lg-12 p-0"></div>
-              </div>
-            </div>
-            <div class="mb-2">
               <h5 class="text-persian-green fw-bold">Evolución de la Configuración de la Flota por Tecnología
                 (2023-2050)</h5>
               <div class="alert alert-light text-justify" role="alert">
-                <p class="mb-0">Este gráfico presenta la transición de la flota de vehículos desde 2023 hasta 2050,
-                  diferenciando las
-                  tecnologías por colores: azul para Diesel, rojo para Eléctrico, naranja para Gas y verde para
-                  Hidrógeno. 'All' representa la suma de vehículos livianos, medianos y pesados en la flota. Este
-                  gráfico proporciona una visión clara de cómo se prevé que evolucionará la composición tecnológica
-                  de la flota en el horizonte temporal establecido, permitiendo comprender rápidamente las tendencias.
+                <p class="mb-0">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias provident eaque, ipsam modi non, eius tenetur temporibus deserunt quos nisi minima neque accusamus eligendi quia. Nam earum excepturi repudiandae tenetur!
                 </p>
               </div>
               <div class="row justify-content-md-center mx-1">
-                <div id="line_chart" class="chart-content col-lg-12"></div>
+                <div id="saved-co2" class="chart-content col-lg-12"></div>
               </div>
             </div>
+
+            <div class="mb-2">
+              <h5 class="text-persian-green fw-bold">Plan de renovacion de la flota por tecnologia y periodo (2023-2050)
+              </h5>
+              <div class="alert alert-light text-justify" role="alert">
+                <p class="mb-0">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem deleniti dolor ducimus eos quibusdam! Ducimus totam veniam nihil perspiciatis nulla unde aliquid magni, illo harum ratione, repellendus sunt vero optio.
+                </p>
+              </div>
+              <div class="row justify-content-md-center mx-1">
+                <div id="area_chart_div" class="chart-content col-lg-12"></div>
+              </div>
+            </div>
+
+            
+
           </div>
         </div>
       </div>
