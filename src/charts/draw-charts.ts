@@ -2,7 +2,7 @@ import { multipleAreaChart } from "./area-chart";
 
 import { createDataAreaEmis } from "./chart-functions";
 
-async function runAnalysisCharts(dataObj: {  WTTX: number[][][], TTWX: number[][][] }) {
+function runAnalysisCharts(dataObj: {  WTTX: number[][][], TTWX: number[][][] }) {
   google.charts.load('current', { packages: ['corechart', 'bar', 'table', 'controls'] });
   return new Promise<void>((resolve) => {
     google.charts.setOnLoadCallback(() => {

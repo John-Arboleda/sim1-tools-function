@@ -13,15 +13,14 @@ console.log(resultObj);
 // (() => {
 //   console.log("Page fully loaded.");
 // })();
-(async () => {
-  console.log("Page fully loaded.");
-  await runAnalysisCharts(resultObj)
+(() => {
+  runAnalysisCharts(resultObj)
   
 })();
 createNavEvents();
 navbarResultsScroll();
 
-window.addEventListener("load", async() => {
+window.addEventListener("load", () => {
   // console.log("Page fully loaded.");
   // const resultObj = transformData(defaultValues);
   

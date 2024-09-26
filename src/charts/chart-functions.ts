@@ -1,4 +1,4 @@
-import { defaultValues } from "../data";
+// import { defaultValues } from "../data";
 
 
 // interface CO2Obj {
@@ -34,7 +34,7 @@ function sumPeriod(
   // Iterate over the specified 'sizeKeys'
   for (let i = 0; i < sizeKeys.length; i++) {
     let sizeKey = sizeKeys[i];
-    
+
     // Iterate over the specified 'techKeys'
     for (let v = 0; v < techKeys.length; v++) {
       let techKey = techKeys[v];
@@ -55,7 +55,7 @@ function sumDataObj(
 
   const dataArr: number[] = new Array(T).fill(0);
 
-  return dataArr.map((t, j) => sumPeriod(dataProp, j, techKeys, sizeKeys));
+  return dataArr.map((_t, j) => sumPeriod(dataProp, j, techKeys, sizeKeys));
 }
 
 

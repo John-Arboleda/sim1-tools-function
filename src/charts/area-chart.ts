@@ -10,30 +10,30 @@ interface DataFunction {
 }
 
 // Define an interface for the chart options
-interface ChartOptions {
-  chartArea: {
-      width: string;
-  };
-  hAxis: {
-      minValue: string;
-      title: string;
-      titleTextStyle: {
-          italic: boolean;
-      };
-  };
-  isStacked: (boolean|String);
-  legend: {
-      position: string;
-      maxLines: number;
-  };
-  vAxis: {
-      title: string;
-      ticks: (string|Number[]);
-      titleTextStyle: {
-          italic: boolean;
-      };
-  };
-}
+// interface ChartOptions {
+//   chartArea: {
+//       width: string;
+//   };
+//   hAxis: {
+//       minValue: number | string | undefined;
+//       title: string;
+//       titleTextStyle: {
+//           italic: boolean;
+//       };
+//   };
+//   isStacked: boolean | "percent";
+//   legend: {
+//       position: string;
+//       maxLines: number;
+//   };
+//   vAxis: {
+//       title: string;
+//       ticks: number[] | string |undefined;
+//       titleTextStyle: {
+//           italic: boolean;
+//       };
+//   };
+// }
 
 function createDataTable(
   dataObj: DataObj,
@@ -41,7 +41,7 @@ function createDataTable(
   header: string[],
   techKeys: number[] = [0, 1, 2, 3, 4],
   sizeKeys: number[] = [0, 1]
-) {
+): google.visualization.DataTable {
 
   const dataRows = dataFunction(dataObj, techKeys, sizeKeys);
 
@@ -60,13 +60,14 @@ function multipleAreaChart(
   dataObj: DataObj,
   dataFunction: DataFunction,
   id_element: string,
-  chartOptions: ChartOptions,
+  chartOptions: any, // Fix options interface
   header: string[]
 ): void {
-  // let data = google.visualization.arrayToDataTable(dataFunction(dataJson));
   let data = createDataTable(dataObj, dataFunction, header);
 
-  const chart = new google.visualization.AreaChart(document.getElementById(id_element));
+  const container = document.getElementById(id_element) as HTMLElement;
+
+  const chart = new google.visualization.AreaChart(container);
 
   const percent_button = document.getElementById('emissions_percent_button') as HTMLButtonElement;
 
@@ -91,7 +92,6 @@ function multipleAreaChart(
   function updateDataChart(){
     const techKeys: number[] = select_technology.value.split("").map((a: String) => Number(a));
     const sizeKeys: number[] = select_size.value.split("").map((a: String) => Number(a));
-    //data = google.visualization.arrayToDataTable(dataFunction(dataObj, techKeys, sizeKeys));
     data = createDataTable(dataObj, dataFunction, header, techKeys, sizeKeys);
     chart.draw(data, options);
   }
