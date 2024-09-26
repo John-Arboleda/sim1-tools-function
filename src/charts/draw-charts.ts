@@ -14,7 +14,8 @@ async function runAnalysisCharts(dataObj: {  WTTX: number[][][], TTWX: number[][
 
 function drawAnalysisCharts(dataObj: {  WTTX: number[][][], TTWX: number[][][] }) {
   
-  multipleAreaChart(dataObj, createDataAreaEmis, 'area_chart_div', emissionsOptions);
+  const emisHeader: string[] = ['Periodo', 'Well-to-Tank', 'Tank-to-Wheel']
+  multipleAreaChart(dataObj, createDataAreaEmis, 'area_chart_div', emissionsOptions, emisHeader);
 }
 
 const emissionsOptions = {

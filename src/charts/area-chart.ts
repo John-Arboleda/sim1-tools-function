@@ -37,9 +37,13 @@ interface ChartOptions {
 
 function createDataTable(
   dataObj: DataObj,
-  dataFunction: DataFunction) {
+  dataFunction: DataFunction,
+  header: string[],
+  techKeys: number[] = [0, 1, 2, 3, 4],
+  sizeKeys: number[] = [0, 1]
+) {
 
-  const [ header, ...rest ] = dataFunction(dataObj);
+  const dataRows = dataFunction(dataObj, techKeys, sizeKeys);
 
   const dataTable = new google.visualization.DataTable();
 
@@ -47,7 +51,7 @@ function createDataTable(
     dataTable.addColumn('number', columnName);
   })
 
-  dataTable.addRows(rest);
+  dataTable.addRows(dataRows);
 
   return dataTable
 }
@@ -56,10 +60,11 @@ function multipleAreaChart(
   dataObj: DataObj,
   dataFunction: DataFunction,
   id_element: string,
-  chartOptions: ChartOptions
+  chartOptions: ChartOptions,
+  header: string[]
 ): void {
   // let data = google.visualization.arrayToDataTable(dataFunction(dataJson));
-  let data = createDataTable(dataObj, dataFunction);
+  let data = createDataTable(dataObj, dataFunction, header);
 
   const chart = new google.visualization.AreaChart(document.getElementById(id_element));
 
@@ -85,9 +90,9 @@ function multipleAreaChart(
 
   function updateDataChart(){
     const techKeys: number[] = select_technology.value.split("").map((a: String) => Number(a));
-    const sizeKeys: number[] = select_size.value.split("").map((a: String) => Number(a));;
-
-    data = google.visualization.arrayToDataTable(dataFunction(dataObj, techKeys, sizeKeys));
+    const sizeKeys: number[] = select_size.value.split("").map((a: String) => Number(a));
+    //data = google.visualization.arrayToDataTable(dataFunction(dataObj, techKeys, sizeKeys));
+    data = createDataTable(dataObj, dataFunction, header, techKeys, sizeKeys);
     chart.draw(data, options);
   }
 

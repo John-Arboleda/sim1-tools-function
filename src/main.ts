@@ -6,25 +6,29 @@ import { drawChart } from "./charts/line-chart";
 import { runAnalysisCharts } from "./charts/draw-charts";
 
 
-
 const resultObj = transformData(defaultValues);
+console.log(resultObj);
 
-() => {
-  console.log(resultObj);
-}
-async () => {
+
+// (() => {
+//   console.log("Page fully loaded.");
+// })();
+(async () => {
+  console.log("Page fully loaded.");
   await runAnalysisCharts(resultObj)
   
-}
-// createNavEvents();
-// navbarResultsScroll();
+})();
+createNavEvents();
+navbarResultsScroll();
 
-document.addEventListener("load", () => {
-  const resultObj = transformData(defaultValues);
+window.addEventListener("load", async() => {
+  // console.log("Page fully loaded.");
+  // const resultObj = transformData(defaultValues);
   
-  //createNavEvents();
+  // createNavEvents();
   // navbarResultsScroll();
-  // drawChart();
+  drawChart();
   // await runAnalysisCharts(resultObj);
-  console.log(resultObj);
+  //console.log(resultObj);
 })
+
