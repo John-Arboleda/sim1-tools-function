@@ -1,3 +1,5 @@
+import * as d3 from "d3";
+
 // import { defaultValues } from "../data";
 
 
@@ -16,7 +18,7 @@ function dataSavedCO2(dataObj: {  SAVED1: number[], SAVED2: number[], CO2SAVED: 
   const dataArr:  number[][] = [];
 
   for(let t = 0; t < T; t++){
-    const dataPeriod:  number[] = [t, SAVED1[t], SAVED2[t], CO2SAVED[t]]
+    const dataPeriod:  number[] = [t + 1, SAVED1[t], SAVED2[t], CO2SAVED[t]]
     dataArr.push(dataPeriod);
   }
 
@@ -73,11 +75,37 @@ function createDataAreaEmis(
   const dataArr:  number[][] = [];
 
   for(let t = 0; t < T; t++){
-    const dataPeriod:  number[] = [t, sumWTTX[t], sumTTWX[t]];
+    const dataPeriod:  number[] = [t + 1, sumWTTX[t], sumTTWX[t]];
     dataArr.push(dataPeriod);
   }
 
   return dataArr;
 }
 
-export { dataSavedCO2, createDataAreaEmis }
+//const fleetHeader: string[] = ['Periodo', 'Diesel Nuevo', 'Gas', 'Eléctrico', 'Hidrógeno', 'Diesel Actual']
+
+function createFleetByTech(
+  N: number[][][],
+  techKeys: number[] = [0, 1, 2, 3, 4],
+  sizeKeys: number[] = [0, 1]
+): number[][] {
+  
+  const sumN: number[][] = [];
+
+  techKeys.forEach((tech: number) => {
+    sumN.push(sumDataObj(N, [tech], sizeKeys));
+  })
+
+  const transSumN = d3.transpose(sumN);
+  
+  const dataArr:  number[][] = [];
+
+  for(let t = 0; t < T; t++){
+    const dataPeriod:  number[] = [t + 1, ...transSumN[t]];
+    dataArr.push(dataPeriod);
+  }
+
+  return dataArr;
+}
+
+export { dataSavedCO2, createDataAreaEmis, createFleetByTech }

@@ -1163,17 +1163,18 @@
     <!-- main -->
     <div id="main-panel" class="col height-100-vh pb-5">
 
-      <div id="emissions-panel" class="panel m-md-4 p-4 mb-4 border border-persian-green rounded-3">
+      <div id="emissions-panel" class="panel m-md-4 p-4 mb-4 border border-persian-green rounded-3 d-none">
         <div>
+
           <ul id="emissions-result-navbar" class="nav nav-pills flex-column flex-sm-row justify-content-center bg-persian-green-light mb-3">
             <li class="nav-item">
               <select id="emissions_select_tech" class="form-select flex-sm-fill text-sm-center m-2" aria-label="technology select">
                 <option value="01234" selected>Todas las fuentes de energía</option>
-                <option value="0">Diesel Nuevos</option>
-                <option value="1">Gas Natural</option>
-                <option value="2">Eléctrico</option>
-                <option value="3">Hidrógeno</option>
-                <option value="4">Diesel Actual</option>
+                <option value="0">Diesel Actual</option>
+                <option value="1">Diesel Nuevos</option>
+                <option value="2">Gas Natural</option>
+                <option value="3">Eléctrico</option>
+                <option value="4">Hidrógeno</option> 
               </select>
             </li>
             <li class="nav-item mx-4">
@@ -1187,6 +1188,7 @@
               <button id="emissions_percent_button" class="btn btn-persian-green flex-sm-fill text-sm-center m-2">Porcentajes</button>
             </li>
           </ul>
+          
           <div class="container px-0">
 
             <div class="mb-4">
@@ -1221,30 +1223,32 @@
         </div>
       </div>
 
-      <div id="fleet-panel" class="panel m-md-4 p-4 mb-4 border border-persian-green rounded-3 d-none">
+      <div id="fleet-panel" class="panel m-md-4 p-4 mb-4 border border-persian-green rounded-3">
         <div>
+
           <ul id="fleet-result-navbar" class="nav nav-pills flex-column flex-sm-row justify-content-center bg-persian-green-light mb-3">
             <li class="nav-item">
-              <select id="timeline_select_tech" class="form-select flex-sm-fill text-sm-center m-2" aria-label="technology select">
-                <option value="DGEH" selected>Todas las fuentes de energía</option>
-                <option value="D">Diesel Nuevos</option>
-                <option value="G">Gas Natural</option>
-                <option value="E">Eléctrico</option>
-                <option value="H">Hidrógeno</option>
-                <option value="H">Diesel Actual</option>
+              <select id="fleet_select_tech" class="form-select flex-sm-fill text-sm-center m-2" aria-label="technology select">
+                <option value="01234" selected>Todas las fuentes de energía</option>
+                <option value="0">Diesel Actual</option>
+                <option value="1">Diesel Nuevos</option>
+                <option value="2">Gas Natural</option>
+                <option value="3">Eléctrico</option>
+                <option value="4">Hidrógeno</option> 
               </select>
             </li>
             <li class="nav-item mx-4">
-              <select id="timeline_select_size" class="form-select flex-sm-fill text-sm-center m-2" aria-label="vehicle type select">
-                <option value="hml" selected>Todos los vehículos</option>
-                <option value="h">C2</option>
-                <option value="m">C3S3</option>
+              <select id="fleet_select_size" class="form-select flex-sm-fill text-sm-center m-2" aria-label="vehicle type select">
+                <option value="01" selected>Todos los vehículos</option>
+                <option value="0">C2</option>
+                <option value="1">C3S3</option>
               </select>
             </li>
             <li class="nav-item">
-              <button id="timeline_percent_button" class="btn btn-persian-green flex-sm-fill text-sm-center m-2">Porcentajes</button>
+              <button id="fleet_percent_button" class="btn btn-persian-green flex-sm-fill text-sm-center m-2">Porcentajes</button>
             </li>
           </ul>
+
           <div class="container px-0">
             <div class="mb-4">
               <h5 class="text-persian-green fw-bold">Plan de renovacion de la flota por tecnologia y periodo (2023-2050)
@@ -1277,7 +1281,7 @@
                 </p>
               </div>
               <div class="row justify-content-md-center mx-1">
-                <div id="line_chart" class="chart-content col-lg-12"></div>
+                <div id="fleet_column_chart" class="chart-content col-lg-12"></div>
               </div>
             </div>
           </div>

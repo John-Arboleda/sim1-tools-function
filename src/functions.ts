@@ -770,7 +770,7 @@ function transformData( dataObj = defaultValues ){
 
   // // ######### Grafica 7 (Hoja 3) #######
   
-
+  // Area chart
   // Ingresos por carbon tax
   // // TCX
 
@@ -783,6 +783,7 @@ function transformData( dataObj = defaultValues ){
   // energía
   // // ######### Grafica 8,9,10,11 (Hoja 3)#######
   // Cantidad de energía necesaria para cada tipo
+  // Column chart
   // // QFUEL
   // Sumar diesel para viejos y nuevos
 
