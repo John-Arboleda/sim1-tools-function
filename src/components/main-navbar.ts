@@ -1,4 +1,8 @@
-// import { runSummaryCharts } from "../charts/draw-charts";
+import { runEmissionCharts, runFleetCharts, runCostsCharts } from "../charts/draw-charts";
+import { transformData } from "../functions";
+import { defaultValues } from "../data";
+
+const resultObj = transformData(defaultValues);
 
 function createNavEvents(): void {
   const navItems = document.querySelectorAll(".navbar-item");
@@ -26,6 +30,18 @@ function createNavEvents(): void {
     
       const panelToShow = document.getElementById(panelId) as HTMLElement;
       panelToShow.classList.remove('d-none');
+
+      if (panelId == "emissions-panel") {
+        runEmissionCharts(resultObj);
+      } 
+      
+      if (panelId == "fleet-panel") {
+        runFleetCharts(resultObj);
+      } 
+      
+      if (panelId == "costs-panel") {
+        runCostsCharts(resultObj);
+      }
     });
   });
 

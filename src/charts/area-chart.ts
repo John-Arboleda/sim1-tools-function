@@ -1,43 +1,7 @@
-interface DataObj {
-  WTTX: number[][][];
-  TTWX: number[][][];
-}
-
-// Define an interface for the data function
-interface DataFunction {
-  (dataObj: DataObj): number[][];
-  (arg0: any, arg1: any, arg2: any): any;
-}
-
-// Define an interface for the chart options
-// interface ChartOptions {
-//   chartArea: {
-//       width: string;
-//   };
-//   hAxis: {
-//       minValue: number | string | undefined;
-//       title: string;
-//       titleTextStyle: {
-//           italic: boolean;
-//       };
-//   };
-//   isStacked: boolean | "percent";
-//   legend: {
-//       position: string;
-//       maxLines: number;
-//   };
-//   vAxis: {
-//       title: string;
-//       ticks: number[] | string |undefined;
-//       titleTextStyle: {
-//           italic: boolean;
-//       };
-//   };
-// }
 
 function createDataTable(
-  dataObj: DataObj,
-  dataFunction: DataFunction,
+  dataObj: any,
+  dataFunction: any,
   header: string[],
   techKeys: number[] = [0, 1, 2, 3, 4],
   sizeKeys: number[] = [0, 1]
@@ -57,19 +21,20 @@ function createDataTable(
 }
 
 function multipleAreaChart(
-  dataObj: DataObj,
-  dataFunction: DataFunction,
-  id_element: string,
+  dataObj: any,
+  dataFunction: any,
+  elementId: string,
+  navPrefix: string,
   chartOptions: any, // Fix options interface
   header: string[]
 ): void {
   let data = createDataTable(dataObj, dataFunction, header);
 
-  const container = document.getElementById(id_element) as HTMLElement;
+  const container = document.getElementById(elementId) as HTMLElement;
 
   const chart = new google.visualization.AreaChart(container);
 
-  const percent_button = document.getElementById('emissions_percent_button') as HTMLButtonElement;
+  const percent_button = document.getElementById(navPrefix + '_percent_button') as HTMLButtonElement;
 
   const options = { ...chartOptions }
 
@@ -86,8 +51,8 @@ function multipleAreaChart(
     chart.draw(data, options);
   });
 
-  const select_technology = document.getElementById('emissions_select_tech') as HTMLSelectElement;
-  const select_size = document.getElementById('emissions_select_size') as HTMLSelectElement;
+  const select_technology = document.getElementById(navPrefix + '_select_tech') as HTMLSelectElement;
+  const select_size = document.getElementById(navPrefix + '_select_size') as HTMLSelectElement;
 
   function updateDataChart(){
     const techKeys: number[] = select_technology.value.split("").map((a: String) => Number(a));

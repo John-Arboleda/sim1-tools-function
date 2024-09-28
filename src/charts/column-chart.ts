@@ -1,13 +1,13 @@
-interface DataObj {
-  WTTX: number[][][];
-  TTWX: number[][][];
-}
+// interface DataObj {
+//   WTTX: number[][][];
+//   TTWX: number[][][];
+// }
 
 // Define an interface for the data function
-interface DataFunction {
-  (dataObj: DataObj): number[][];
-  (arg0: any, arg1: any, arg2: any): any;
-}
+// interface DataFunction {
+//   (dataObj: DataObj): number[][];
+//   (arg0: any, arg1: any, arg2: any): any;
+// }
 
 // Define an interface for the chart options
 // interface ChartOptions {

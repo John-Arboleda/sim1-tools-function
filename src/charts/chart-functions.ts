@@ -10,6 +10,8 @@ import * as d3 from "d3";
 // }
 
 const T: number = 26;
+const I: number = 5;
+const V: number = 2;
 
 function dataSavedCO2(dataObj: {  SAVED1: number[], SAVED2: number[], CO2SAVED: number[] }): number[][]{
   
@@ -82,10 +84,30 @@ function createDataAreaEmis(
   return dataArr;
 }
 
-//const fleetHeader: string[] = ['Periodo', 'Diesel Nuevo', 'Gas', 'Eléctrico', 'Hidrógeno', 'Diesel Actual']
+function createDataAreaCost(
+  dataObj: {  TCX: number[][][], VFCX: number[][][], VACX: number[][][] },
+  techKeys: number[] = [0, 1, 2, 3, 4],
+  sizeKeys: number[] = [0, 1]
+): number[][] {
+  
+  const { TCX, VFCX, VACX } = dataObj
+
+  const sumTCX: number[] = sumDataObj(TCX, techKeys, sizeKeys);
+  const sumVFCX: number[] = sumDataObj(VFCX, techKeys, sizeKeys);
+  const sumVACX: number[] = sumDataObj(VACX, techKeys, sizeKeys);
+  
+  const dataArr:  number[][] = [];
+
+  for(let t = 0; t < T; t++){
+    const dataPeriod:  number[] = [t + 1, sumTCX[t], sumVFCX[t], sumVACX[t]];
+    dataArr.push(dataPeriod);
+  }
+
+  return dataArr;
+}
 
 function createFleetByTech(
-  N: number[][][],
+  dataProp: number[][][],
   techKeys: number[] = [0, 1, 2, 3, 4],
   sizeKeys: number[] = [0, 1]
 ): number[][] {
@@ -93,7 +115,7 @@ function createFleetByTech(
   const sumN: number[][] = [];
 
   techKeys.forEach((tech: number) => {
-    sumN.push(sumDataObj(N, [tech], sizeKeys));
+    sumN.push(sumDataObj(dataProp, [tech], sizeKeys));
   })
 
   const transSumN = d3.transpose(sumN);
@@ -108,4 +130,45 @@ function createFleetByTech(
   return dataArr;
 }
 
-export { dataSavedCO2, createDataAreaEmis, createFleetByTech }
+function dataPropNegative(
+  dataProp: number[][][]
+): number[][][] {
+
+  //const negProp: number[][][] = [...dataProp];
+  const negProp: number[][][] = new Array(I).fill(0).map(() => new Array(V).fill(0).map(() => new Array(T).fill(0)));;
+
+  for(let i = 0; i < I; i++){
+    for(let v = 0; v < V; v++){
+      for(let t = 0; t < T; t++){
+        negProp[i][v][t] = -dataProp[i][v][t];
+      }
+    }
+  }
+
+  return negProp;
+}
+
+function maxValueVAxis(dataObj: {  G: number[][][], D: number[][][] }): number {
+
+  const buyBody = createFleetByTech(dataObj.G);
+  const sellBody = createFleetByTech(dataObj.D);
+  
+  const buyTable = buyBody.map(removeFirst);
+  const sellTable = sellBody.map(removeFirst);
+
+  const buySellTable = [...buyTable, ...sellTable];
+
+  const arrSumRowValue = buySellTable.map(row => row.reduce((value, acc) => Math.abs(value) + acc), 0);
+  const maxValue = Math.ceil((Math.max(...arrSumRowValue) + 5) / 10) * 10;
+
+  return maxValue;
+}
+
+function removeFirst(row: (string|number)[]): number[] {
+
+  const [_first, ...rest]: (string | number)[] = row;
+
+  return rest.map(n => Number(n));
+}
+
+export { dataSavedCO2, createDataAreaEmis, createFleetByTech, dataPropNegative, maxValueVAxis, createDataAreaCost }

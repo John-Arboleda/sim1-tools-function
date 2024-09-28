@@ -1163,7 +1163,7 @@
     <!-- main -->
     <div id="main-panel" class="col height-100-vh pb-5">
 
-      <div id="emissions-panel" class="panel m-md-4 p-4 mb-4 border border-persian-green rounded-3 d-none">
+      <div id="emissions-panel" class="panel m-md-4 p-4 mb-4 border border-persian-green rounded-3">
         <div>
 
           <ul id="emissions-result-navbar" class="nav nav-pills flex-column flex-sm-row justify-content-center bg-persian-green-light mb-3">
@@ -1223,7 +1223,7 @@
         </div>
       </div>
 
-      <div id="fleet-panel" class="panel m-md-4 p-4 mb-4 border border-persian-green rounded-3">
+      <div id="fleet-panel" class="panel m-md-4 p-4 mb-4 border border-persian-green rounded-3 d-none">
         <div>
 
           <ul id="fleet-result-navbar" class="nav nav-pills flex-column flex-sm-row justify-content-center bg-persian-green-light mb-3">
@@ -1268,6 +1268,7 @@
                 <div id="sell_column_chart" class="sell-chart-content col-lg-12 p-0"></div>
               </div>
             </div>
+
             <div class="mb-2">
               <h5 class="text-persian-green fw-bold">Evolución de la Configuración de la Flota por Tecnología
                 (2023-2050)</h5>
@@ -1284,6 +1285,23 @@
                 <div id="fleet_column_chart" class="chart-content col-lg-12"></div>
               </div>
             </div>
+
+            <div class="mb-2">
+              <h5 class="text-persian-green fw-bold">Evolución de la Configuración de la Flota por Tecnología
+                (2023-2050)</h5>
+              <div class="alert alert-light text-justify" role="alert">
+                <p class="mb-0">Este gráfico presenta la transición de la flota de vehículos desde 2023 hasta 2050,
+                  diferenciando las
+                  tecnologías por colores: azul para Diesel, rojo para Eléctrico, naranja para Gas y verde para
+                  Hidrógeno. 'All' representa la suma de vehículos livianos, medianos y pesados en la flota. Este
+                  gráfico proporciona una visión clara de cómo se prevé que evolucionará la composición tecnológica
+                  de la flota en el horizonte temporal establecido, permitiendo comprender rápidamente las tendencias.
+                </p>
+              </div>
+              <div class="row justify-content-md-center mx-1">
+                <div id="old_column_chart" class="chart-content col-lg-12"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1293,26 +1311,26 @@
           <ul id="costs-result-navbar"
             class="nav nav-pills flex-column flex-sm-row justify-content-center bg-persian-green-light mb-3">
             <li class="nav-item">
-              <select id="column_select_tech" class="form-select flex-sm-fill text-sm-center m-2"
+              <select id="costs_select_tech" class="form-select flex-sm-fill text-sm-center m-2"
                 aria-label="technology select">
-                <option value="DGEH" selected>Todas las fuentes de energía</option>
-                <option value="D">Diesel</option>
-                <option value="G">Gas</option>
-                <option value="E">Eléctrico</option>
-                <option value="H">Hidrógeno</option>
+                <option value="01234" selected>Todas las fuentes de energía</option>
+                <option value="0">Diesel Actual</option>
+                <option value="1">Diesel Nuevos</option>
+                <option value="2">Gas Natural</option>
+                <option value="3">Eléctrico</option>
+                <option value="4">Hidrógeno</option>
               </select>
             </li>
             <li class="nav-item mx-4">
-              <select id="column_select_size" class="form-select flex-sm-fill text-sm-center m-2"
+              <select id="costs_select_size" class="form-select flex-sm-fill text-sm-center m-2"
                 aria-label="vehicle type select">
-                <option value="hml" selected>Todos los vehículos</option>
-                <option value="h">Vehículos Pesados</option>
-                <option value="m">Vehículos Medianos</option>
-                <option value="l">Vehículos Livianos</option>
+                <option value="01" selected>Todos los vehículos</option>
+                <option value="0">C2</option>
+                <option value="1">C3S3</option>
               </select>
             </li>
             <li class="nav-item">
-              <button id="column_percent_button"
+              <button id="costs_percent_button"
                 class="btn btn-persian-green flex-sm-fill text-sm-center m-2">Porcentajes</button>
             </li>
           </ul>
@@ -1331,7 +1349,7 @@
               </p>
             </div>
             <div class="row justify-content-md-center mx-1">
-              <div id="column_chart_div" class="chart-content col-lg-12 mb-4"></div>
+              <div id="cost_area_chart" class="chart-content col-lg-12 mb-4"></div>
             </div>
           </div>
           <div class="mb-4">

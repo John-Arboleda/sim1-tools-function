@@ -1,33 +1,25 @@
-import { dataSavedCO2 } from "./chart-functions";
-import { defaultValues } from "../data";
-import { transformData } from "../functions";
 
+function simpleLineChart(
+  dataObj: any,
+  dataFunction: any,
+  id_element: string,
+  chartOptions: any,
+  header: string[]
+) {
 
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
+  const arrSavedCO2: number[][] = dataFunction(dataObj);
 
-function drawChart() {
-
-  const dataObj = transformData(defaultValues);
-
-  const arrSavedCO2: number[][] = dataSavedCO2(dataObj);
-
-  let dataArr: (string|number)[][] = [
-    ['Periodo', 'Operacional', 'Renovación', 'Total'],
-    ...arrSavedCO2
+  const dataArr: (string|number)[][] = [
+    header, ...arrSavedCO2
   ]
 
-  var dataTable = google.visualization.arrayToDataTable(dataArr);
+  const dataTable = google.visualization.arrayToDataTable(dataArr);
 
-  var options = {
-    title: 'Company Performance',
-    curveType: 'function',
-    legend: { position: 'bottom' }
-  };
+  const container = document.getElementById(id_element) as HTMLElement;
 
-  var chart = new google.visualization.LineChart(document.getElementById('saved-co2'));
+  const chart = new google.visualization.LineChart(container);
 
-  chart.draw(dataTable, options);
+  chart.draw(dataTable, chartOptions);
 }
 
-export { drawChart };
+export { simpleLineChart };

@@ -2,8 +2,7 @@ import { transformData } from "./functions";
 import { defaultValues } from "./data";
 import { navbarResultsScroll } from "./components/navbar-results";
 import { createNavEvents} from "./components/main-navbar";
-import { drawChart } from "./charts/line-chart";
-import { runAnalysisCharts } from "./charts/draw-charts";
+import { runEmissionCharts } from "./charts/draw-charts";
 //import { createFleetByTech } from "./charts/chart-functions";
 
 const resultObj = transformData(defaultValues);
@@ -16,8 +15,7 @@ console.log(resultObj);
 // })();
 
 (() => {
-  runAnalysisCharts(resultObj);
-  
+  runEmissionCharts(resultObj);
 })();
 createNavEvents();
 navbarResultsScroll();
@@ -28,7 +26,6 @@ window.addEventListener("load", () => {
   
   // createNavEvents();
   // navbarResultsScroll();
-  drawChart();
   // await runAnalysisCharts(resultObj);
   //console.log(resultObj);
 })
