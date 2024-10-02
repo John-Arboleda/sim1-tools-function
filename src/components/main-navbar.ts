@@ -1,4 +1,4 @@
-import { runEmissionCharts, runFleetCharts, runCostsCharts } from "../charts/draw-charts";
+import { runEmissionCharts, runFleetCharts, runCostsCharts, runEnergyCharts } from "../charts/draw-charts";
 import { transformData } from "../functions";
 import { defaultValues } from "../data";
 
@@ -41,6 +41,10 @@ function createNavEvents(): void {
       
       if (panelId == "costs-panel") {
         runCostsCharts(resultObj);
+      }
+
+      if (panelId == "energy-panel") {
+        runEnergyCharts(resultObj);
       }
     });
   });

@@ -175,4 +175,24 @@ function removeFirst(row: (string|number)[]): number[] {
   return rest.map(n => Number(n));
 }
 
-export { dataSavedCO2, createDataAreaEmis, createFleetByTech, dataPropNegative, maxValueVAxis, createDataAreaCost }
+function createDataQfuel(
+  dataProp: number[][],
+  _techKeys: number[] = [0, 1, 2, 3, 4],
+  sizeKeys: number[] = [0, 1]
+): number[][]{
+  
+  const dataArr:  number[][] = [];
+
+  for(let t = 0; t < T; t++){
+    const year: number = currentYear + t + 1;
+    const row = sizeKeys.map(k => dataProp[k][t]);
+    const dataPeriod:  number[] = [year, ...row];
+    dataArr.push(dataPeriod);
+  }
+
+  console.log(dataArr);
+
+  return dataArr;
+}
+
+export { dataSavedCO2, createDataAreaEmis, createFleetByTech, dataPropNegative, maxValueVAxis, createDataAreaCost, createDataQfuel }

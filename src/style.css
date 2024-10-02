@@ -60,6 +60,10 @@ body {
   color: var(--tropical-rain-forest) !important;
 }
 
+.table-header{
+  color: var(--tropical-rain-forest) !important;
+}
+
 #main-navbar .nav-pills .active,
 .table-header:hover,
 .nested-table-header:hover,

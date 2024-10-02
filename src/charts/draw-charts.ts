@@ -2,9 +2,9 @@ import { multipleAreaChart } from "./area-chart";
 import { multipleColumnChart } from "./column-chart";
 import { simpleLineChart } from "./line-chart";
 
-import { createDataAreaEmis, createFleetByTech, dataPropNegative, maxValueVAxis, createDataAreaCost, dataSavedCO2 } from "./chart-functions";
+import { createDataAreaEmis, createFleetByTech, dataPropNegative, maxValueVAxis, createDataAreaCost, dataSavedCO2, createDataQfuel } from "./chart-functions";
 
-import { sellFleetOptions, buyFleetOptions, fleetOptions, emissionsOptions, co2Options } from "./chart-options";
+import { sellFleetOptions, buyFleetOptions, fleetOptions, emissionsOptions, co2Options, dieselOptions } from "./chart-options";
 
 interface DataObj {
   SAVED1: number[],
@@ -88,4 +88,25 @@ function drawCostsCharts(dataObj: DataObj): void {
 
 }
 
-export { runEmissionCharts, runFleetCharts, runCostsCharts }
+function runEnergyCharts(dataObj: DataObj) {
+  google.charts.load('current', { packages: ['corechart', 'bar', 'table', 'controls'] });
+  return new Promise<void>((resolve) => {
+    google.charts.setOnLoadCallback(() => {
+      drawEnergyCharts(dataObj);
+      resolve();
+    });
+  });
+}
+
+function drawEnergyCharts(dataObj: DataObj): void {
+
+  const vehHeader: string[] = ['Periodo', 'C2', 'C3S3'];
+  multipleAreaChart(dataObj.QFUEL[0], createDataQfuel, 'current_diesel_area_chart', 'energy', dieselOptions, vehHeader);
+  multipleAreaChart(dataObj.QFUEL[1], createDataQfuel, 'new_diesel_area_chart', 'energy', dieselOptions, vehHeader);
+  multipleAreaChart(dataObj.QFUEL[2], createDataQfuel, 'gas_area_chart', 'energy', dieselOptions, vehHeader);
+  multipleAreaChart(dataObj.QFUEL[3], createDataQfuel, 'electric_area_chart', 'energy', dieselOptions, vehHeader);
+  multipleAreaChart(dataObj.QFUEL[4], createDataQfuel, 'hydrogen_area_chart', 'energy', dieselOptions, vehHeader);
+}
+
+
+export { runEmissionCharts, runFleetCharts, runCostsCharts, runEnergyCharts }

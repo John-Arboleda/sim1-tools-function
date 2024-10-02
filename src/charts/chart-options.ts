@@ -11,7 +11,7 @@ const co2Options = {
     format: '####',
   },
   vAxis: {
-    title: 'Emisiones (Toneladas de CO2e)',
+    title: 'Ahorros CO2 (%)',
     ticks: 'auto',
     titleTextStyle: {
       italic: false,
@@ -88,7 +88,7 @@ const buyFleetOptions = {
   isStacked: true,
   legend: {position: 'none', maxLines: 3},
   vAxis: {
-    title: 'Número de vehículos\nadquiridos',
+    title: 'Número de vehículos\nincorporados',
     ticks: 'auto',
     titleTextStyle: {
       italic: false,
@@ -122,7 +122,7 @@ const sellFleetOptions = {
   isStacked: true,
   legend: {position: 'bottom', maxLines: 3},
   vAxis: {
-    title: 'Número de vehículos\nvendidos',
+    title: 'Número de vehículos\ndesintegrados',
     ticks: 'auto',
     titleTextStyle: {
       italic: false,
@@ -143,4 +143,25 @@ const sellFleetOptions = {
   },
 };
 
-export { sellFleetOptions, buyFleetOptions, fleetOptions, emissionsOptions, co2Options }
+const dieselOptions = {
+  chartArea: { width: '75%' },
+  hAxis: {
+    minValue: 'auto',
+    title: 'Periodo (años)',
+    titleTextStyle: {
+      italic: false,
+    },
+    format: '####',
+  },
+  isStacked: true,
+  legend: {position: 'bottom', maxLines: 3},
+  vAxis: {
+    title: 'Diesel (Ton)',
+    ticks: 'auto',
+    titleTextStyle: {
+      italic: false,
+    }
+  },
+};
+
+export { sellFleetOptions, buyFleetOptions, fleetOptions, emissionsOptions, co2Options, dieselOptions }
