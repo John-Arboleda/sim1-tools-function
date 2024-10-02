@@ -9,6 +9,7 @@ import * as d3 from "d3";
 //   CO2SAVED: number[];
 // }
 
+const currentYear: number = 2024;
 const T: number = 26;
 const I: number = 5;
 const V: number = 2;
@@ -20,7 +21,8 @@ function dataSavedCO2(dataObj: {  SAVED1: number[], SAVED2: number[], CO2SAVED: 
   const dataArr:  number[][] = [];
 
   for(let t = 0; t < T; t++){
-    const dataPeriod:  number[] = [t + 1, SAVED1[t], SAVED2[t], CO2SAVED[t]]
+    const year: number = currentYear + t + 1;
+    const dataPeriod:  number[] = [year, SAVED1[t], SAVED2[t], CO2SAVED[t]]
     dataArr.push(dataPeriod);
   }
 
@@ -50,7 +52,6 @@ function sumPeriod(
   return result;
 }
 
-
 function sumDataObj(
   dataProp: number[][][],
   techKeys: number[] = [0, 1, 2, 3, 4],
@@ -77,7 +78,8 @@ function createDataAreaEmis(
   const dataArr:  number[][] = [];
 
   for(let t = 0; t < T; t++){
-    const dataPeriod:  number[] = [t + 1, sumWTTX[t], sumTTWX[t]];
+    const year: number = currentYear + t + 1;
+    const dataPeriod:  number[] = [year, sumWTTX[t], sumTTWX[t]];
     dataArr.push(dataPeriod);
   }
 
@@ -99,7 +101,8 @@ function createDataAreaCost(
   const dataArr:  number[][] = [];
 
   for(let t = 0; t < T; t++){
-    const dataPeriod:  number[] = [t + 1, sumTCX[t], sumVFCX[t], sumVACX[t]];
+    const year: number = currentYear + t + 1;
+    const dataPeriod:  number[] = [year, sumTCX[t], sumVFCX[t], sumVACX[t]];
     dataArr.push(dataPeriod);
   }
 
@@ -123,7 +126,8 @@ function createFleetByTech(
   const dataArr:  number[][] = [];
 
   for(let t = 0; t < T; t++){
-    const dataPeriod:  number[] = [t + 1, ...transSumN[t]];
+    const year: number = currentYear + t + 1;
+    const dataPeriod:  number[] = [year, ...transSumN[t]];
     dataArr.push(dataPeriod);
   }
 

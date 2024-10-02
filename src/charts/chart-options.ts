@@ -3,11 +3,12 @@ const co2Options = {
   chartArea: { width: '75%' },
   legend: {position: 'bottom', maxLines: 3},
   hAxis: {
-    minValue: 'auto',
+    //minValue: 'auto',
     title: 'Periodo (años)',
     titleTextStyle: {
       italic: false,
-    }
+    },
+    format: '####',
   },
   vAxis: {
     title: 'Emisiones (Toneladas de CO2e)',
@@ -25,7 +26,8 @@ const emissionsOptions = {
     title: 'Periodo (años)',
     titleTextStyle: {
       italic: false,
-    }
+    },
+    format: '####',
   },
   isStacked: true,
   legend: {position: 'bottom', maxLines: 3},
@@ -45,7 +47,8 @@ const fleetOptions = {
     title: 'Periodo (años)',
     titleTextStyle: {
       italic: false,
-    }
+    },
+    format: '####',
   },
   isStacked: true,
   legend: {position: 'bottom', maxLines: 3},
@@ -80,6 +83,7 @@ const buyFleetOptions = {
       italic: false,
     },
     textPosition: 'none',
+    format: '####',
   },
   isStacked: true,
   legend: {position: 'none', maxLines: 3},
@@ -112,7 +116,8 @@ const sellFleetOptions = {
     title: 'Periodo (años)',
     titleTextStyle: {
       italic: false,
-    }
+    },
+    format: '####',
   },
   isStacked: true,
   legend: {position: 'bottom', maxLines: 3},
