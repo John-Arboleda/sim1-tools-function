@@ -3,7 +3,15 @@ import { defaultValues } from "./data";
 import { navbarResultsScroll } from "./components/navbar-results";
 import { createNavEvents} from "./components/main-navbar";
 import { runEmissionCharts } from "./charts/draw-charts";
-//import { createFleetByTech } from "./charts/chart-functions";
+
+import { updateObj } from "./update"; 
+
+
+var objValues = {...defaultValues}
+
+console.log(updateObj(objValues));
+
+
 
 const resultObj = transformData(defaultValues);
 console.log(resultObj);

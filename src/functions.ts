@@ -43,11 +43,9 @@ function transformData( dataObj = defaultValues ){
   // scl<-10^6 # escala logit
   // beta <- c(1,1,1) # Coeficientes logit
   // salv<-0.2 # Porcentaje de salvamento con respecto a lo que vale nuevo el vehiculo
-  // agep<-20 # Años maximo un vehiculo puede ser conservado en circulacion
   const scl: number = 10**6;
   const beta: number[] = [1, 1, 1];
   const salv: number = 0.2;
-  const agep: number = 20;
 
   // FM<-array(c(1, 1,0.91, 0.59, 1.05), dim=c(I)) # Factor de mantenimiento
   // TTW<- array(c(5401,5401,511,203,9500), dim=c(I)) # Tank to wheel factor
@@ -158,6 +156,8 @@ function transformData( dataObj = defaultValues ){
   // per<-5 # Años del prestamo
   const { RN, LO, rate, per } = dataObj
 
+  // agep<-20 # Años maximo un vehiculo puede ser conservado en circulacion
+  const { agep } = dataObj; //user param assets
 
   // #####################################
 
@@ -301,14 +301,19 @@ function transformData( dataObj = defaultValues ){
   //   for(i in 1:I){
   //     for(t in 1:T){
   //       if(EFF2[i,v]>0){
-  //       E[i,v,t]=PROD[v,t]*(10^3/EFF2[i,v])*EVOL[t,i,esc]/(FLEET[v]*(1+RG[esc,v])^t)
+  //       // E[i,v,t]=PROD[v,t]*(10^3/EFF2[i,v])*EVOL[t,i,esc]/(FLEET[v]*(1+RG[esc,v])^t)
+  //       E[i,v,t]=(10^6)*KMT[1,v]/(EFF2[i,v]*EVOL[t,i,esc]*FLEET[v])
   //     }}}}
+
+
+
   const E: number[][][] = new Array(I).fill(0).map(() => new Array(V).fill(0).map(() => new Array(T).fill(0)));
   for(let v = 0; v < V; v++) {
     for(let i = 0; i < I; i++) {
       for(let t = 0; t < T; t++) {
         if(EFF2[i][v] > 0) {
-          E[i][v][t] = PROD[v][t] * (10**3 / EFF2[i][v]) * EVOL[t][i][esc - 1] / (FLEET[v] * Math.pow((1 + RG[esc - 1][v]), (t + 1)));
+          // E[i][v][t] = PROD[v][t] * (10**3 / EFF2[i][v]) * EVOL[t][i][esc - 1] / (FLEET[v] * Math.pow((1 + RG[esc - 1][v]), (t + 1)));
+          E[i][v][t] = (10**6) * KMT[0][v] / (EFF2[i][v] * EVOL[t][i][esc - 1] * FLEET[v]);
         }
       }
     }
@@ -654,7 +659,7 @@ function transformData( dataObj = defaultValues ){
     for(let v = 0; v < V; v++){
       for(let i = 0; i < I; i++){
         TEMPB1[t] = TEMPB1[t] + (WTTX[i][v][t] + TTWX[i][v][t]);
-        TEMPB0[t] = TEMPB0[t] + N[i][v][t] * (WTT[0] * EMI[t][0][esc - 1] + TTW[0]) * E[0][v][0];
+        TEMPB0[t] = TEMPB0[t] + N[i][v][t] * (WTT[0] * EMI[t][0][esc - 1] + TTW[0]) * E[0][v][0] / 10 ** 6;
       }
     }
   }

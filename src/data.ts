@@ -64,6 +64,7 @@ const defaultValues = {
   LO: [0.10, 0.90, 0.00],
   rate: 0.2682,
   per: 5,
+  agep: 20,
 }
 
 export { defaultValues }
