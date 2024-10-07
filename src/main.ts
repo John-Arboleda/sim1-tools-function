@@ -4,17 +4,17 @@ import { navbarResultsScroll } from "./components/navbar-results";
 import { createNavEvents} from "./components/main-navbar";
 import { runEmissionCharts } from "./charts/draw-charts";
 
-import { updateObj } from "./update"; 
+import { updateObj, drawChartsOnInput, objValues } from "./update"; 
 
 
-var objValues = {...defaultValues}
+// var objValues = {...defaultValues}
 
-console.log(updateObj(objValues));
+// console.log(updateObj(objValues));
 
-
+drawChartsOnInput();
 
 const resultObj = transformData(defaultValues);
-console.log(resultObj);
+// console.log(resultObj);
 
 // console.log(createFleetByTech(resultObj.N));
 

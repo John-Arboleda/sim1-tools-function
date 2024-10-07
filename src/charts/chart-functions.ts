@@ -189,9 +189,7 @@ function createDataQfuel(
     const dataPeriod:  number[] = [year, ...row];
     dataArr.push(dataPeriod);
   }
-
-  console.log(dataArr);
-
+  
   return dataArr;
 }
 

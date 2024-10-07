@@ -6,7 +6,7 @@ import { createDataAreaEmis, createFleetByTech, dataPropNegative, maxValueVAxis,
 
 import { sellFleetOptions, buyFleetOptions, fleetOptions, emissionsOptions, co2Options, dieselOptions } from "./chart-options";
 
-interface DataObj {
+interface ResultObj {
   SAVED1: number[],
   SAVED2: number[],
   CO2SAVED: number[],
@@ -24,89 +24,95 @@ interface DataObj {
 
 const techTypeHeader: string[] = ['Periodo', 'Diesel Actual', 'Diesel Nuevo', 'Gas', 'Eléctrico', 'Hidrógeno'];
 
-function runEmissionCharts(dataObj: DataObj) {
+function runEmissionCharts(resultObj: ResultObj) {
   google.charts.load('current', { packages: ['corechart', 'bar', 'table', 'controls'] });
   return new Promise<void>((resolve) => {
     google.charts.setOnLoadCallback(() => {
-      drawEmissionsCharts(dataObj);
+      drawEmissionsCharts(resultObj);
       resolve();
     });
   });
 }
 
-function drawEmissionsCharts(dataObj: DataObj): void {
+function drawEmissionsCharts(resultObj: ResultObj): void {
   
   const co2Header = ['Periodo', 'Operacional', 'Renovación', 'Total'];
-  simpleLineChart(dataObj, dataSavedCO2, 'saved-co2', co2Options, co2Header)
+  simpleLineChart(resultObj, dataSavedCO2, 'saved-co2', co2Options, co2Header)
 
   const emisHeader: string[] = ['Periodo', 'Well-to-Tank', 'Tank-to-Wheel']
-  multipleAreaChart(dataObj, createDataAreaEmis, 'area_chart_div', 'emissions', emissionsOptions, emisHeader);
+  multipleAreaChart(resultObj, createDataAreaEmis, 'area_chart_div', 'emissions', emissionsOptions, emisHeader);
 
 
 }
 
-function runFleetCharts(dataObj: DataObj) {
+function runFleetCharts(resultObj: ResultObj) {
   google.charts.load('current', { packages: ['corechart', 'bar', 'table', 'controls'] });
   return new Promise<void>((resolve) => {
     google.charts.setOnLoadCallback(() => {
-      drawFleetCharts(dataObj);
+      drawFleetCharts(resultObj);
       resolve();
     });
   });
 }
 
-function drawFleetCharts(dataObj: DataObj): void {
+function drawFleetCharts(resultObj: ResultObj): void {
 
-  const vAxisMaxValue = maxValueVAxis(dataObj);
+  const vAxisMaxValue = maxValueVAxis(resultObj);
   sellFleetOptions.vAxis.minValue = -vAxisMaxValue;
   buyFleetOptions.vAxis.maxValue = vAxisMaxValue;
 
-  const negPropD = dataPropNegative(dataObj.D);
-  multipleColumnChart(dataObj.G, createFleetByTech, 'buy_column_chart', buyFleetOptions, techTypeHeader);
+  const negPropD = dataPropNegative(resultObj.D);
+  multipleColumnChart(resultObj.G, createFleetByTech, 'buy_column_chart', buyFleetOptions, techTypeHeader);
 
   multipleColumnChart(negPropD, createFleetByTech, 'sell_column_chart', sellFleetOptions, techTypeHeader);
 
-  multipleColumnChart(dataObj.N, createFleetByTech, 'fleet_column_chart', fleetOptions, techTypeHeader);
+  multipleColumnChart(resultObj.N, createFleetByTech, 'fleet_column_chart', fleetOptions, techTypeHeader);
 
-  multipleColumnChart(dataObj.OLD, createFleetByTech, 'old_column_chart', fleetOptions, techTypeHeader);
+  multipleColumnChart(resultObj.OLD, createFleetByTech, 'old_column_chart', fleetOptions, techTypeHeader);
 }
 
-function runCostsCharts(dataObj: DataObj) {
+function runCostsCharts(resultObj: ResultObj) {
   google.charts.load('current', { packages: ['corechart', 'bar', 'table', 'controls'] });
   return new Promise<void>((resolve) => {
     google.charts.setOnLoadCallback(() => {
-      drawCostsCharts(dataObj);
+      drawCostsCharts(resultObj);
       resolve();
     });
   });
 }
 
-function drawCostsCharts(dataObj: DataObj): void {
+function drawCostsCharts(resultObj: ResultObj): void {
 
   const costHeader: string[] = ['Periodo', 'Ingresos por Carbon Tax', 'Subsidio o penalización de combustible', 'Subsidio o penalización de los activos']
-  multipleAreaChart(dataObj, createDataAreaCost, 'cost_area_chart', 'costs', emissionsOptions, costHeader);
+  multipleAreaChart(resultObj, createDataAreaCost, 'cost_area_chart', 'costs', emissionsOptions, costHeader);
 
 }
 
-function runEnergyCharts(dataObj: DataObj) {
+function runEnergyCharts(resultObj: ResultObj) {
   google.charts.load('current', { packages: ['corechart', 'bar', 'table', 'controls'] });
   return new Promise<void>((resolve) => {
     google.charts.setOnLoadCallback(() => {
-      drawEnergyCharts(dataObj);
+      drawEnergyCharts(resultObj);
       resolve();
     });
   });
 }
 
-function drawEnergyCharts(dataObj: DataObj): void {
+function drawEnergyCharts(resultObj: ResultObj): void {
 
   const vehHeader: string[] = ['Periodo', 'C2', 'C3S3'];
-  multipleAreaChart(dataObj.QFUEL[0], createDataQfuel, 'current_diesel_area_chart', 'energy', dieselOptions, vehHeader);
-  multipleAreaChart(dataObj.QFUEL[1], createDataQfuel, 'new_diesel_area_chart', 'energy', dieselOptions, vehHeader);
-  multipleAreaChart(dataObj.QFUEL[2], createDataQfuel, 'gas_area_chart', 'energy', dieselOptions, vehHeader);
-  multipleAreaChart(dataObj.QFUEL[3], createDataQfuel, 'electric_area_chart', 'energy', dieselOptions, vehHeader);
-  multipleAreaChart(dataObj.QFUEL[4], createDataQfuel, 'hydrogen_area_chart', 'energy', dieselOptions, vehHeader);
+  multipleAreaChart(resultObj.QFUEL[0], createDataQfuel, 'current_diesel_area_chart', 'energy', dieselOptions, vehHeader);
+  multipleAreaChart(resultObj.QFUEL[1], createDataQfuel, 'new_diesel_area_chart', 'energy', dieselOptions, vehHeader);
+  multipleAreaChart(resultObj.QFUEL[2], createDataQfuel, 'gas_area_chart', 'energy', dieselOptions, vehHeader);
+  multipleAreaChart(resultObj.QFUEL[3], createDataQfuel, 'electric_area_chart', 'energy', dieselOptions, vehHeader);
+  multipleAreaChart(resultObj.QFUEL[4], createDataQfuel, 'hydrogen_area_chart', 'energy', dieselOptions, vehHeader);
 }
 
+const drawChartFunctions: { [key: string]: (resultObj: ResultObj) => void } = {
+  'emissions-panel': runEmissionCharts,
+  'fleet-panel': runFleetCharts,
+  'costs-panel': runCostsCharts,
+  'energy-panel': runEnergyCharts
+};
 
-export { runEmissionCharts, runFleetCharts, runCostsCharts, runEnergyCharts }
+export { runEmissionCharts, runFleetCharts, runCostsCharts, runEnergyCharts, drawChartFunctions }

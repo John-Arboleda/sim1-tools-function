@@ -1,8 +1,9 @@
-import { runEmissionCharts, runFleetCharts, runCostsCharts, runEnergyCharts } from "../charts/draw-charts";
+import { runEmissionCharts, runFleetCharts, runCostsCharts, runEnergyCharts, drawChartFunctions } from "../charts/draw-charts";
 import { transformData } from "../functions";
-import { defaultValues } from "../data";
+// import { defaultValues } from "../data";
+import { objValues } from "../update";
 
-const resultObj = transformData(defaultValues);
+const resultObj = transformData(objValues);
 
 function createNavEvents(): void {
   const navItems = document.querySelectorAll(".navbar-item");
@@ -31,21 +32,26 @@ function createNavEvents(): void {
       const panelToShow = document.getElementById(panelId) as HTMLElement;
       panelToShow.classList.remove('d-none');
 
-      if (panelId == "emissions-panel") {
-        runEmissionCharts(resultObj);
-      } 
-      
-      if (panelId == "fleet-panel") {
-        runFleetCharts(resultObj);
-      } 
-      
-      if (panelId == "costs-panel") {
-        runCostsCharts(resultObj);
+      const func = drawChartFunctions[panelId];
+      if (func) {
+        func(resultObj);
       }
 
-      if (panelId == "energy-panel") {
-        runEnergyCharts(resultObj);
-      }
+      // if (panelId == "emissions-panel") {
+      //   runEmissionCharts(resultObj);
+      // } 
+      
+      // if (panelId == "fleet-panel") {
+      //   runFleetCharts(resultObj);
+      // } 
+      
+      // if (panelId == "costs-panel") {
+      //   runCostsCharts(resultObj);
+      // }
+
+      // if (panelId == "energy-panel") {
+      //   runEnergyCharts(resultObj);
+      // }
     });
   });
 
