@@ -1,5 +1,5 @@
 import { getStaticInputValues, setStaticValues, setStaticObjValues, setStaticInputValues } from "./components/static-inputs";
-import { runEmissionCharts, runCostsCharts, runEnergyCharts, runFleetCharts, drawChartFunctions } from "./charts/draw-charts";
+import { drawChartFunctions } from "./charts/draw-charts";
 import { transformData } from "./functions";
 import { defaultValues } from "./data";
 
@@ -25,7 +25,7 @@ function drawChartsOnInput(){
       input.addEventListener('change', () => {
 
         objValues = updateObj(objValues);
-
+        
         const resultObj = transformData(objValues);
 
         drawActivePanel(resultObj);

@@ -99,7 +99,6 @@ function runEnergyCharts(resultObj: ResultObj) {
 }
 
 function drawEnergyCharts(resultObj: ResultObj): void {
-
   const vehHeader: string[] = ['Periodo', 'C2', 'C3S3'];
   multipleAreaChart(resultObj.QFUEL[0], createDataQfuel, 'current_diesel_area_chart', 'energy', dieselOptions, vehHeader);
   multipleAreaChart(resultObj.QFUEL[1], createDataQfuel, 'new_diesel_area_chart', 'energy', dieselOptions, vehHeader);

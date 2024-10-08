@@ -186,11 +186,11 @@
               <table class="table table-bordered table-hover align-middle mb-0 bg-light">
                 <tbody class="lh-1 bg-transparent">
               
-                  <tr class="d-none">
+                  <tr id="LO-alert" class="d-none">
                     <td colspan="2">
                       <div class="alert alert-danger mb-0 text-center" role="alert">
-                        La suma de los Porcentajes de los flujos del préstamos es <spam class="current-effect-spam">100</spam>%<br>
-                        Debe ser igual a 100%
+                        La suma de los porcentajes de los flujos del préstamos es <spam id="LO-spam">1.00</spam><br>
+                        Debe ser igual a 1.00
                       </div>
                     </td>
                   </tr>
@@ -203,7 +203,7 @@
                         </label>
                         <small id="per_input-LO-0" class="form-text text-muted">0.1</small>
                       </div>
-                      <input type="range" class="form-range static-input" min="0" max="1" step="0.01" value="0.1"
+                      <input type="range" class="form-range static-input LO" min="0" max="1" step="0.01" value="0.1"
                         id="input-LO-0">
               
                     </td>
@@ -217,7 +217,7 @@
                         </label>
                         <small id="per_input-LO-1" class="form-text text-muted">0.9</small>
                       </div>
-                      <input type="range" class="form-range static-input" min="0" max="1" step="0.01" value="0.9"
+                      <input type="range" class="form-range static-input LO" min="0" max="1" step="0.01" value="0.9"
                         id="input-LO-1">
               
                     </td>
@@ -231,7 +231,7 @@
                         </label>
                         <small id="per_input-LO-2" class="form-text text-muted">0.0</small>
                       </div>
-                      <input type="range" class="form-range static-input" min="0" max="1" step="0.01" value="0.0"
+                      <input type="range" class="form-range static-input LO" min="0" max="1" step="0.01" value="0.0"
                         id="input-LO-2">
               
                     </td>
@@ -328,15 +328,15 @@
           </tr>
 
           <tr class="lh-1 bg-transparent collapse" id="lambda-collapse">
-            <td colspan="2">
+            <td colspan="2" id="lambda-row">
               <table class="table table-bordered table-hover align-middle mb-0 bg-light">
                 <tbody class="lh-1 bg-transparent">
               
-                  <tr class="lambda-row d-none">
+                  <tr id="lambda-alert" class="d-none">
                     <td colspan="2">
                       <div class="alert alert-danger mb-0 text-center" role="alert">
-                        La suma de los ratios de implementacion de las politicas de consolidacion es <spam class="current-effect-spam">100</spam>%<br>
-                        Debe ser igual a 100%
+                        La suma de los ratios de implementacion de las politicas de consolidacion es <spam id="lambda-spam">1.00</spam><br>
+                        debe ser igual a 1.00
                       </div>
                     </td>
                   </tr>
@@ -349,7 +349,7 @@
                         </label>
                         <small id="per_input-lambda-0" class="form-text text-muted">0.0</small>
                       </div>
-                      <input type="range" class="form-range static-input" min="0" max="1" step="0.01" value="0.0"
+                      <input type="range" class="form-range static-input lambda" min="0" max="1" step="0.01" value="0.0"
                         id="input-lambda-0">
                       <div class="lambda-0_legend d-flex justify-content-between">
                         <small class="text-muted">Min</small>
@@ -366,7 +366,7 @@
                         </label>
                         <small id="per_input-lambda-1" class="form-text text-muted">1.0</small>
                       </div>
-                      <input type="range" class="form-range static-input" min="0" max="1" step="0.01" value="1.0"
+                      <input type="range" class="form-range static-input lambda" min="0" max="1" step="0.01" value="1.0"
                         id="input-lambda-1">
                       <div class="lambda-1_legend d-flex justify-content-between">
                         <small class="text-muted">Actual</small>
@@ -383,7 +383,7 @@
                         </label>
                         <small id="per_input-lambda-2" class="form-text text-muted">0.0</small>
                       </div>
-                      <input type="range" class="form-range static-input" min="0" max="1" step="0.01" value="0"
+                      <input type="range" class="form-range static-input lambda" min="0" max="1" step="0.01" value="0"
                         id="input-lambda-2">
                       <div class="lambda-2_legend d-flex justify-content-between">
                         <small class="text-muted">Actual</small>
@@ -400,7 +400,7 @@
                         </label>
                         <small id="per_input-lambda-3" class="form-text text-muted">0.0</small>
                       </div>
-                      <input type="range" class="form-range static-input" min="0" max="1" step="0.01" value="0"
+                      <input type="range" class="form-range static-input lambda" min="0" max="1" step="0.01" value="0"
                         id="input-lambda-3">
                       <div class="lambda-3_legend d-flex justify-content-between">
                         <small class="text-muted">Actual</small>
@@ -481,22 +481,22 @@
                   <tr>
                     <td scope="row">
                       <label for="input-st">
-                        <small class="form-text text-muted">Periodo inicio de implementación de los ratios</small>
+                        <small class="form-text text-muted">Periodo inicio de<br>implementación de los ratios</small>
                       </label>
                     </td>
                     <td class="home">
-                      <input type="number" class="form-control static-input" id="input-st" name="input-st" step="1" required>
+                      <input type="number" class="form-control static-input year" id="input-st" name="input-st" value="2024" min="2024" max="2049" step="1" required>
                     </td>
                   </tr>
         
                   <tr>
                     <td scope="row">
                       <label for="input-Top">
-                        <small class="form-text text-muted">Periodo máximo de implementación de los ratios</small>
+                        <small class="form-text text-muted">Periodo máximo de<br>implementación de los ratios</small>
                       </label>
                     </td>
                     <td class="home">
-                      <input type="number" class="form-control static-input" id="input-Top" name="input-Top" step="1" required>
+                      <input type="number" class="form-control static-input year" id="input-Top" name="input-Top" value="2030" min="2025" max="2050" step="1" required>
                     </td>
                   </tr>
 

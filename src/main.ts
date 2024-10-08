@@ -3,15 +3,19 @@ import { defaultValues } from "./data";
 import { navbarResultsScroll } from "./components/navbar-results";
 import { createNavEvents} from "./components/main-navbar";
 import { runEmissionCharts } from "./charts/draw-charts";
+import { displayRangeValue } from "./components/range-value";
+import { validatePayPer } from "./components/validations";
 
-import { updateObj, drawChartsOnInput, objValues } from "./update"; 
+import { drawChartsOnInput } from "./update"; 
 
 
 // var objValues = {...defaultValues}
 
 // console.log(updateObj(objValues));
 
+displayRangeValue();
 drawChartsOnInput();
+validatePayPer();
 
 const resultObj = transformData(defaultValues);
 // console.log(resultObj);
