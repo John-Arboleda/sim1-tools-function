@@ -63,17 +63,18 @@ function createDataTable(
 function multipleColumnChart(
   dataObj: number[][][],
   dataFunction: any,
-  id_element: string,
+  elementId: string,
+  navPrefix: string,
   chartOptions: any, // Fix options interface
   header: string[]
 ): void {
   let data = createDataTable(dataObj, dataFunction, header);
 
-  const container = document.getElementById(id_element) as HTMLElement;
+  const container = document.getElementById(elementId) as HTMLElement;
 
   const chart = new google.visualization.ColumnChart(container);
 
-  const percent_button = document.getElementById('fleet_percent_button') as HTMLButtonElement;
+  const percent_button = document.getElementById(navPrefix + '_percent_button') as HTMLButtonElement;
 
   const options = { ...chartOptions };
 
@@ -94,8 +95,8 @@ function multipleColumnChart(
     chart.draw(data, options);
   });
 
-  const select_technology = document.getElementById('fleet_select_tech') as HTMLSelectElement;
-  const select_size = document.getElementById('fleet_select_size') as HTMLSelectElement;
+  const select_technology = document.getElementById(navPrefix + '_select_tech') as HTMLSelectElement;
+  const select_size = document.getElementById(navPrefix + '_select_size') as HTMLSelectElement;
 
   function updateDataChart(){
     const techKeys: number[] = select_technology.value.split("").map((a: String) => Number(a));
@@ -110,4 +111,76 @@ function multipleColumnChart(
   chart.draw(data, options);
 }
 
-export { multipleColumnChart }
+function createDataTable2(
+  dataObj: any,
+  dataFunction: any,
+  header: string[],
+  techKeys: number[] = [0, 1, 2, 3, 4],
+  sizeKeys: number[] = [0, 1]
+): google.visualization.DataTable {
+
+  const dataRows = dataFunction(dataObj, techKeys, sizeKeys);
+
+  const dataTable = new google.visualization.DataTable();
+
+  header.forEach(columnName => {
+    dataTable.addColumn('number', columnName);
+  })
+
+  dataTable.addRows(dataRows);
+
+  return dataTable
+}
+
+function sumColumnChart(
+  dataObj: any,
+  dataFunction: any,
+  elementId: string,
+  navPrefix: string,
+  chartOptions: any, // Fix options interface
+  header: string[]
+): void {
+  let data = createDataTable2(dataObj, dataFunction, header);
+
+  const container = document.getElementById(elementId) as HTMLElement;
+
+  const chart = new google.visualization.ColumnChart(container);
+
+  const percent_button = document.getElementById(navPrefix + '_percent_button') as HTMLButtonElement;
+
+  const options = { ...chartOptions }
+
+  const { minValue, maxValue } = chartOptions.vAxis;
+
+  percent_button.addEventListener('click', () => {
+    if (options.isStacked == 'percent') {
+      percent_button.innerHTML = 'Porcentajes';
+      options.isStacked = true;
+      options.vAxis.minValue = minValue;
+      options.vAxis.maxValue = maxValue;
+    } else {
+      percent_button.innerHTML = 'Valores';
+      options.isStacked = 'percent';
+      options.vAxis.minValue = 0;
+      options.vAxis.maxValue = 0;
+    }
+    chart.draw(data, options);
+  });
+
+  const select_technology = document.getElementById(navPrefix + '_select_tech') as HTMLSelectElement;
+  const select_size = document.getElementById(navPrefix + '_select_size') as HTMLSelectElement;
+
+  function updateDataChart(){
+    const techKeys: number[] = select_technology.value.split("").map((a: String) => Number(a));
+    const sizeKeys: number[] = select_size.value.split("").map((a: String) => Number(a));
+    data = createDataTable2(dataObj, dataFunction, header, techKeys, sizeKeys);
+    chart.draw(data, options);
+  }
+
+  select_technology.addEventListener('change', updateDataChart);
+  select_size.addEventListener('change', updateDataChart);
+
+  chart.draw(data, options);
+}
+
+export { multipleColumnChart, sumColumnChart }

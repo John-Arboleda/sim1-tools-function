@@ -86,6 +86,29 @@ function createDataAreaEmis(
   return dataArr;
 }
 
+function createDataTotalCost(
+  dataObj: {  TCX: number[][][], VFCX: number[][][], VACX: number[][][] },
+  techKeys: number[] = [0, 1, 2, 3, 4],
+  sizeKeys: number[] = [0, 1]
+): number[][] {
+  
+  const { TCX, VFCX, VACX } = dataObj
+
+  const sumTCX: number[] = sumDataObj(TCX, techKeys, sizeKeys);
+  const sumVFCX: number[] = sumDataObj(VFCX, techKeys, sizeKeys);
+  const sumVACX: number[] = sumDataObj(VACX, techKeys, sizeKeys);
+  
+  const dataArr:  number[][] = [];
+
+  for(let t = 0; t < T; t++){
+    const year: number = currentYear + t + 1;
+    const dataPeriod:  number[] = [year, sumTCX[t] + sumVFCX[t] + sumVACX[t]];
+    dataArr.push(dataPeriod);
+  }
+
+  return dataArr;
+}
+
 function createDataAreaCost(
   dataObj: {  TCX: number[][][], VFCX: number[][][], VACX: number[][][] },
   techKeys: number[] = [0, 1, 2, 3, 4],
@@ -108,6 +131,42 @@ function createDataAreaCost(
 
   return dataArr;
 }
+
+function costNegObj(
+  dataObj: {  TCX: number[][][], VFCX: number[][][], VACX: number[][][] },
+  keepNeg: Boolean
+){
+  const negObj = {
+    TCX: filterNeg(dataObj.TCX, keepNeg),
+    VFCX: filterNeg(dataObj.VFCX, keepNeg),
+    VACX: filterNeg(dataObj.VACX, keepNeg)
+  }
+
+  return negObj;
+}
+
+
+function filterNeg(
+  dataProp:  number[][][],
+  keepNeg: Boolean
+){
+  return dataProp.map(tech => filterNegTech(tech, keepNeg));
+}
+
+function filterNegTech(
+  techArr: number[][],
+  keepNeg: Boolean
+){
+  return techArr.map(veh => filterNegVeh(veh, keepNeg));
+}
+
+function filterNegVeh(
+  vehArr: number[],
+  keepNeg: Boolean
+){
+  return vehArr.map(perValue => (perValue > 0) != keepNeg ? perValue : 0);
+}
+
 
 function createFleetByTech(
   dataProp: number[][][],
@@ -152,13 +211,10 @@ function dataPropNegative(
   return negProp;
 }
 
-function maxValueVAxis(dataObj: {  G: number[][][], D: number[][][] }): number {
+function maxValueVAxis(table1 : (string|number)[][], table2: (string|number)[][]): number {
 
-  const buyBody = createFleetByTech(dataObj.G);
-  const sellBody = createFleetByTech(dataObj.D);
-  
-  const buyTable = buyBody.map(removeFirst);
-  const sellTable = sellBody.map(removeFirst);
+  const buyTable = table1.map(removeFirst);
+  const sellTable = table2.map(removeFirst);
 
   const buySellTable = [...buyTable, ...sellTable];
 
@@ -193,4 +249,6 @@ function createDataQfuel(
   return dataArr;
 }
 
-export { dataSavedCO2, createDataAreaEmis, createFleetByTech, dataPropNegative, maxValueVAxis, createDataAreaCost, createDataQfuel }
+export { dataSavedCO2, createDataAreaEmis, createFleetByTech, 
+  dataPropNegative, maxValueVAxis, createDataAreaCost, createDataQfuel, 
+  createDataTotalCost, costNegObj }

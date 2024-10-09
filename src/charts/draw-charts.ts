@@ -1,10 +1,13 @@
 import { multipleAreaChart } from "./area-chart";
-import { multipleColumnChart } from "./column-chart";
+import { multipleColumnChart, sumColumnChart } from "./column-chart";
 import { simpleLineChart } from "./line-chart";
 
-import { createDataAreaEmis, createFleetByTech, dataPropNegative, maxValueVAxis, createDataAreaCost, dataSavedCO2, createDataQfuel } from "./chart-functions";
+import { createDataAreaEmis, createFleetByTech, dataPropNegative, maxValueVAxis, 
+  createDataAreaCost, createDataTotalCost, dataSavedCO2, createDataQfuel, costNegObj } from "./chart-functions";
 
-import { sellFleetOptions, buyFleetOptions, fleetOptions, emissionsOptions, co2Options, dieselOptions } from "./chart-options";
+import { sellFleetOptions, buyFleetOptions, fleetOptions, emissionsOptions, 
+  co2Options, dieselOptions, gasOptions, electricOptions, hydrogenOptions, 
+  incomeOptions, spendingOptions, totalCostOptions } from "./chart-options";
 
 interface ResultObj {
   SAVED1: number[],
@@ -42,7 +45,6 @@ function drawEmissionsCharts(resultObj: ResultObj): void {
   const emisHeader: string[] = ['Periodo', 'Well-to-Tank', 'Tank-to-Wheel']
   multipleAreaChart(resultObj, createDataAreaEmis, 'area_chart_div', 'emissions', emissionsOptions, emisHeader);
 
-
 }
 
 function runFleetCharts(resultObj: ResultObj) {
@@ -57,18 +59,21 @@ function runFleetCharts(resultObj: ResultObj) {
 
 function drawFleetCharts(resultObj: ResultObj): void {
 
-  const vAxisMaxValue = maxValueVAxis(resultObj);
+  const buyBody = createFleetByTech(resultObj.G);
+  const sellBody = createFleetByTech(resultObj.D);
+
+  const vAxisMaxValue = maxValueVAxis(buyBody, sellBody);
   sellFleetOptions.vAxis.minValue = -vAxisMaxValue;
   buyFleetOptions.vAxis.maxValue = vAxisMaxValue;
 
   const negPropD = dataPropNegative(resultObj.D);
-  multipleColumnChart(resultObj.G, createFleetByTech, 'buy_column_chart', buyFleetOptions, techTypeHeader);
+  multipleColumnChart(resultObj.G, createFleetByTech, 'buy_column_chart', 'fleet', buyFleetOptions, techTypeHeader);
 
-  multipleColumnChart(negPropD, createFleetByTech, 'sell_column_chart', sellFleetOptions, techTypeHeader);
+  multipleColumnChart(negPropD, createFleetByTech, 'sell_column_chart', 'fleet', sellFleetOptions, techTypeHeader);
 
-  multipleColumnChart(resultObj.N, createFleetByTech, 'fleet_column_chart', fleetOptions, techTypeHeader);
+  multipleColumnChart(resultObj.N, createFleetByTech, 'fleet_column_chart', 'fleet', fleetOptions, techTypeHeader);
 
-  multipleColumnChart(resultObj.OLD, createFleetByTech, 'old_column_chart', fleetOptions, techTypeHeader);
+  multipleColumnChart(resultObj.OLD, createFleetByTech, 'old_column_chart', 'fleet', fleetOptions, techTypeHeader);
 }
 
 function runCostsCharts(resultObj: ResultObj) {
@@ -83,9 +88,22 @@ function runCostsCharts(resultObj: ResultObj) {
 
 function drawCostsCharts(resultObj: ResultObj): void {
 
-  const costHeader: string[] = ['Periodo', 'Ingresos por Carbon Tax', 'Subsidio o penalización de combustible', 'Subsidio o penalización de los activos']
-  multipleAreaChart(resultObj, createDataAreaCost, 'cost_area_chart', 'costs', emissionsOptions, costHeader);
+  multipleAreaChart(resultObj, createDataTotalCost, 'cost_area_chart', 'costs', totalCostOptions, ['Periodo', 'Ingresos netos']);
 
+  const costHeader: string[] = ['Periodo', 'Carbon Tax', 'Combustible', 'Activos']
+
+  const postResultObj = costNegObj(resultObj, false);
+  const negResultObj = costNegObj(resultObj, true);
+
+  const incomeBody = createDataAreaCost(postResultObj);
+  const spendingBody = createDataAreaCost(negResultObj);
+
+  const vAxisMaxValue = maxValueVAxis(incomeBody, spendingBody);
+  spendingOptions.vAxis.minValue = -vAxisMaxValue;
+  incomeOptions.vAxis.maxValue = vAxisMaxValue;
+
+  sumColumnChart(postResultObj, createDataAreaCost, 'income_area_chart', 'costs', incomeOptions, costHeader);
+  sumColumnChart(negResultObj, createDataAreaCost, 'spending_area_chart', 'costs', spendingOptions, costHeader);
 }
 
 function runEnergyCharts(resultObj: ResultObj) {
@@ -102,9 +120,9 @@ function drawEnergyCharts(resultObj: ResultObj): void {
   const vehHeader: string[] = ['Periodo', 'C2', 'C3S3'];
   multipleAreaChart(resultObj.QFUEL[0], createDataQfuel, 'current_diesel_area_chart', 'energy', dieselOptions, vehHeader);
   multipleAreaChart(resultObj.QFUEL[1], createDataQfuel, 'new_diesel_area_chart', 'energy', dieselOptions, vehHeader);
-  multipleAreaChart(resultObj.QFUEL[2], createDataQfuel, 'gas_area_chart', 'energy', dieselOptions, vehHeader);
-  multipleAreaChart(resultObj.QFUEL[3], createDataQfuel, 'electric_area_chart', 'energy', dieselOptions, vehHeader);
-  multipleAreaChart(resultObj.QFUEL[4], createDataQfuel, 'hydrogen_area_chart', 'energy', dieselOptions, vehHeader);
+  multipleAreaChart(resultObj.QFUEL[2], createDataQfuel, 'gas_area_chart', 'energy', gasOptions, vehHeader);
+  multipleAreaChart(resultObj.QFUEL[3], createDataQfuel, 'electric_area_chart', 'energy', electricOptions, vehHeader);
+  multipleAreaChart(resultObj.QFUEL[4], createDataQfuel, 'hydrogen_area_chart', 'energy', hydrogenOptions, vehHeader);
 }
 
 const drawChartFunctions: { [key: string]: (resultObj: ResultObj) => void } = {
