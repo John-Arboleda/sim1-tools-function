@@ -17,7 +17,7 @@ displayRangeValue();
 drawChartsOnInput();
 validatePayPer();
 
-const resultObj = transformData(defaultValues);
+
 // console.log(resultObj);
 
 // console.log(createFleetByTech(resultObj.N));
@@ -26,7 +26,9 @@ const resultObj = transformData(defaultValues);
 //   console.log("Page fully loaded.");
 // })();
 
-(() => {
+(async () => {
+  const resultObj = await transformData(defaultValues);
+
   runEmissionCharts(resultObj);
 })();
 createNavEvents();

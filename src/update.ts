@@ -22,11 +22,11 @@ function drawChartsOnInput(){
 
     if (input instanceof HTMLInputElement) {
 
-      input.addEventListener('change', () => {
+      input.addEventListener('change', async () => {
 
         objValues = updateObj(objValues);
         
-        const resultObj = transformData(objValues);
+        const resultObj = await transformData(objValues);
 
         drawActivePanel(resultObj);
       })

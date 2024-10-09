@@ -10,10 +10,6 @@ async function parseTSV(url: string): Promise<number[][]> {
   return parsedRows.map((row: string[]) => row.map((cell: string) => parseFloat(cell)))
 }
 
-const dataEMIS: number[][] = await parseTSV('../assets/files/dataEMIS.txt');
-const dataEVOL: number[][] = await parseTSV('../assets/files/dataEVOL.txt');
-const dataPASS: number[][] = await parseTSV('../assets/files/dataPASS.txt');
-
 function arrayToMatrix(data: number[], dim: number[]): number[][] {
   const result: number[][] = [];
   const [ a ] = dim;
@@ -24,7 +20,11 @@ function arrayToMatrix(data: number[], dim: number[]): number[][] {
   return d3.transpose(result);
 }
 
-function transformData( dataObj = defaultValues ){
+async function transformData( dataObj = defaultValues ){
+
+  const dataEMIS: number[][] = await parseTSV('../assets/files/dataEMIS.txt');
+  const dataEVOL: number[][] = await parseTSV('../assets/files/dataEVOL.txt');
+  const dataPASS: number[][] = await parseTSV('../assets/files/dataPASS.txt');
   // # Sets
   // T<-26 # Periodos de tiempo
   // I<-5 # Tecnologias incluida la actual

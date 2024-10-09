@@ -1,11 +1,14 @@
-import { runEmissionCharts, runFleetCharts, runCostsCharts, runEnergyCharts, drawChartFunctions } from "../charts/draw-charts";
+import { drawChartFunctions } from "../charts/draw-charts";
 import { transformData } from "../functions";
 // import { defaultValues } from "../data";
 import { objValues } from "../update";
 
-const resultObj = transformData(objValues);
 
-function createNavEvents(): void {
+
+async function createNavEvents(): Promise<void> {
+
+  const resultObj = await transformData(objValues);
+
   const navItems = document.querySelectorAll(".navbar-item");
 
   
