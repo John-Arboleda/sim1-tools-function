@@ -16,24 +16,7 @@ function updateObj(dataObj: any){
   return dataObj;
 }
 
-function drawChartsOnInput(){
-  
-  for(let input of staticInputCollection){
-
-    if (input instanceof HTMLInputElement) {
-
-      input.addEventListener('change', async () => {
-
-        objValues = updateObj(objValues);
-        
-        const resultObj = await transformData(objValues);
-
-        drawActivePanel(resultObj);
-      })
-    }
-  }
-}
-
+// Function to draw the active panel
 function drawActivePanel(resultObj: any){
 
   const panelNodes = document.querySelectorAll('.panel');
@@ -51,6 +34,53 @@ function drawActivePanel(resultObj: any){
     }
   }
 }
+
+// Function to attach change event listeners to inputs
+function drawChartsOnInput(): void {
+  const staticInputCollection = document.getElementsByClassName('static-input');
+
+  for (let i = 0; i < staticInputCollection.length; i++) {
+    const input = staticInputCollection[i];
+
+    if (input instanceof HTMLInputElement) {
+      input.addEventListener('change', async () => {
+        try {
+          objValues = updateObj(objValues);
+          const resultObj = await transformData(objValues);
+          drawActivePanel(resultObj);
+        } catch (error) {
+          console.error('Failed to process input change:', error);
+        }
+      });
+    }
+  }
+}
+
+////
+
+// function drawChartsOnInput(){
+  
+//   for(let input of staticInputCollection){
+
+//     if (input instanceof HTMLInputElement) {
+
+//       input.addEventListener('change', async () => {
+
+//         objValues = updateObj(objValues);
+
+//         console.log(objValues);
+        
+//         const resultObj = await transformData(objValues);
+
+//         console.log(resultObj);
+
+//         drawActivePanel(resultObj);
+//       })
+//     }
+//   }
+// }
+
+
 
 function updateComponents(dataObj: any){
 

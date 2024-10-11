@@ -38,6 +38,8 @@ function runEmissionCharts(resultObj: ResultObj) {
 }
 
 function drawEmissionsCharts(resultObj: ResultObj): void {
+
+  // console.log(resultObj);
   
   const co2Header = ['Periodo', 'Operacional', 'Renovación', 'Total'];
   simpleLineChart(resultObj, dataSavedCO2, 'saved-co2', co2Options, co2Header)

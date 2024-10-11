@@ -21,10 +21,10 @@ function arrayToMatrix(data: number[], dim: number[]): number[][] {
 }
 
 async function transformData( dataObj = defaultValues ){
-
-  const dataEMIS: number[][] = await parseTSV('../assets/files/dataEMIS.txt');
-  const dataEVOL: number[][] = await parseTSV('../assets/files/dataEVOL.txt');
-  const dataPASS: number[][] = await parseTSV('../assets/files/dataPASS.txt');
+  
+  const dataEMIS: number[][] = await parseTSV('../files/dataEMIS.txt');
+  const dataEVOL: number[][] = await parseTSV('../files/dataEVOL.txt');
+  const dataPASS: number[][] = await parseTSV('../files/dataPASS.txt');
   // # Sets
   // T<-26 # Periodos de tiempo
   // I<-5 # Tecnologias incluida la actual
@@ -313,7 +313,8 @@ async function transformData( dataObj = defaultValues ){
       for(let t = 0; t < T; t++) {
         if(EFF2[i][v] > 0) {
           // E[i][v][t] = PROD[v][t] * (10**3 / EFF2[i][v]) * EVOL[t][i][esc - 1] / (FLEET[v] * Math.pow((1 + RG[esc - 1][v]), (t + 1)));
-          E[i][v][t] = (10**6) * KMT[0][v] / (EFF2[i][v] * EVOL[t][i][esc - 1] * FLEET[v]);
+          // E[i,v,t]=(10^6)KMT[1,v](F[1,v,t]/Fs[1,v,t])/(EFF2[i,v]*EVOL[t,i,esc]*FLEET[v])
+          E[i][v][t] = (10**6) * KMT[0][v]* (F[0][v][t] / Fs[0][v][t]) / (EFF2[i][v] * EVOL[t][i][esc - 1] * FLEET[v]);
         }
       }
     }
