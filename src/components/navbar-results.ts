@@ -29,4 +29,18 @@ function navbarResultsScroll(): void {
   };
 }
 
-export { navbarResultsScroll };
+function resultNavbarState(navPrefix: string){
+  const percentButton = document.getElementById(navPrefix + '_percent_button') as HTMLButtonElement;
+  const selectTechnology = document.getElementById(navPrefix + '_select_tech') as HTMLSelectElement;
+  const selectSize = document.getElementById(navPrefix + '_select_size') as HTMLSelectElement;
+
+  const navObj = {
+    percentText: percentButton.innerHTML,
+    techKeys: selectTechnology.value.split("").map((a: String) => Number(a)),
+    sizeKeys: selectSize.value.split("").map((a: String) => Number(a)),
+  }
+
+  return navObj
+}
+
+export { navbarResultsScroll, resultNavbarState };
