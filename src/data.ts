@@ -30,9 +30,6 @@
 // VFC <- c(0,0.35,0.35,-0.35,-0.35) # Porcentaje de subsidio / Penalizacion combustible
 
 
-
-
-
 const defaultValues = {
   ti: [
     [0, 0],

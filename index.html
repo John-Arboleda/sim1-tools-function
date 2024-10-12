@@ -153,7 +153,7 @@
             </td>
           </tr>
 
-          <tr>
+          <tr class="d-none">
             <td scope="row">
               <label for="input-rate">
                 <small class="form-text text-muted">Tasa del préstamo</small>
@@ -164,7 +164,7 @@
             </td>
           </tr>
 
-          <tr>
+          <tr class="d-none">
             <td scope="row">
               <label for="input-per">
                 <small class="form-text text-muted">Años del préstamo</small>
@@ -175,13 +175,13 @@
             </td>
           </tr>
 
-          <tr class="nested-table-header bg-transparent">
+          <tr class="nested-table-header bg-transparent d-none">
             <td colspan="2" class="text-center">
               <small class="form-text text-muted"><b>Flujos del préstamo</b></small>
             </td>
           </tr>
 
-          <tr class="lh-1 bg-transparent">
+          <tr class="lh-1 bg-transparent d-none">
             <td colspan="2">
               <table class="table table-bordered table-hover align-middle mb-0 bg-light">
                 <tbody class="lh-1 bg-transparent">
@@ -937,6 +937,64 @@
         </thead>
         <tbody class="lh-1 collapse bg-transparent" id="fuel-collapse">
           
+          <!-- Diesel Actual -->
+
+          <tr class="nested-table-header bg-transparent cursor-pointer d-none" data-bs-toggle="collapse" data-bs-target="#current-diesel-fuel-collapse" aria-expanded="true">
+            <td colspan="2" class="text-center">
+              <small class="form-text text-muted"><b>Diesel Actual</b></small>
+            </td>
+          </tr>
+
+          <tr class="lh-1 bg-transparent collapse" id="current-diesel-fuel-collapse">
+            <td colspan="2">
+              <table class="table table-bordered table-hover align-middle mb-0 bg-light">
+                <tbody class="lh-1 bg-transparent">
+
+                  <tr>
+                    <td scope="row" colspan="2">
+                      <label>
+                        <small class="form-text text-muted">Año de inicio</br>impuesto al Diesel</small>
+                      </label>
+                    </td>
+                    <td class="home">
+                      <input type="number" class="form-control static-input year" id="input-tc1-0" name="input-tc1-0" step="1" min="2024" max="2050" value="2024" required>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td scope="row" colspan="2">
+                      <label for="input-tc2-1">
+                        <small class="form-text text-muted">Año de finalización</br>impuesto al Diesel</small>
+                      </label>
+                    </td>
+                    <td class="home">
+                      <input type="number" class="form-control static-input year" id="input-tc2-0" name="input-tc2-0" step="1" min="2025" max="2050" value="2029" required>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="3">
+                      <div class="d-flex justify-content-between">
+                        <label for="input-VFC-0" class="form-label">
+                          <small class="form-text text-muted">Porcentaje de impuesto al Diesel</small>
+                        </label>
+                        <small id="per_input-VFC-0" class="form-text text-muted">0.35</small>
+                      </div>
+                      <input type="range" class="form-range static-input" min="0" max="1" step="0.01" value="0.35"
+                        id="input-VFC-0">
+                      <div class="input-VFC-0_legend d-flex justify-content-between">
+                        <small class="text-muted">Actual</small>
+                        <small class="text-muted">Doble</small>
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              
+              </table>
+            </td>
+          </tr>
+
           <!-- Diesel -->
 
           <tr class="nested-table-header bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#diesel-fuel-collapse" aria-expanded="true">

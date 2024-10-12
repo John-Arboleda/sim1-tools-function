@@ -21,7 +21,7 @@ function arrayToMatrix(data: number[], dim: number[]): number[][] {
 }
 
 async function transformData( dataObj = defaultValues ){
-  
+   
   const dataEMIS: number[][] = await parseTSV('../files/dataEMIS.txt');
   const dataEVOL: number[][] = await parseTSV('../files/dataEVOL.txt');
   const dataPASS: number[][] = await parseTSV('../files/dataPASS.txt');
@@ -119,7 +119,7 @@ async function transformData( dataObj = defaultValues ){
   //              0.014,0.014,0.071,0.0367,0.030,
   //              0.007,0.007,0.053,0.0095,-0.03), dim=c(3,I)) # Cambio del costo de combustible anual
   const arrayGR: number[] = [0.017, 0.017, 0.106, 0.1380, 0.053, 0.014, 0.014, 0.071, 0.0367, 0.030, 0.007, 0.007, 0.053, 0.0095, -0.03];
-  const GR: number[][] = arrayToMatrix(arrayGR, [3, I]);
+  const GR: number[][] = arrayToMatrix(arrayGR, [I, 3]);
 
   // EVOL <- array(data.matrix(data1), dim=c(T,I,3)) # Factor evolucion de la eficiencia de los motores
   // EMI<- array(data.matrix(data2), dim=c(T,I,3)) # Evolucion Tank to Wheel
@@ -302,7 +302,8 @@ async function transformData( dataObj = defaultValues ){
   //     for(t in 1:T){
   //       if(EFF2[i,v]>0){
   //       // E[i,v,t]=PROD[v,t]*(10^3/EFF2[i,v])*EVOL[t,i,esc]/(FLEET[v]*(1+RG[esc,v])^t)
-  //       E[i,v,t]=(10^6)*KMT[1,v]/(EFF2[i,v]*EVOL[t,i,esc]*FLEET[v])
+  //       // E[i,v,t]=(10^6)*KMT[1,v]/(EFF2[i,v]*EVOL[t,i,esc]*FLEET[v])
+  //        E[i,v,t]=KMV[v]*(F[1,v,t]/Fs[1,v,t])/(EFF2[i,v]*EVOL[t,i,esc])
   //     }}}}
 
 
@@ -314,7 +315,7 @@ async function transformData( dataObj = defaultValues ){
         if(EFF2[i][v] > 0) {
           // E[i][v][t] = PROD[v][t] * (10**3 / EFF2[i][v]) * EVOL[t][i][esc - 1] / (FLEET[v] * Math.pow((1 + RG[esc - 1][v]), (t + 1)));
           // E[i,v,t]=(10^6)KMT[1,v](F[1,v,t]/Fs[1,v,t])/(EFF2[i,v]*EVOL[t,i,esc]*FLEET[v])
-          E[i][v][t] = (10**6) * KMT[0][v]* (F[0][v][t] / Fs[0][v][t]) / (EFF2[i][v] * EVOL[t][i][esc - 1] * FLEET[v]);
+          E[i][v][t] = KMV[v]* (F[0][v][t] / Fs[0][v][t]) / (EFF2[i][v] * EVOL[t][i][esc - 1]);
         }
       }
     }
@@ -368,18 +369,19 @@ async function transformData( dataObj = defaultValues ){
   //       for(t1 in t:t+nn[i]){
           
   //         if(t1<=T){        
-  //           NPV[i,v,t,2]<-NPV[i,v,t,2]+E[i,v,t]*((CF[i]/10^6)*(1+VFC[i]*IMP[i,t1])*(1+GR[esc,i])^t1+(CT/10^6)*(TRM/10^6)*min(1,t1/tt)*(WTT[i]*EMI[t,i,esc]+TTW[i]))*(1/(1+roi[esc])^(t1-t))
-  //         }else{NPV[i,v,t,2]<-NPV[i,v,t,2]+E[i,v,t]*((CF[i]/10^6)*(1+VFC[i]*IMP[i,T])*(1+GR[esc,i])^t1+(CT/10^6)*(TRM/10^6)*min(1,t1/tt)*(WTT[i]*EMI[T,i,esc]+TTW[i]))*(1/(1+roi[esc])^(t1-t))}
+  //           NPV[i,v,t,2]<-NPV[i,v,t,2]+E[i,v,t]*((CF[i]/10^6)*(1+VFC[i]*IMP[i,t1])*(1+GR[esc,i])^t1+(CT/10^6)*(TRM/10^6)*min(1,t1/tt)*(WTT[i]*EMI[t,i,esc]+TTW[i]))*(1/(1+roi[esc])^(t-t1))
+  //         }else{NPV[i,v,t,2]<-NPV[i,v,t,2]+E[i,v,t]*((CF[i]/10^6)*(1+VFC[i]*IMP[i,T])*(1+GR[esc,i])^t1+(CT/10^6)*(TRM/10^6)*min(1,t1/tt)*(WTT[i]*EMI[T,i,esc]+TTW[i]))*(1/(1+roi[esc])^(t-t1))}
           
+
   //       }}}}
   for(let v = 0; v < V; v++){
     for(let i = 0; i < I; i++){
       for(let t = 0; t < T; t++){
         for(let t1 = t; t1 <= (t + nn[i]); t1++){
           if(t1 < T){
-            NPV[i][v][t][1] += E[i][v][t] * ((CF[i] / 10**6) * (1 + VFC[i] * IMP[i][t1]) * (1 + GR[esc - 1][i]) ** (t1 + 1) + (CT / 10**6) * (TRM / 10**6) * Math.min(1, (t1 + 1) / tt) * (WTT[i] * EMI[t1][i][esc - 1] + TTW[i])) * (1 / (1 + roi[esc - 1]) ** ((t1 + 1) - (t + 1)));
+            NPV[i][v][t][1] += E[i][v][t] * ((CF[i] / 10**6) * (1 + VFC[i] * IMP[i][t1]) * (1 + GR[i][esc - 1]) ** (t1 + 1) + (CT / 10**6) * (TRM / 10**6) * Math.min(1, (t1 + 1) / tt) * (WTT[i] * EMI[t1][i][esc - 1] + TTW[i])) * (1 / (1 + roi[esc - 1]) ** ((t + 1) - (t1 + 1)));
           } else {
-            NPV[i][v][t][1] += E[i][v][t] * ((CF[i] / 10**6) * (1 + VFC[i] * IMP[i][T - 1]) * (1 + GR[esc - 1][i]) ** (t1 + 1) + (CT / 10**6) * (TRM / 10**6) * Math.min(1, (t1 + 1) / tt) * (WTT[i] * EMI[T - 1][i][esc - 1] + TTW[i])) * (1 / (1 + roi[esc - 1]) ** ((t1 + 1) - (t + 1)));
+            NPV[i][v][t][1] += E[i][v][t] * ((CF[i] / 10**6) * (1 + VFC[i] * IMP[i][T - 1]) * (1 + GR[i][esc - 1]) ** (t1 + 1) + (CT / 10**6) * (TRM / 10**6) * Math.min(1, (t1 + 1) / tt) * (WTT[i] * EMI[T - 1][i][esc - 1] + TTW[i])) * (1 / (1 + roi[esc - 1]) ** ((t + 1) - (t1 + 1)));
           }
         }
       }
@@ -724,7 +726,7 @@ async function transformData( dataObj = defaultValues ){
     for(let i = 0; i < I; i++){
       for(let t = 0; t < T; t++){
 
-        VFCX[i][v][t] = N[i][v][t] * E[i][v][t] * ((CF[i] / 10**6) * (VFC[i] * IMP[i][t]) * (1 + GR[esc - 1][i])**(t + 1)) * (1 / (1 + INF[esc - 1])**(t + 1));
+        VFCX[i][v][t] = N[i][v][t] * E[i][v][t] * ((CF[i] / 10**6) * (VFC[i] * IMP[i][t]) * (1 + GR[i][esc - 1])**(t + 1)) * (1 / (1 + INF[esc - 1])**(t + 1));
         TCX[i][v][t] = N[i][v][t] * E[i][v][t] * ((CT / 10**6) * (TRM / 10**6) * Math.min(1, (t + 1) / tt) * (WTT[i] * EMI[t][i][esc - 1] + TTW[i])) * (1 / (1 + INF[esc - 1])**(t + 1));
         VACX[i][v][t] = G[i][v][t] * A[i][v] * PASS[t][i][v] * ((1 + DEV[esc - 1])**(t + 1)) * (VAC[i]) * (1 / (1 + INF[esc - 1])**(t + 1));
       }

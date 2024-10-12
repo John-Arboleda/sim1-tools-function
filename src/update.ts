@@ -11,6 +11,10 @@ function updateObj(dataObj: any){
 
   const staticObj = getStaticInputValues(staticInputCollection);
 
+  staticObj['input-VFC-0'] = staticObj['input-VFC-1'];
+  staticObj['input-tc1-0'] = staticObj['input-tc1-1'];
+  staticObj['input-tc2-0'] = staticObj['input-tc2-1'];
+
   dataObj = setStaticValues(staticObj, dataObj);
 
   return dataObj;
@@ -25,9 +29,9 @@ function drawActivePanel(resultObj: any){
   for (const panel of panelNodes) {
     if (!panel.classList.contains('d-none')) {
 
-      const panelId = panel.id;
-      
-      const func = drawChartFunctions[panelId];
+      const prefixId = panel.id.replace('-panel', '');
+
+      const func = drawChartFunctions[prefixId];
       if (func) {
         func(resultObj);
       }
@@ -55,32 +59,6 @@ function drawChartsOnInput(): void {
     }
   }
 }
-
-////
-
-// function drawChartsOnInput(){
-  
-//   for(let input of staticInputCollection){
-
-//     if (input instanceof HTMLInputElement) {
-
-//       input.addEventListener('change', async () => {
-
-//         objValues = updateObj(objValues);
-
-//         console.log(objValues);
-        
-//         const resultObj = await transformData(objValues);
-
-//         console.log(resultObj);
-
-//         drawActivePanel(resultObj);
-//       })
-//     }
-//   }
-// }
-
-
 
 function updateComponents(dataObj: any){
 

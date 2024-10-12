@@ -174,7 +174,7 @@ const dieselOptions = {
   ...fuelOptions,
   vAxis: {
     ...fuelOptionsVAxis,
-    title: 'Diesel (Ton)'
+    title: 'Diesel (Millones de Galones)'
   },
 };
 

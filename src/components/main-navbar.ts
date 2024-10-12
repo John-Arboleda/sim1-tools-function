@@ -11,15 +11,11 @@ async function createNavEvents(): Promise<void> {
 
   const navItems = document.querySelectorAll(".navbar-item");
 
-  
-
   navItems.forEach((navItem: Element) => {
     navItem.addEventListener("click", () => {
       const mainNavbar = document.getElementById('main-navbar') as HTMLElement;
       const activeLink = mainNavbar.querySelector('.active') as HTMLElement;
       activeLink.classList.remove('active');
-      
-      
 
       const navLink = navItem.querySelector('.nav-link') as HTMLElement;
       navLink.classList.add('active');
@@ -35,35 +31,14 @@ async function createNavEvents(): Promise<void> {
       const panelToShow = document.getElementById(panelId) as HTMLElement;
       panelToShow.classList.remove('d-none');
 
-      const func = drawChartFunctions[panelId];
+      const prefixId = panelId.replace('-panel', '');
+
+      const func = drawChartFunctions[prefixId];
       if (func) {
         func(resultObj);
       }
-
-      // if (panelId == "emissions-panel") {
-      //   runEmissionCharts(resultObj);
-      // } 
-      
-      // if (panelId == "fleet-panel") {
-      //   runFleetCharts(resultObj);
-      // } 
-      
-      // if (panelId == "costs-panel") {
-      //   runCostsCharts(resultObj);
-      // }
-
-      // if (panelId == "energy-panel") {
-      //   runEnergyCharts(resultObj);
-      // }
     });
   });
-
-  // const summaryButton = document.getElementById('summary-nav-button') as HTMLElement;
-
-  // summaryButton.addEventListener('click', () => {
-  //   runSummaryCharts();
-  //   resizeSummaryPanel();
-  // });
 }
 
 // function resizeSummaryPanel(): void {

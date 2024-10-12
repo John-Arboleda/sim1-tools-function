@@ -127,11 +127,11 @@ function drawEnergyCharts(resultObj: ResultObj): void {
   multipleAreaChart(resultObj.QFUEL[4], createDataQfuel, 'hydrogen_area_chart', 'energy', hydrogenOptions, vehHeader);
 }
 
-const drawChartFunctions: { [key: string]: (resultObj: ResultObj) => void } = {
-  'emissions-panel': runEmissionCharts,
-  'fleet-panel': runFleetCharts,
-  'costs-panel': runCostsCharts,
-  'energy-panel': runEnergyCharts
+const drawChartFunctions: { [prefixId: string]: (resultObj: ResultObj) => void } = {
+  'emissions': runEmissionCharts,
+  'fleet': runFleetCharts,
+  'costs': runCostsCharts,
+  'energy': runEnergyCharts
 };
 
 export { runEmissionCharts, runFleetCharts, runCostsCharts, runEnergyCharts, drawChartFunctions }
