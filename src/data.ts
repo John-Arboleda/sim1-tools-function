@@ -62,6 +62,7 @@ const defaultValues = {
   rate: 0.2682,
   per: 5,
   agep: 20,
+  scl: 100,
 }
 
 export { defaultValues }

@@ -43,7 +43,8 @@ async function transformData( dataObj = defaultValues ){
   // scl<-10^6 # escala logit
   // beta <- c(1,1,1) # Coeficientes logit
   // salv<-0.2 # Porcentaje de salvamento con respecto a lo que vale nuevo el vehiculo
-  const scl: number = 10**6;
+  // const scl: number = 10**3;
+  const { scl } = dataObj;
   const beta: number[] = [1, 1, 1];
   const salv: number = 0.2;
 
@@ -64,7 +65,7 @@ async function transformData( dataObj = defaultValues ){
   // EMPT1 <- array(c(0.2995,0.2900), dim=c(V)) # Porcentaje optimo de viajes vacios en el pais
   // QVEH <- array(c(366250,201259,151919,70116,328705,204607,154142,106955), dim=c(P,V)) # numero de viajes requerido por politica
   const W: number[] = [4, 7];
-  const KMV: number[] = [165846, 260283];
+  const KMV: number[] = [260283, 165846];
   const CM: number[] = [40.40, 68.33];
   const EMPT0: number[] = [0.6929, 0.6637];
   const EMPT1: number[] = [0.2995, 0.2900];
@@ -106,7 +107,7 @@ async function transformData( dataObj = defaultValues ){
   // RG <- array(c(0.018,0.026,0.041,0.018,0.026,0.041), dim=c(3,V)) # Crecimiento anual de la flota
   // roi<-array(c(0.103, 0.122, 0.151), dim=c(3)) # Rentabilidad del sector, larepublica
   const opt: number = 1;
-  const esc: number = 3;
+  const esc: number = 2;
   const INF: number[] = [0.131, 0.071, 0.046];
   const DEV: number[] = [0.138, 0.049, 0.008];
 
@@ -115,10 +116,10 @@ async function transformData( dataObj = defaultValues ){
 
   const roi: number[] = [0.103, 0.122, 0.151];
 
-  // GR<- array(c(0.017,0.017,0.106,0.1380,0.053,
-  //              0.014,0.014,0.071,0.0367,0.030,
-  //              0.007,0.007,0.053,0.0095,-0.03), dim=c(3,I)) # Cambio del costo de combustible anual
-  const arrayGR: number[] = [0.017, 0.017, 0.106, 0.1380, 0.053, 0.014, 0.014, 0.071, 0.0367, 0.030, 0.007, 0.007, 0.053, 0.0095, -0.03];
+  // GR<- array(c(0.017,0.017,0.0243,0.1380,0.053,
+  //              0.014,0.014,0.0083,0.0367,0.030,
+  //              0.007,0.007,0.0017,0.0095,-0.03), dim=c(3,I)) # Cambio del costo de combustible anual
+  const arrayGR: number[] = [0.017, 0.017, 0.0243, 0.1380, 0.053, 0.014, 0.014, 0.0083, 0.0367, 0.030, 0.007, 0.007, 0.0017, 0.0095, -0.03];
   const GR: number[][] = arrayToMatrix(arrayGR, [I, 3]);
 
   // EVOL <- array(data.matrix(data1), dim=c(T,I,3)) # Factor evolucion de la eficiencia de los motores
@@ -354,11 +355,11 @@ async function transformData( dataObj = defaultValues ){
   const IMP: number[][] = new Array(I).fill(0).map(() => new Array(T).fill(0));
   for(let i = 0; i < I; i++) {
     for(let t1 = 0; t1 < T; t1++) {
-      if(VFC[i] >= 0) {
-        IMP[i][t1] = Math.min(1, Math.max(0, ((t1 + 1) - tc1[i]) / (tc2[i] - tc1[i])));
-      } else {
-        IMP[i][t1] = 1 - Math.min(1, Math.max(0, ((t1 + 1) - tc1[i]) / (tc2[i] - tc1[i])));
-      }
+      // if(VFC[i] >= 0) {
+      IMP[i][t1] = Math.min(1, Math.max(0, ((t1 + 1) - tc1[i]) / (tc2[i] - tc1[i])));
+      // } else {
+      //   IMP[i][t1] = 1 - Math.min(1, Math.max(0, ((t1 + 1) - tc1[i]) / (tc2[i] - tc1[i])));
+      // }
     }
   }  
 
@@ -374,14 +375,20 @@ async function transformData( dataObj = defaultValues ){
           
 
   //       }}}}
+
+
+
+//   if(t1<=T){    
+//     NPV[i,v,t,2]<-NPV[i,v,t,2]+E[i,v,t]((CF[i]/10^6)(1+VFC[i]IMP[i,t1])+(CT/10^6)(TRM/10^6)min(1,t1/tt)(WTT[i]EMI[t,i,esc]+TTW[i]))(1+GR[i,esc])^t1*(1/(1+roi[esc])^(t1-t))
+// }else{NPV[i,v,t,2]<-NPV[i,v,t,2]+E[i,v,t]((CF[i]/10^6)(1+VFC[i]IMP[i,T] )+(CT/10^6)(TRM/10^6)min(1,t1/tt)(WTT[i]EMI[T,i,esc]+TTW[i]))(1+GR[i,esc])^t1*(1/(1+roi[esc])^(t1-t))}
   for(let v = 0; v < V; v++){
     for(let i = 0; i < I; i++){
       for(let t = 0; t < T; t++){
         for(let t1 = t; t1 <= (t + nn[i]); t1++){
           if(t1 < T){
-            NPV[i][v][t][1] += E[i][v][t] * ((CF[i] / 10**6) * (1 + VFC[i] * IMP[i][t1]) * (1 + GR[i][esc - 1]) ** (t1 + 1) + (CT / 10**6) * (TRM / 10**6) * Math.min(1, (t1 + 1) / tt) * (WTT[i] * EMI[t1][i][esc - 1] + TTW[i])) * (1 / (1 + roi[esc - 1]) ** ((t + 1) - (t1 + 1)));
+            NPV[i][v][t][1] += E[i][v][t] * ((CF[i] / 10**6) * (1 + VFC[i] * IMP[i][t1]) + (CT / 10**6) * (TRM / 10**6) * Math.min(1, (t1 + 1) / tt) * (WTT[i] * EMI[t1][i][esc - 1] + TTW[i])) * (1 + GR[i][esc - 1]) ** (t1 + 1)  * (1 / (1 + roi[esc - 1]) ** ((t1 + 1) - (t + 1)));
           } else {
-            NPV[i][v][t][1] += E[i][v][t] * ((CF[i] / 10**6) * (1 + VFC[i] * IMP[i][T - 1]) * (1 + GR[i][esc - 1]) ** (t1 + 1) + (CT / 10**6) * (TRM / 10**6) * Math.min(1, (t1 + 1) / tt) * (WTT[i] * EMI[T - 1][i][esc - 1] + TTW[i])) * (1 / (1 + roi[esc - 1]) ** ((t + 1) - (t1 + 1)));
+            NPV[i][v][t][1] += E[i][v][t] * ((CF[i] / 10**6) * (1 + VFC[i] * IMP[i][T - 1]) + (CT / 10**6) * (TRM / 10**6) * Math.min(1, (t1 + 1) / tt) * (WTT[i] * EMI[T - 1][i][esc - 1] + TTW[i])) * (1 + GR[i][esc - 1]) ** (t1 + 1) * (1 / (1 + roi[esc - 1]) ** ((t1 + 1) - (t + 1)));
           }
         }
       }
@@ -447,7 +454,7 @@ async function transformData( dataObj = defaultValues ){
       for(let t = 0; t < T; t++){
         UTIL[i][v][t] = 0;
         for(let c = 0; c < C; c++){
-          UTIL[i][v][t] -= beta[c] * EAA[i][v][t][c] / scl; 
+          UTIL[i][v][t] = UTIL[i][v][t] - (beta[c] * EAA[i][v][t][c] / scl); 
         }
       }
     }

@@ -109,6 +109,30 @@
     <!-- sidebar -->
     <div id="sidebar-panel" class="col-3 p-0 overflow-scroll height-100-vh px-2 pb-5">
 
+      <!-- Dev -->
+
+      <table class="table table-bordered table table-hover align-middle my-4 d-none">
+        <thead class="collapsed bg-transparent cursor-pointer" data-bs-toggle="collapse" data-bs-target="#dev-collapse"
+          aria-expanded="false">
+          <tr>
+            <th colspan="2" class="text-center table-header">Parámetros Admin</th>
+          </tr>
+        </thead>
+        <tbody class="lh-1 collapse bg-transparent" id="dev-collapse">
+
+          <tr>
+            <td scope="row">
+              <label for="input-scl">
+                <small class="form-text text-muted">Escala logit</small>
+              </label>
+            </td>
+            <td class="home">
+              <input type="number" class="form-control static-input" id="input-scl" name="input-scl" value="100" step="1" required>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
       <!-- Finanzas -->
       
       <table class="table table-bordered table table-hover align-middle my-4">
@@ -435,7 +459,7 @@
                         </label>
                         <small id="per_input-gamma-0" class="form-text text-muted">0.06</small>
                       </div>
-                      <input type="range" class="form-range static-input" min="0" max="0.09" step="0.01" value="0.06"
+                      <input type="range" class="form-range static-input" min="0" max="0.09" step="0.01" value="0.09"
                         id="input-gamma-0">
                       <div class="gamma-0_legend d-flex justify-content-between">
                         <small class="text-muted">0.00</small>
@@ -953,7 +977,7 @@
                   <tr>
                     <td scope="row" colspan="2">
                       <label>
-                        <small class="form-text text-muted">Año de inicio</br>impuesto al Diesel</small>
+                        <small class="form-text text-muted">Inicio del incremento gradual</br>del impuesto al Diesel</small>
                       </label>
                     </td>
                     <td class="home">
@@ -964,7 +988,7 @@
                   <tr>
                     <td scope="row" colspan="2">
                       <label for="input-tc2-1">
-                        <small class="form-text text-muted">Año de finalización</br>impuesto al Diesel</small>
+                        <small class="form-text text-muted">Fin del incremento del</br>impuesto al Diesel</small>
                       </label>
                     </td>
                     <td class="home">
@@ -1011,7 +1035,7 @@
                   <tr>
                     <td scope="row" colspan="2">
                       <label>
-                        <small class="form-text text-muted">Año de inicio</br>impuesto al Diesel</small>
+                        <small class="form-text text-muted">Inicio del incremento gradual</br>del impuesto al Diesel</small>
                       </label>
                     </td>
                     <td class="home">
@@ -1022,7 +1046,7 @@
                   <tr>
                     <td scope="row" colspan="2">
                       <label for="input-tc2-1">
-                        <small class="form-text text-muted">Año de finalización</br>impuesto al Diesel</small>
+                        <small class="form-text text-muted">Fin del incremento del</br>impuesto al Diesel</small>
                       </label>
                     </td>
                     <td class="home">
@@ -1069,7 +1093,7 @@
                   <tr>
                     <td scope="row" colspan="2">
                       <label for="input-tc1-2">
-                        <small class="form-text text-muted">Año de inicio</br>impuesto al Gas Natural</small>
+                        <small class="form-text text-muted">Inicio del incremento gradual</br>del impuesto al Gas Natural</small>
                       </label>
                     </td>
                     <td class="home">
@@ -1080,7 +1104,7 @@
                   <tr>
                     <td scope="row" colspan="2">
                       <label for="input-tc2-2">
-                        <small class="form-text text-muted">Año de finalización</br>impuesto al Gas Natural</small>
+                        <small class="form-text text-muted">Fin del incremento del</br>impuesto al Gas Natural</small>
                       </label>
                     </td>
                     <td class="home">
@@ -1127,7 +1151,7 @@
                   <tr>
                     <td scope="row" colspan="2">
                       <label for="input-tc1-3">
-                        <small class="form-text text-muted">Año de inicio <br>Subsidio Carga Eléctrica</small>
+                        <small class="form-text text-muted">Inicio del incremento gradual<br>del subsidio a Carga Eléctrica</small>
                       </label>
                     </td>
                     <td class="home">
@@ -1138,7 +1162,7 @@
                   <tr>
                     <td scope="row" colspan="2">
                       <label for="input-tc2-3">
-                        <small class="form-text text-muted">Año de finalización <br>Subsidio Carga Eléctrica</small>
+                        <small class="form-text text-muted">Fin del incremento del<br>subsidio a Carga Eléctrica</small>
                       </label>
                     </td>
                     <td class="home">
@@ -1185,7 +1209,7 @@
                   <tr>
                     <td scope="row" colspan="2">
                       <label for="input-tc1-4">
-                        <small class="form-text text-muted">Año de inicio <br>Subsidio al Hidrógeno</small>
+                        <small class="form-text text-muted">Inicio del incremento gradual<br>del subsidio al Hidrógeno</small>
                       </label>
                     </td>
                     <td class="home">
@@ -1196,7 +1220,7 @@
                   <tr>
                     <td scope="row" colspan="2">
                       <label for="input-tc2-4">
-                        <small class="form-text text-muted">Año de finalización <br>Subsidio al Hidrógeno</small>
+                        <small class="form-text text-muted">Fin del incremento del<br>subsidio al Hidrógeno</small>
                       </label>
                     </td>
                     <td class="home">
