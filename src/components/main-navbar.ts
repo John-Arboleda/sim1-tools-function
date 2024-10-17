@@ -1,18 +1,20 @@
-import { drawChartFunctions } from "../charts/draw-charts";
 import { transformData } from "../functions";
 // import { defaultValues } from "../data";
-import { objValues } from "../update";
+import { objValues, drawActivePanel, updateObj} from "../update";
 
 
 
-async function createNavEvents(): Promise<void> {
-
-  const resultObj = await transformData(objValues);
+function createNavEvents(): void{
 
   const navItems = document.querySelectorAll(".navbar-item");
 
   navItems.forEach((navItem: Element) => {
-    navItem.addEventListener("click", () => {
+    navItem.addEventListener("click", async () => {
+
+      const objData = updateObj(objValues);
+
+      const resultObj = await transformData(objData);
+
       const mainNavbar = document.getElementById('main-navbar') as HTMLElement;
       const activeLink = mainNavbar.querySelector('.active') as HTMLElement;
       activeLink.classList.remove('active');
@@ -31,12 +33,8 @@ async function createNavEvents(): Promise<void> {
       const panelToShow = document.getElementById(panelId) as HTMLElement;
       panelToShow.classList.remove('d-none');
 
-      const prefixId = panelId.replace('-panel', '');
+      drawActivePanel(resultObj);
 
-      const func = drawChartFunctions[prefixId];
-      if (func) {
-        func(resultObj);
-      }
     });
   });
 }

@@ -71,4 +71,4 @@ function updateComponents(dataObj: any){
 }
 
 
-export { updateObj, updateComponents, objValues, drawChartsOnInput }
+export { updateObj, updateComponents, objValues, drawChartsOnInput, drawActivePanel }
